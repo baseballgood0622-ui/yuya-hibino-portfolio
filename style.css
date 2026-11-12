@@ -1,0 +1,2112 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   YUYA HIBINO PORTFOLIO STYLE SHEET
+   ==========================================================================
+   本スタイルシートは、初心者の方でも編集しやすいよう、
+   重要な設定項目に「★ここで〇〇を変更できます」という日本語コメントを添えています。
+   ========================================================================== */
+
+/* ==========================================================================
+   0. デザイン基本変数（カラーコード・フォント定義）
+   ★色や基本の余白を変えたいときは、ここを編集するだけでサイト全体に反映されます！
+   ========================================================================== */
+:root {
+  /* ★メインの背景色（オフホワイト：19歳の清潔感と優しさが伝わる明るい背景） */
+  --color-bg-base: #f5f7fa;
+  
+  /* ★カードや入力欄の背景色（清潔感のある純白） */
+  --color-bg-card: #ffffff;
+  
+  /* ★メインの濃色（誠実さと信頼感を表すディープネイビー） */
+  --color-text-primary: #14233c;
+  
+  /* ★アクセントカラー（爽やかで知的なスレートブルー／ロイヤルネイビー） */
+  --color-text-accent: #2b5b84;
+  --color-text-accent-hover: #1e4263;
+  
+  /* ★本文の文字色（目に優しく読みやすいダークスレート） */
+  --color-text-body: #2c3a4f;
+  
+  /* ★補足テキスト・薄い文字色 */
+  --color-text-muted: #64748b;
+  
+  /* ★境界線・区切り線の色 */
+  --color-border: #dce3ec;
+  --color-border-light: #e8eef5;
+  
+  /* ★フッターの背景色と文字色（引き締まったミッドナイトネイビー） */
+  --color-footer-bg: #0f1c30;
+  --color-footer-text: #e2e8f0;
+  
+  /* ★エラー・必須バッジ色 */
+  --color-required: #c0392b;
+  --color-optional: #64748b;
+
+  /* ★フォントファミリー指定 */
+  --font-en-modern: 'Outfit', sans-serif;
+  --font-en-narrow: 'PT Sans Narrow', sans-serif;
+  --font-en-script: 'Dancing Script', cursive;
+  --font-jp: 'Noto Sans JP', 'Yu Gothic', '游ゴシック体', YuGothic, sans-serif;
+  --font-jp-serif: 'Shippori Mincho', 'Noto Serif JP', 'Yu Mincho', '游明朝', YuMincho, 'Hiragino Mincho ProN', serif;
+  
+  /* ★アニメーション速度 */
+  --transition-smooth: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* ==========================================================================
+   1. リセットCSS（ブラウザ差異の解消）
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-bg-base);
+  color: var(--color-text-body);
+  font-family: var(--font-jp);
+  font-size: 1rem;
+  line-height: 1.8;
+  letter-spacing: 0.05em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  /* 日本語の不自然な改行を防ぎ、読みやすくする設定 */
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  color: var(--color-text-accent);
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+a:hover {
+  color: var(--color-text-accent-hover);
+  opacity: 0.85;
+}
+
+button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  color: inherit;
+  padding: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+/* 表示切り替え＆改行制御用ユーティリティ */
+.ib {
+  display: inline-block;
+}
+
+.pc {
+  display: block !important;
+}
+br.pc {
+  display: inline !important;
+}
+.sp {
+  display: none !important;
+}
+
+@media screen and (max-width: 768px) {
+  .pc,
+  br.pc {
+    display: none !important;
+  }
+  .sp {
+    display: block !important;
+  }
+  br.sp {
+    display: inline !important;
+  }
+}
+
+/* ==========================================================================
+   2. ページローダー（佐藤タカアキ氏サイトの上品な3連ドット再現）
+   ========================================================================== */
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-bg-base);
+  z-index: 9999;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.loader.is-loaded {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader_dot, .loader_dot::before, .loader_dot::after {
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  animation-fill-mode: both;
+  animation: loaderPulse 1.4s infinite ease-in-out;
+}
+
+.loader_dot {
+  color: var(--color-text-accent);
+  font-size: 10px;
+  position: relative;
+  text-indent: -9999em;
+  animation-delay: -0.16s;
+}
+
+.loader_dot::before, .loader_dot::after {
+  content: '';
+  position: absolute;
+  top: 0;
+}
+
+.loader_dot::before {
+  left: -24px;
+  animation-delay: -0.32s;
+}
+
+.loader_dot::after {
+  left: 24px;
+}
+
+@keyframes loaderPulse {
+  0%, 80%, 100% {
+    box-shadow: 0 0 0 -4px;
+    opacity: 0.3;
+  }
+  40% {
+    box-shadow: 0 0 0 4px;
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   3. 全体ラッパー（似顔絵・透かしイラストをなくした清潔感のある背景）
+   ========================================================================== */
+.wrapper--top {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--color-bg-base);
+  background-image: radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.9) 0%, rgba(245, 247, 250, 0) 65%);
+}
+
+/* ==========================================================================
+   4. ヘッダー（固定ナビゲーションバー）
+   ========================================================================== */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 100;
+  padding: 2vw 0 0 3.2vw;
+  transition: background-color 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
+}
+
+/* スクロール時にわずかに背景を半透明で馴染ませる */
+.header.is-scrolled {
+  background-color: rgba(245, 247, 250, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 1.2vw 0 1.2vw 3.2vw;
+  box-shadow: 0 4px 20px rgba(20, 35, 60, 0.05);
+}
+
+.header_inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 93.5vw;
+}
+
+.header_logo {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.header_logo:hover {
+  transform: scale(1.06);
+  opacity: 1;
+}
+
+.header_logo img {
+  width: 4.2vw;
+  height: 4.2vw;
+  min-width: 44px;
+  min-height: 44px;
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-text-primary);
+  box-shadow: 0 4px 12px rgba(20, 35, 60, 0.08);
+  background-color: #ffffff;
+}
+
+.header_inner_list {
+  display: flex;
+  align-items: center;
+}
+
+.header_inner_listItem {
+  margin-left: 3.2vw;
+}
+
+.header_inner_listItem a {
+  font-family: var(--font-en-narrow);
+  font-size: 1.35vw;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--color-text-accent);
+  position: relative;
+  display: inline-block;
+  padding: 0.3vw 0;
+}
+
+/* ホバー時の下線アニメーション */
+.header_inner_listItem a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 1.5px;
+  background-color: var(--color-text-accent);
+  transition: width 0.3s ease;
+}
+
+.header_inner_listItem a:hover::after,
+.header_inner_listItem a.is-active::after {
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 16px 20px;
+  }
+  .header.is-scrolled {
+    padding: 12px 20px;
+  }
+  .header_inner {
+    width: 100%;
+  }
+  .header_logo img {
+    width: 42px;
+    height: 42px;
+  }
+  .header_inner_listItem {
+    margin-left: 14px;
+  }
+  .header_inner_listItem a {
+    font-size: 14px;
+    letter-spacing: 0.06em;
+  }
+}
+
+/* ==========================================================================
+   5. ファーストビュー（First View / FV）
+   ★「どこよりも寄り添い、作ってからも丁寧に。」＋ YUYA HIBINO のオリジナル構成
+   ========================================================================== */
+.mainVisual {
+  width: 100%;
+  height: 100vh;
+  min-height: 620px;
+  max-height: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+  padding: 0 4vw;
+}
+
+.mainVisual_inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+  margin-top: 1vw;
+}
+
+/* ステータスバッジ */
+.mainVisual_badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-en-modern);
+  font-size: 0.85vw;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--color-text-accent);
+  background-color: rgba(255, 255, 255, 0.88);
+  border: 1px solid var(--color-border);
+  padding: 0.45vw 1.4vw;
+  border-radius: 999px;
+  margin-bottom: 1.8vw;
+  box-shadow: 0 4px 14px rgba(20, 35, 60, 0.04);
+}
+
+.badge_dot {
+  width: 7px;
+  height: 7px;
+  background-color: var(--color-text-accent);
+  border-radius: 50%;
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.5; }
+}
+
+/* メイン日本語キャッチコピー（「どこよりも寄り添い、作ってからも丁寧に。」：知的で上品な明朝体） */
+.mainVisual_catch {
+  font-family: var(--font-jp-serif);
+  font-size: 2.55vw;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  margin-bottom: 1.1vw;
+}
+
+/* メインロゴ（Yuya Hibino：見やすさ重視の洗練された筆記体） */
+.mainVisual_logo {
+  font-family: var(--font-en-script);
+  font-size: 2.35vw;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--color-text-accent);
+  line-height: 1.2;
+  margin-bottom: 1.8vw;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 1.2vw;
+}
+
+.mainVisual_logo::before,
+.mainVisual_logo::after {
+  content: '';
+  display: inline-block;
+  width: 2.8vw;
+  height: 1.5px;
+  background-color: var(--color-text-accent);
+  opacity: 0.45;
+}
+
+/* サブリード文 */
+.mainVisual_sub {
+  font-size: 1.05vw;
+  color: var(--color-text-body);
+  line-height: 2.0;
+  letter-spacing: 0.06em;
+  margin-bottom: 2.6vw;
+}
+
+/* ファーストビューのアクションボタン群 */
+.mainVisual_actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2vw;
+}
+
+.fv_btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-jp);
+  font-size: 0.95vw;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 0.95vw 2.4vw;
+  border-radius: 999px;
+  transition: var(--transition-smooth);
+}
+
+.fv_btn--primary {
+  background-color: var(--color-text-primary);
+  color: #ffffff;
+  box-shadow: 0 8px 22px rgba(20, 35, 60, 0.16);
+}
+
+.fv_btn--primary:hover {
+  background-color: var(--color-text-accent);
+  color: #ffffff;
+  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(43, 91, 132, 0.24);
+}
+
+.fv_btn--outline {
+  background-color: rgba(255, 255, 255, 0.85);
+  color: var(--color-text-primary);
+  border: 1.5px solid var(--color-border);
+}
+
+.fv_btn--outline:hover {
+  background-color: #ffffff;
+  border-color: var(--color-text-accent);
+  color: var(--color-text-accent);
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+/* SP用背景イラスト */
+.mainVisual_bg.sp {
+  position: absolute;
+  width: 78vw;
+  max-width: 420px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -48%);
+  opacity: 0.65;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 768px) {
+  .mainVisual {
+    height: 100svh;
+    min-height: 540px;
+    max-height: 760px;
+    padding: 0 6vw;
+  }
+  .mainVisual_badge {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    padding: 6px 14px;
+    margin-bottom: 18px;
+  }
+  .mainVisual_catch {
+    font-size: 22px;
+    line-height: 1.6;
+    letter-spacing: 0.09em;
+    margin-bottom: 12px;
+  }
+  .mainVisual_logo {
+    font-size: 25px;
+    letter-spacing: 0.05em;
+    margin-bottom: 18px;
+    gap: 12px;
+  }
+  .mainVisual_logo::before,
+  .mainVisual_logo::after {
+    width: 24px;
+  }
+  .mainVisual_sub {
+    font-size: 13px;
+    line-height: 1.85;
+    margin-bottom: 26px;
+  }
+  .mainVisual_actions {
+    flex-direction: column;
+    width: 100%;
+    max-width: 280px;
+    gap: 12px;
+  }
+  .fv_btn {
+    width: 100%;
+    font-size: 14px;
+    padding: 13px 24px;
+  }
+}
+
+/* ==========================================================================
+   6. メインコンテンツ共通レイアウト（.l-content）
+   ★佐藤氏サイトの黄金比：コンテンツ幅 81.25vw
+   ========================================================================== */
+.l-content {
+  width: 100%;
+  position: relative;
+  z-index: 3;
+}
+
+.l-content_inner {
+  width: 81.25vw;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+  .l-content_inner {
+    width: 90vw;
+  }
+}
+
+/* セクション共通 */
+.section {
+  padding-bottom: 9vw;
+}
+
+@media screen and (max-width: 768px) {
+  .section {
+    padding-bottom: 70px;
+  }
+}
+
+.section_header {
+  text-align: center;
+  margin-bottom: 5vw;
+}
+
+@media screen and (max-width: 768px) {
+  .section_header {
+    margin-bottom: 40px;
+  }
+}
+
+.section_title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font-en-modern);
+  line-height: 1.2;
+}
+
+.section_title_en {
+  font-size: 2.6vw;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--color-text-primary);
+}
+
+.section_title_ja {
+  font-family: var(--font-jp);
+  font-size: 0.95vw;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: var(--color-text-accent);
+  margin-top: 0.6vw;
+}
+
+.section_title ruby {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section_title rt {
+  font-family: var(--font-jp);
+  font-size: 0.36em;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  color: var(--color-text-accent);
+  margin-bottom: 0.4vw;
+}
+
+.section_lead {
+  font-size: 1.05vw;
+  color: var(--color-text-body);
+  line-height: 2.0;
+  margin-top: 1.6vw;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .section_title_en {
+    font-size: 24px;
+    letter-spacing: 0.14em;
+  }
+  .section_title_ja, .section_title rt {
+    font-size: 12px;
+    margin-top: 6px;
+  }
+  .section_lead {
+    font-size: 14px;
+    line-height: 1.8;
+    margin-top: 16px;
+    text-align: left;
+  }
+}
+
+/* ==========================================================================
+   7. WORKS（実績一覧：2カラム・ツインデバイスグリッド）
+   ========================================================================== */
+.works_lead {
+  font-size: 1vw;
+  color: var(--color-text-muted);
+  line-height: 1.9;
+  margin-top: 1.2vw;
+}
+
+@media screen and (max-width: 768px) {
+  .works_lead {
+    font-size: 13px;
+    margin-top: 10px;
+  }
+}
+
+.main_works_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  margin: 1vw auto 4vw;
+}
+
+.main_works_listItem {
+  width: 39vw;
+  padding-bottom: 6.5vw;
+}
+
+/* 作品カード全体（クリックで実際の制作サイトへ飛ぶリンク要素） */
+.works_card {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background-color: transparent;
+  text-decoration: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.works_card:hover, .works_card:focus-visible {
+  opacity: 0.94;
+  transform: translateY(-5px);
+  outline: none;
+}
+
+/* サムネイル画像コンテナ（PC＋スマホ2台モックアップパネル） */
+.works_card_thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #ffffff;
+  border-radius: 14px;
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(20, 35, 60, 0.06);
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.works_card:hover .works_card_thumb {
+  border-color: var(--color-text-accent);
+  box-shadow: 0 20px 44px rgba(20, 35, 60, 0.13);
+}
+
+.main_works_listItem_eyecatch {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.works_card:hover .main_works_listItem_eyecatch {
+  transform: scale(1.02);
+}
+
+/* ホバー時に現れる「OPEN SITE ↗」バッジ */
+.works_card_badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: rgba(25, 25, 25, 0.88);
+  color: #ffffff;
+  font-family: var(--font-en-narrow);
+  font-size: 0.85vw;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  padding: 6px 14px;
+  border-radius: 999px;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.works_card:hover .works_card_badge {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* カード下のテキストブロック（背景透過なので背後の似顔絵が透けて見える） */
+.main_works_listItem_textblock {
+  padding-top: 1.6vw;
+}
+
+/* 作品タイトル（佐藤氏サイトと同じ #a28d69 ゴールドベージュ） */
+.main_works_title {
+  font-family: var(--font-jp);
+  font-size: 1.3vw;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--color-text-accent);
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+/* 担当カテゴリ（佐藤氏サイトと同じ #000000 漆黒・太字大文字） */
+.main_works_category {
+  font-family: var(--font-en-modern);
+  font-size: 0.95vw;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #000000;
+  padding-top: 0.7vw;
+}
+
+/* 補足説明（控えめな1行キャプション） */
+.main_works_sub {
+  font-size: 0.85vw;
+  font-weight: 400;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  padding-top: 0.5vw;
+}
+
+/* スマホ表示（スマホでも2カラム・2個ずつ横並びで表示） */
+@media screen and (max-width: 768px) {
+  .main_works_list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 3.5vw;
+    row-gap: 28px;
+    margin-top: 10px;
+  }
+  .main_works_listItem {
+    width: 100%;
+    padding-bottom: 0;
+  }
+  .works_card_thumb {
+    border-radius: 10px;
+  }
+  .main_works_listItem_textblock {
+    padding-top: 10px;
+  }
+  .main_works_title {
+    font-size: 13px;
+    line-height: 1.45;
+    letter-spacing: 0.02em;
+  }
+  .main_works_title .ib {
+    max-width: 100%;
+  }
+  .main_works_category {
+    font-size: 10px;
+    padding-top: 4px;
+    letter-spacing: 0.04em;
+    line-height: 1.35;
+  }
+  .main_works_sub {
+    font-size: 11px;
+    line-height: 1.55;
+    padding-top: 4px;
+  }
+  .main_works_sub .ib {
+    display: inline;
+  }
+  .works_card_badge {
+    opacity: 1;
+    transform: none;
+    font-size: 9px;
+    top: 6px;
+    right: 6px;
+    padding: 3px 8px;
+    letter-spacing: 0.08em;
+  }
+}
+
+/* ==========================================================================
+   8. ABOUT（プロフィール・スタンス）
+   ========================================================================== */
+.about {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  padding: 6vw 5vw 7vw;
+  margin-bottom: 8vw;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.about_statement {
+  font-size: 1.4vw;
+  font-weight: 700;
+  line-height: 1.8;
+  letter-spacing: 0.06em;
+  color: var(--color-text-primary);
+  margin-top: 1.8vw;
+}
+
+.about_content {
+  display: flex;
+  gap: 4vw;
+  align-items: flex-start;
+  margin-top: 2vw;
+  padding-bottom: 5vw;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.about_avatar {
+  flex-shrink: 0;
+  width: 15vw;
+  text-align: center;
+}
+
+.about_avatar img {
+  width: 12.5vw;
+  height: 12.5vw;
+  max-width: 180px;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--color-text-primary);
+  box-shadow: 0 10px 25px rgba(20, 35, 60, 0.08);
+  background-color: #ffffff;
+}
+
+.about_avatar_meta {
+  margin-top: 1.2vw;
+}
+
+.about_avatar_name {
+  font-family: var(--font-en-modern);
+  font-size: 1.1vw;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--color-text-primary);
+}
+
+.about_avatar_title {
+  font-family: var(--font-jp);
+  font-size: 0.88vw;
+  color: var(--color-text-muted);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.about_story {
+  font-size: 1.05vw;
+  line-height: 2.2;
+  letter-spacing: 0.06em;
+  color: var(--color-text-body);
+  line-break: strict;
+  text-wrap: pretty;
+}
+
+.about_story p {
+  margin-bottom: 1.6em;
+}
+
+.about_story p:last-child {
+  margin-bottom: 0;
+}
+
+.about_story strong {
+  color: var(--color-text-primary);
+  font-weight: 700;
+  background: linear-gradient(transparent 65%, rgba(43, 91, 132, 0.18) 65%);
+}
+
+/* スキル・提供領域（CAPABILITIES） */
+.about_capabilities {
+  margin-top: 5vw;
+}
+
+.capabilities_heading {
+  font-family: var(--font-jp);
+  font-size: 1.35vw;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-align: center;
+  color: var(--color-text-primary);
+  margin-bottom: 3vw;
+}
+
+.capabilities_grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2vw;
+}
+
+.capabilities_grid--three {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.capability_card {
+  background-color: var(--color-bg-card);
+  padding: 2vw 1.6vw;
+  border-radius: 12px;
+  border: 1px solid var(--color-border-light);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.capability_card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.07);
+}
+
+.capability_num {
+  display: inline-block;
+  font-family: var(--font-en-modern);
+  font-size: 1.1vw;
+  font-weight: 700;
+  color: var(--color-text-accent);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5vw;
+}
+
+.capability_title {
+  font-family: var(--font-jp);
+  font-size: 1.08vw;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-text-primary);
+  margin-bottom: 0.3vw;
+  white-space: nowrap;
+}
+
+.capability_ja {
+  font-size: 0.85vw;
+  font-weight: 500;
+  color: var(--color-text-accent);
+  margin-bottom: 0.8vw;
+}
+
+.capability_desc {
+  font-size: 0.93vw;
+  color: var(--color-text-body);
+  line-height: 1.9;
+  line-break: strict;
+  text-wrap: pretty;
+}
+
+@media screen and (max-width: 768px) {
+  .about {
+    padding: 36px 20px 44px;
+    border-radius: 14px;
+    margin-bottom: 60px;
+  }
+  .about_statement {
+    font-size: 16px;
+    line-height: 1.75;
+    margin-top: 14px;
+  }
+  .about_content {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    margin-top: 16px;
+    padding-bottom: 30px;
+  }
+  .about_avatar {
+    width: auto;
+  }
+  .about_avatar img {
+    width: 110px;
+    height: 110px;
+  }
+  .about_avatar_meta {
+    margin-top: 10px;
+  }
+  .about_avatar_name {
+    font-size: 15px;
+  }
+  .about_avatar_title {
+    font-size: 12px;
+    margin-top: 2px;
+  }
+  .about_story {
+    font-size: 14px;
+    line-height: 2.0;
+    letter-spacing: 0.04em;
+  }
+  .about_capabilities {
+    margin-top: 36px;
+  }
+  .capabilities_heading {
+    font-size: 17px;
+    margin-bottom: 24px;
+  }
+  .capabilities_grid,
+  .capabilities_grid--three {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .capability_card {
+    padding: 20px;
+  }
+  .capability_num {
+    font-size: 14px;
+  }
+  .capability_title {
+    font-size: 16px;
+    white-space: normal;
+  }
+  .capability_ja {
+    font-size: 12px;
+  }
+  .capability_desc {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+}
+
+/* ==========================================================================
+   8.5 FLOW（ご依頼の流れ）
+   ★PC・スマホともに縦1列で上から下へSTEPが順番に並ぶ設計
+   ========================================================================== */
+.flow_lead {
+  font-size: 1vw;
+  color: var(--color-text-muted);
+  line-height: 1.9;
+  margin-top: 1.2vw;
+}
+
+.flow_list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.2vw;
+  max-width: 760px;
+  margin: 0 auto;
+  counter-reset: none;
+}
+
+.flow_item {
+  position: relative;
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 2vw 2.6vw 2.2vw;
+  box-shadow: 0 6px 18px rgba(20, 35, 60, 0.04);
+}
+
+/* ★ステップ番号のラベル（色を変えたい場合は background-color を編集） */
+.flow_num {
+  display: inline-block;
+  font-family: var(--font-en-modern);
+  font-size: 0.85vw;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #ffffff;
+  background-color: var(--color-text-primary);
+  padding: 0.3vw 0.95vw;
+  border-radius: 999px;
+  margin-bottom: 0.8vw;
+}
+
+.flow_title {
+  font-family: var(--font-jp);
+  font-size: 1.25vw;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-text-primary);
+  margin-bottom: 0.5vw;
+}
+
+.flow_desc {
+  font-size: 0.98vw;
+  color: var(--color-text-body);
+  line-height: 1.9;
+  line-break: strict;
+}
+
+/* カードの下に次のステップへの下向き矢印（PC・スマホ共通） */
+.flow_item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -1.45vw;
+  width: 0.65vw;
+  height: 0.65vw;
+  border-right: 2px solid var(--color-text-accent);
+  border-bottom: 2px solid var(--color-text-accent);
+  transform: translateX(-50%) rotate(45deg);
+  opacity: 0.55;
+}
+
+@media screen and (max-width: 768px) {
+  .flow_lead {
+    font-size: 13px;
+    margin-top: 10px;
+  }
+  .flow_list {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    max-width: 100%;
+  }
+  .flow_item {
+    padding: 20px 20px 22px;
+    border-radius: 12px;
+  }
+  .flow_num {
+    font-size: 11px;
+    padding: 4px 12px;
+    margin-bottom: 10px;
+  }
+  .flow_title {
+    font-size: 16px;
+    margin-bottom: 6px;
+    white-space: normal;
+  }
+  .flow_desc {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  .flow_item:not(:last-child)::after {
+    bottom: -15px;
+    width: 9px;
+    height: 9px;
+  }
+}
+
+/* ==========================================================================
+   9. CONTACT（トップページの誘導ボタン ＆ 専用お問い合わせページ）
+   ========================================================================== */
+/* トップページ下部のシンプルなボタン誘導エリア */
+.contactCta_box {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  padding: 4.5vw 4vw;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.contactCta_text {
+  font-size: 1.05vw;
+  color: var(--color-text-body);
+  line-height: 2.0;
+  margin-top: 1.4vw;
+  margin-bottom: 2.4vw;
+}
+
+.contactCta_action {
+  display: flex;
+  justify-content: center;
+}
+
+.contactCta_btn {
+  text-decoration: none;
+}
+
+.contactCta_btn:hover {
+  color: #ffffff;
+  opacity: 1;
+}
+
+/* 専用お問い合わせページ（contact.html）のレイアウト */
+.contactPage_main {
+  padding-top: 9vw;
+  min-height: calc(100vh - 180px);
+}
+
+.contact_catch {
+  font-size: 1.35vw;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-top: 1.4vw;
+}
+
+.contact_lead {
+  font-size: 1vw;
+  color: var(--color-text-body);
+  line-height: 2.0;
+  margin-top: 1vw;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  line-break: strict;
+}
+
+.contact_formWrapper {
+  max-width: 640px;
+  margin: 0 auto;
+  background-color: var(--color-bg-card);
+  border-radius: 16px;
+  padding: 3.5vw 4vw;
+  box-shadow: 0 12px 36px rgba(20, 35, 60, 0.06);
+  border: 1px solid var(--color-border);
+}
+
+.contact_backLinkWrap {
+  text-align: center;
+  margin-top: 2.2vw;
+  padding-top: 1.6vw;
+  border-top: 1px solid var(--color-border-light);
+}
+
+.contact_backLink {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.contact_backLink:hover {
+  color: var(--color-text-primary);
+}
+
+.formSection {
+  margin-bottom: 3.5vw;
+}
+
+.formSection:last-of-type {
+  margin-bottom: 2.5vw;
+}
+
+.formSection_header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 1vw;
+  border-bottom: 2px solid var(--color-border-light);
+  margin-bottom: 2vw;
+}
+
+.formSection_badge {
+  display: inline-block;
+  background-color: var(--color-text-accent);
+  color: #ffffff;
+  font-family: var(--font-en-narrow);
+  font-size: 0.9vw;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+
+.formSection_title {
+  font-size: 1.25vw;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.formFieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.formGroup {
+  margin-bottom: 2vw;
+}
+
+.formGroup:last-child {
+  margin-bottom: 0;
+}
+
+.formLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.05vw;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 0.6vw;
+}
+
+/* 必須・任意バッジ */
+.badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 3px;
+  line-height: 1.2;
+}
+
+.badge--required {
+  background-color: var(--color-required);
+  color: #ffffff;
+}
+
+.badge--optional {
+  background-color: var(--color-optional);
+  color: #ffffff;
+}
+
+.formHelp {
+  font-size: 0.88vw;
+  color: var(--color-text-muted);
+  margin-bottom: 0.6vw;
+}
+
+/* ラジオボタンのグリッド配置 */
+.formRadioGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 0.8vw;
+}
+
+.radioOption {
+  display: flex;
+  align-items: center;
+  padding: 12px 14px;
+  background-color: #fafaf8;
+  border: 1.5px solid var(--color-border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.radioOption:hover {
+  background-color: #f3f3ee;
+  border-color: var(--color-text-accent);
+}
+
+.radioOption input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radioOption_custom {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--color-border);
+  border-radius: 50%;
+  margin-right: 10px;
+  display: inline-block;
+  position: relative;
+  transition: border-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.radioOption input[type="radio"]:checked + .radioOption_custom {
+  border-color: var(--color-text-accent);
+}
+
+.radioOption input[type="radio"]:checked + .radioOption_custom::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-text-accent);
+  border-radius: 50%;
+}
+
+.radioOption:has(input[type="radio"]:checked) {
+  background-color: #f6f5ef;
+  border-color: var(--color-text-accent);
+  box-shadow: 0 2px 8px rgba(162, 141, 105, 0.12);
+}
+
+.radioOption_text {
+  font-size: 0.95vw;
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+/* 入力欄（テキスト・メール・テキストエリア） */
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: #fafaf8;
+  border: 1.5px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text-primary);
+  font-size: 1rem;
+  transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  background-color: #ffffff;
+  border-color: var(--color-text-accent);
+  box-shadow: 0 0 0 3px rgba(162, 141, 105, 0.2);
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 140px;
+  line-height: 1.7;
+}
+
+/* バリデーションエラー表示 */
+.formError {
+  font-size: 0.85rem;
+  color: var(--color-required);
+  margin-top: 6px;
+  display: none;
+}
+
+.formError.is-visible {
+  display: block;
+}
+
+input.is-invalid,
+textarea.is-invalid {
+  border-color: var(--color-required);
+  background-color: #fff9f9;
+}
+
+/* 送信ボタンエリア */
+.formSubmitArea {
+  text-align: center;
+  padding-top: 1.5vw;
+  border-top: 1px solid var(--color-border-light);
+}
+
+.submitButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 440px;
+  height: 56px;
+  background-color: var(--color-text-primary);
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(25, 25, 25, 0.2);
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.submitButton:hover {
+  background-color: var(--color-text-accent);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(162, 141, 105, 0.35);
+}
+
+.submitButton:active {
+  transform: translateY(0);
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.submitButton_icon {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.submitButton:hover .submitButton_icon {
+  transform: translateX(4px);
+}
+
+/* 【社内ルール遵守】返信目安の明記 */
+.formNotice {
+  margin-top: 2vw;
+  text-align: center;
+}
+
+.formNotice_lead {
+  font-size: 1vw;
+  color: var(--color-text-primary);
+  margin-bottom: 0.5vw;
+}
+
+.formNotice_lead strong {
+  color: var(--color-text-accent);
+}
+
+.iconCheck {
+  color: #27ae60;
+  margin-right: 4px;
+}
+
+.formNotice_privacy {
+  font-size: 0.8vw;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+@media screen and (max-width: 768px) {
+  .contactCta_box {
+    padding: 36px 20px;
+    border-radius: 14px;
+  }
+  .contactCta_text {
+    font-size: 14px;
+    line-height: 1.85;
+    margin-top: 14px;
+    margin-bottom: 24px;
+  }
+  .contactPage_main {
+    padding-top: 96px;
+  }
+  .contact_catch {
+    font-size: 17px;
+    line-height: 1.6;
+    margin-top: 12px;
+  }
+  .contact_lead {
+    font-size: 13px;
+    line-height: 1.85;
+    text-align: left;
+  }
+  .contact_formWrapper {
+    padding: 28px 20px;
+    border-radius: 12px;
+  }
+  .contact_backLinkWrap {
+    margin-top: 24px;
+    padding-top: 18px;
+  }
+  .formSection {
+    margin-bottom: 28px;
+  }
+  .formSection_header {
+    margin-bottom: 18px;
+  }
+  .formSection_badge {
+    font-size: 11px;
+  }
+  .formSection_title {
+    font-size: 16px;
+  }
+  .formGroup {
+    margin-bottom: 20px;
+  }
+  .formLabel {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  .formHelp {
+    font-size: 12px;
+  }
+  .formRadioGrid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .radioOption_text {
+    font-size: 13px;
+  }
+  .submitButton {
+    max-width: 100%;
+    height: 52px;
+    font-size: 15px;
+  }
+  .formNotice {
+    margin-top: 20px;
+  }
+  .formNotice_lead {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .formNotice_privacy {
+    font-size: 11px;
+    margin-top: 4px;
+  }
+}
+
+/* ==========================================================================
+   10. フッター（Footer）
+   ★重厚感のあるチャコールブラック背景、字間0.5em
+   ========================================================================== */
+.footer {
+  width: 100vw;
+  background-color: var(--color-footer-bg);
+  color: var(--color-footer-text);
+  padding: 5vw 0 4vw;
+  position: relative;
+  z-index: 10;
+}
+
+.footer_inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2vw;
+  text-align: center;
+}
+
+.footer_sns {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+}
+
+.footer_snsLink {
+  font-family: var(--font-en-narrow);
+  font-size: 1.1vw;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--color-footer-text);
+}
+
+.footer_snsLink:hover {
+  color: var(--color-text-accent);
+}
+
+.footer_snsDivider {
+  color: #555555;
+  font-size: 0.9vw;
+}
+
+.footer_backTop {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-en-narrow);
+  font-size: 0.95vw;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--color-text-accent);
+  padding: 6px 16px;
+  border: 1px solid rgba(162, 141, 105, 0.4);
+  border-radius: 999px;
+  transition: var(--transition-smooth);
+}
+
+.footer_backTop:hover {
+  background-color: var(--color-text-accent);
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+
+.footer_backTop_arrow {
+  width: 6px;
+  height: 6px;
+  border-top: 2px solid currentColor;
+  border-left: 2px solid currentColor;
+  transform: rotate(45deg);
+  margin-top: 2px;
+}
+
+.footer_inner_copy {
+  color: var(--color-footer-text);
+  font-family: var(--font-en-narrow);
+  font-size: 1vw;
+  font-weight: 700;
+  letter-spacing: 0.5em; /* ★佐藤タカアキ氏サイト準拠の広大な字間 */
+  margin-top: 1vw;
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    padding: 40px 20px 32px;
+  }
+  .footer_inner {
+    gap: 18px;
+  }
+  .footer_sns {
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .footer_snsLink {
+    font-size: 13px;
+  }
+  .footer_snsDivider {
+    font-size: 12px;
+  }
+  .footer_backTop {
+    font-size: 12px;
+  }
+  .footer_inner_copy {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    margin-top: 8px;
+  }
+}
+
+/* ==========================================================================
+   11. 実績詳細モーダル ＆ サンクスモーダル
+   ========================================================================== */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3vw;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.modal.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal_overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(25, 25, 25, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.modal_container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  background-color: #ffffff;
+  border-radius: 16px;
+  overflow-y: auto;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+  padding: 3.5vw;
+  transform: scale(0.94) translateY(20px);
+  transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.modal.is-open .modal_container {
+  transform: scale(1) translateY(0);
+}
+
+/* 閉じるボタン */
+.modal_close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0eb;
+  border-radius: 50%;
+  color: var(--color-text-primary);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  z-index: 10;
+}
+
+.modal_close:hover {
+  background-color: var(--color-text-accent);
+  color: #ffffff;
+  transform: rotate(90deg);
+}
+
+/* モーダル内部のスタイル */
+.modal_header {
+  margin-bottom: 2vw;
+  padding-right: 50px;
+}
+
+.modal_work_category {
+  font-family: var(--font-en-modern);
+  font-size: 0.95vw;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-text-accent);
+  margin-bottom: 0.4vw;
+}
+
+.modal_work_title {
+  font-size: 2vw;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.3;
+  margin-bottom: 0.6vw;
+}
+
+.modal_work_sub {
+  font-size: 1.05vw;
+  color: var(--color-text-body);
+  font-weight: 500;
+}
+
+.modal_eyecatch {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 2.5vw;
+  border: 1px solid var(--color-border-light);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.modal_meta_table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2.5vw;
+  background-color: #fafaf8;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.modal_meta_table th,
+.modal_meta_table td {
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--color-border-light);
+  font-size: 0.95vw;
+  text-align: left;
+}
+
+.modal_meta_table th {
+  width: 25%;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  background-color: #f3f3ee;
+}
+
+.modal_meta_table td {
+  color: var(--color-text-body);
+}
+
+.modal_section {
+  margin-bottom: 2.2vw;
+}
+
+.modal_section:last-child {
+  margin-bottom: 0;
+}
+
+.modal_section_title {
+  font-size: 1.25vw;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 0.8vw;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal_section_title::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 1.1em;
+  background-color: var(--color-text-accent);
+  border-radius: 2px;
+}
+
+.modal_section_text {
+  font-size: 1vw;
+  line-height: 2.0;
+  color: var(--color-text-body);
+}
+
+.modal_section_list {
+  list-style: disc;
+  padding-left: 1.6em;
+  margin-top: 0.6em;
+}
+
+.modal_section_list li {
+  font-size: 1vw;
+  line-height: 1.9;
+  color: var(--color-text-body);
+  margin-bottom: 0.4em;
+}
+
+.modal_quote {
+  background-color: #fafaf6;
+  border-left: 4px solid var(--color-text-accent);
+  padding: 1.4vw 1.8vw;
+  border-radius: 0 8px 8px 0;
+  font-style: normal;
+  font-size: 1vw;
+  line-height: 1.9;
+  color: var(--color-text-body);
+}
+
+/* サンクスモーダル独自スタイル */
+.thanksModal_container {
+  max-width: 580px;
+  text-align: center;
+  padding: 3.5vw 3vw;
+}
+
+.thanksModal_icon {
+  width: 64px;
+  height: 64px;
+  background-color: #e8f7ee;
+  color: #27ae60;
+  font-size: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5vw;
+}
+
+.thanksModal_title {
+  font-size: 1.6vw;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 1.2vw;
+}
+
+.thanksModal_text {
+  font-size: 1.05vw;
+  line-height: 1.9;
+  color: var(--color-text-body);
+  margin-bottom: 1.4vw;
+}
+
+.thanksModal_text strong {
+  color: var(--color-text-accent);
+}
+
+.thanksModal_sub {
+  font-size: 0.88vw;
+  line-height: 1.8;
+  color: var(--color-text-muted);
+  background-color: #fafaf8;
+  padding: 1.2vw;
+  border-radius: 8px;
+  margin-bottom: 2vw;
+}
+
+.thanksModal_button {
+  background-color: var(--color-text-primary);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 12px 48px;
+  border-radius: 999px;
+  transition: var(--transition-smooth);
+}
+
+.thanksModal_button:hover {
+  background-color: var(--color-text-accent);
+}
+
+@media screen and (max-width: 768px) {
+  .modal {
+    padding: 16px;
+  }
+  .modal_container {
+    padding: 24px 18px;
+    max-height: 85vh;
+  }
+  .modal_close {
+    top: 14px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+  }
+  .modal_work_category {
+    font-size: 12px;
+  }
+  .modal_work_title {
+    font-size: 20px;
+  }
+  .modal_work_sub {
+    font-size: 13px;
+  }
+  .modal_eyecatch {
+    margin-bottom: 18px;
+  }
+  .modal_meta_table {
+    margin-bottom: 20px;
+  }
+  .modal_meta_table th, .modal_meta_table td {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+  .modal_meta_table th {
+    width: 32%;
+  }
+  .modal_section {
+    margin-bottom: 20px;
+  }
+  .modal_section_title {
+    font-size: 16px;
+  }
+  .modal_section_text, .modal_section_list li, .modal_quote {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  .thanksModal_container {
+    padding: 30px 18px;
+  }
+  .thanksModal_icon {
+    width: 52px;
+    height: 52px;
+    font-size: 26px;
+    margin-bottom: 16px;
+  }
+  .thanksModal_title {
+    font-size: 18px;
+  }
+  .thanksModal_text {
+    font-size: 14px;
+  }
+  .thanksModal_sub {
+    font-size: 12px;
+  }
+}
+
+/* ==========================================================================
+   12. スクロールインフェードアニメーション（.fadein.scrollin）
+   ★佐藤氏サイトの心地よい下からフワッと現れる演出
+   ========================================================================== */
+.fadein {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  will-change: opacity, transform;
+}
+
+.fadein.scrollin {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* カードの順番ごとの微小なスタッガー（時間差）演出 */
+.main_works_listItem:nth-child(even).fadein {
+  transition-delay: 0.15s;
+}
+
+/* 印刷時の不要な要素非表示 */
+@media print {
+  .header, .footer, .loader, .modal, .mainVisual_scroll {
+    display: none !important;
+  }
+  .wrapper--top {
+    background: none !important;
+  }
+}

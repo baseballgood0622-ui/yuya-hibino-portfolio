@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <!-- ★SEO・メタ情報（オーナー様が後から変更できる箇所です） -->
+  <title>YUYA HIBINO | 日比野 ポートフォリオサイト</title>
+  <meta name="description" content="日比野（YUYA HIBINO）のポートフォリオサイトです。「どんなサイトにしたいか」にどこよりも寄り添い、作ってからのサポートもどこよりも丁寧に行います。">
+  <meta name="keywords" content="日比野,YUYA HIBINO,Web制作,ホームページ制作,ポートフォリオ">
+
+  <!-- ★SNS共有用（OGP）設定 -->
+  <meta property="og:title" content="YUYA HIBINO | 日比野 ポートフォリオサイト">
+  <meta property="og:description" content="「どんなサイトにしたいか」にどこよりも寄り添い、作ってからのサポートもどこよりも丁寧に。まずは一度お任せください。">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="./assets/logo_hibino.svg">
+
+  <!-- ★ファビコン（ブラウザのタブに表示される丸型アイコン） -->
+  <link rel="icon" href="./assets/logo_hibino.svg" type="image/svg+xml">
+
+  <!-- ★Google Fonts（知的な明朝体・見やすい筆記体・本文用フォント） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600;700&family=Outfit:wght@300;400;500;600;700&family=PT+Sans+Narrow:wght@400;700&family=Shippori+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- ★スタイルシート（デザインとレイアウト） -->
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <!-- ========================================================
+    1. ページローダー（読み込み中の3連ドットアニメーション）
+       佐藤タカアキ氏サイトの上品なドットアニメーションを再現
+  ======================================================== -->
+  <div class="loader" id="js-loader">
+    <div class="loader_dot">Loading...</div>
+  </div>
+
+  <!-- ========================================================
+    全体ラッパー（背景固定イラストがスクロールしても中央に留まる演出）
+  ======================================================== -->
+  <div class="wrapper wrapper--top">
+
+    <!-- ========================================================
+      2. ヘッダー（画面上部に固定されるナビゲーションバー）
+    ======================================================== -->
+    <header class="header" id="js-header">
+      <div class="header_inner">
+        <!-- ロゴ（クリックでページ最上部へ戻る：センター分けオリジナル似顔絵アイコン） -->
+        <a href="#top" class="header_logo" aria-label="YUYA HIBINO トップへ戻る">
+          <img src="./assets/avatar_hibino.jpg" alt="YUYA HIBINO アイコン">
+        </a>
+
+        <!-- ナビゲーションメニュー -->
+        <nav class="header_nav" aria-label="グローバルナビゲーション">
+          <ul class="header_inner_list">
+            <li class="header_inner_listItem header_inner_listItem--works">
+              <a href="#works">WORKS</a>
+            </li>
+            <li class="header_inner_listItem header_inner_listItem--about">
+              <a href="#about">ABOUT</a>
+            </li>
+            <!-- ★ご依頼の流れへのリンク -->
+            <li class="header_inner_listItem header_inner_listItem--flow">
+              <a href="#flow">FLOW</a>
+            </li>
+            <li class="header_inner_listItem header_inner_listItem--contact">
+              <a href="./contact.html">CONTACT</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ========================================================
+      3. ファーストビュー（最初に画面全体に広がるメイン画面）
+         ★「どこよりも寄り添い、作ってからも丁寧に。」の日本語メッセージと
+           YUYA HIBINO の名前を美しく配置したオリジナル構成
+    ======================================================== -->
+    <section class="mainVisual" id="top">
+      <div class="mainVisual_inner">
+        
+        <!-- ★ステータス・安心バッジ -->
+        <div class="mainVisual_badge fadein">
+          <span class="badge_dot"></span>
+          <span>WEB DESIGN &amp; PARTNER — YUYA HIBINO</span>
+        </div>
+
+        <!-- ★メインの日本語キャッチコピー（想いを変更したい場合はここを編集してください） -->
+        <p class="mainVisual_catch fadein">
+          <span class="ib">どこよりも寄り添い、</span><span class="ib">作ってからも丁寧に。</span>
+        </p>
+
+        <!-- ★メインロゴ（見やすさ重視の筆記体表記：お名前を変更したい場合はここを編集してください） -->
+        <h1 class="mainVisual_logo fadein">Yuya Hibino</h1>
+
+        <!-- ★サブコピー・自己紹介リード文 -->
+        <p class="mainVisual_sub fadein">
+          <span class="ib">「どんなサイトにしたいか」をじっくりお聞きし、</span><br class="pc">
+          <span class="ib">パソコンでもスマホでも迷わず伝わる</span><span class="ib">「見やすいページ」をお作りします。</span>
+        </p>
+
+        <!-- ★ファーストビューのアクション誘導ボタン -->
+        <div class="mainVisual_actions fadein">
+          <a href="#works" class="fv_btn fv_btn--primary">制作実績を見る</a>
+          <a href="./contact.html" class="fv_btn fv_btn--outline">まずは気軽に相談する</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+      4. メインコンテンツ領域（WORKS / ABOUT / CONTACT）
+    ======================================================== -->
+    <main class="l-content">
+      <div class="l-content_inner">
+
+        <!-- ========================================================
+          4.1 実績セクション（WORKS）
+             ★これまで AI-company の projects フォルダで制作した実際の6サイトを掲載。
+             ★各カードには「PC画面＋スマホ画面」の2台モックアップで実際のサイト写真を反映しています。
+             ★各作品カードをクリックすると、実際の制作サイトへ直接飛ぶことができます！
+        ======================================================== -->
+        <section class="section works" id="works">
+
+          <!-- セクションヘッダー（見出し＋案内） -->
+          <div class="section_header fadein">
+            <h2 class="section_title">
+              <ruby>
+                <span class="section_title_en">WORKS</span>
+                <rt>制作実績</rt>
+              </ruby>
+            </h2>
+            <p class="works_lead">
+              <span class="ib">パソコンでもスマホでも見やすいデザインを心がけています。</span><br class="pc">
+              <span class="ib">各カードをクリックすると、実際の制作サイトをご覧いただけます。</span>
+            </p>
+          </div>
+
+          <!-- 作品グリッド（PC・スマホともに2個ずつ横並びの2カラム表示） -->
+          <ul class="main_works_list">
+
+            <!-- 【案件1: NextBridge（ネクストブリッジ）】 -->
+            <li class="main_works_listItem fadein">
+              <!-- ★クリックで実際の NextBridge サイトへ飛びます -->
+              <a href="https://nextbridge-corporate-site.vercel.app/" target="_blank" rel="noopener" class="works_card" aria-label="NextBridge（ネクストブリッジ）の実際のサイトを開く">
+                <div class="works_card_thumb">
+                  <img src="./assets/tmb_nextbridge.svg" alt="NextBridge（ネクストブリッジ） コーポレートサイト" class="main_works_listItem_eyecatch">
+                  <div class="works_card_badge">OPEN SITE ↗</div>
+                </div>
+                <div class="main_works_listItem_textblock">
+                  <h2 class="main_works_title"><span class="ib">NextBridge</span><span class="ib">（ネクストブリッジ）</span></h2>
+                  <p class="main_works_category">CORPORATE SITE , UI/UX DESIGN</p>
+                  <p class="main_works_sub"><span class="ib">エンタープライズ向け伴走型</span><span class="ib">AIエージェント自動化支援（全5ページ構成）</span></p>
+                </div>
+              </a>
+            </li>
+
+            <!-- 【案件2: Trattoria SOLE（トラットリア ソーレ）】 -->
+            <li class="main_works_listItem fadein">
+              <!-- ★クリックで実際の Trattoria SOLE サイトへ飛びます -->
+              <a href="https://trattoria-sole-ten.vercel.app/" target="_blank" rel="noopener" class="works_card" aria-label="Trattoria SOLE（トラットリア ソーレ）の実際のサイトを開く">
+                <div class="works_card_thumb">
+                  <img src="./assets/tmb_sole.svg" alt="Trattoria SOLE（トラットリア ソーレ） レストランサイト" class="main_works_listItem_eyecatch">
+                  <div class="works_card_badge">OPEN SITE ↗</div>
+                </div>
+                <div class="main_works_listItem_textblock">
+                  <h2 class="main_works_title"><span class="ib">Trattoria SOLE</span><span class="ib">（トラットリア ソーレ）</span></h2>
+                  <p class="main_works_category">BRAND SITE , WEB DESIGN</p>
+                  <p class="main_works_sub"><span class="ib">代々木上原で15年続くイタリアンレストラン｜</span><span class="ib">大切な日には、心に残る一皿を。</span></p>
+                </div>
+              </a>
+            </li>
+
+            <!-- 【案件3: URBAN CLOSET（アーバンクローゼット）】 -->
+            <li class="main_works_listItem fadein">
+              <!-- ★クリックで実際の URBAN CLOSET サイトへ飛びます -->
+              <a href="https://urban-closet-omega.vercel.app/" target="_blank" rel="noopener" class="works_card" aria-label="URBAN CLOSET（アーバンクローゼット）の実際のサイトを開く">
+                <div class="works_card_thumb">
+                  <img src="./assets/tmb_urban.svg" alt="URBAN CLOSET（アーバンクローゼット） 公式オンラインストア" class="main_works_listItem_eyecatch">
+                  <div class="works_card_badge">OPEN SITE ↗</div>
+                </div>
+                <div class="main_works_listItem_textblock">
+                  <h2 class="main_works_title"><span class="ib">URBAN CLOSET</span><span class="ib">（アーバンクローゼット）</span></h2>
+                  <p class="main_works_category">EC SITE , ART DIRECTION</p>
+                  <p class="main_works_sub"><span class="ib">都市で生きる人の、新しいワードローブ。</span><span class="ib">ユニセックスアパレル公式ECストア</span></p>
+                </div>
+              </a>
+            </li>
+
+            <!-- 【案件4: GROWTH BASE（グロースベース）】 -->
+            <li class="main_works_listItem fadein">
+              <!-- ★クリックで実際の GROWTH BASE サイトへ飛びます -->
+              <a href="./growth-base/index.html" target="_blank" rel="noopener" class="works_card" aria-label="GROWTH BASE（グロースベース）の実際のサイトを開く">
+                <div class="works_card_thumb">
+                  <img src="./assets/tmb_growth.svg" alt="GROWTH BASE（グロースベース） オンラインサロンLP" class="main_works_listItem_eyecatch">
+                  <div class="works_card_badge">OPEN SITE ↗</div>
+                </div>
+                <div class="main_works_listItem_textblock">
+                  <h2 class="main_works_title"><span class="ib">GROWTH BASE</span><span class="ib">（グロースベース）</span></h2>
+                  <p class="main_works_category">LP DESIGN , COPYWRITING</p>
+                  <p class="main_works_sub"><span class="ib">「成長を、ひとりの努力で終わらせない。」</span><span class="ib">20〜30代向け実践型オンラインサロン</span></p>
+                </div>
+              </a>
+            </li>
+
+            <!-- 【案件5: Hair Salon RICHE 表参道】 -->
+            <li class="main_works_listItem fadein">
+              <!-- ★クリックで実際の Hair Salon RICHE サイトへ飛びます -->
+              <a href="https://hair-salon-riche-sandy.vercel.app/" target="_blank" rel="noopener" class="works_card" aria-label="Hair Salon RICHE 表参道の実際のサイトを開く">
+                <div class="works_card_thumb">
+                  <img src="./assets/tmb_riche.svg" alt="Hair Salon RICHE 表参道 サロンLP" class="main_works_listItem_eyecatch">
+                  <div class="works_card_badge">OPEN SITE ↗</div>
+                </div>
+                <div class="main_works_listItem_textblock">
+                  <h2 class="main_works_title"><span class="ib">Hair Salon RICHE</span> <span class="ib">表参道</span></h2>
+                  <p class="main_works_category">LP DESIGN , BRANDING</p>
+                  <p class="main_works_sub"><span class="ib">乾かすだけでまとまる骨格補正カット＆</span><span class="ib">深層ナノ髪質改善（表参道・全席半個室）</span></p>
+                </div>
+              </a>
+            </li>
+
+            <!-- 【案件6: Cafe Blossom（カフェ ブロッサム）】 -->
+            <li class="main_works_listItem fadein">
+              <!-- ★クリックで実際の Cafe Blossom サイトへ飛びます -->
+              <a href="https://cafe-blossom-sigma.vercel.app/" target="_blank" rel="noopener" class="works_card" aria-label="Cafe Blossom（カフェ ブロッサム）の実際のサイトを開く">
+                <div class="works_card_thumb">
+                  <img src="./assets/tmb_blossom.svg" alt="Cafe Blossom（カフェ ブロッサム） カフェサイト" class="main_works_listItem_eyecatch">
+                  <div class="works_card_badge">OPEN SITE ↗</div>
+                </div>
+                <div class="main_works_listItem_textblock">
+                  <h2 class="main_works_title"><span class="ib">Cafe Blossom</span><span class="ib">（カフェ ブロッサム）</span></h2>
+                  <p class="main_works_category">SHOP SITE , WEB DESIGN</p>
+                  <p class="main_works_sub"><span class="ib">「日常の中に、小さな花が咲くようなひとときを。」</span><span class="ib">すずらん通り商店街のカフェ</span></p>
+                </div>
+              </a>
+            </li>
+
+          </ul>
+        </section>
+
+        <!-- ========================================================
+          4.2 プロフィールセクション（ABOUT）
+             ★専門用語を一切使わず、19歳としての正直さと、
+             ★「どこよりも寄り添い、作ってからのサポートもどこよりも丁寧にやる」という想いをまっすぐ伝える設計
+        ======================================================== -->
+        <section class="section about" id="about">
+          
+          <!-- セクションヘッダー（ルビ付き） -->
+          <div class="section_header fadein">
+            <h2 class="section_title">
+              <ruby>
+                <span class="section_title_en">ABOUT</span>
+                <rt>私について</rt>
+              </ruby>
+            </h2>
+          </div>
+
+          <!-- プロフィール本文＆オリジナル似顔絵アイコンエリア -->
+          <div class="about_content fadein">
+            <div class="about_avatar">
+              <img src="./assets/avatar_hibino.jpg" alt="日比野 ポートレートアイコン">
+              <div class="about_avatar_meta">
+                <p class="about_avatar_name">YUYA HIBINO</p>
+                <p class="about_avatar_title">日比野（19歳） ／ Webサイト制作</p>
+              </div>
+            </div>
+
+            <!-- ★自己紹介文（専門用語を使わず、誠実に寄り添う文章） -->
+            <div class="about_story">
+              <p>
+                はじめまして、<strong>日比野です。</strong><br>
+                現在19歳で、お店や会社の魅力を届ける<span class="ib">ホームページ・Webサイトの</span><span class="ib">制作をしています。</span>
+              </p>
+              <p>
+                私が何よりも一番大切にしているのは、<br>
+                <strong><span class="ib">「どんなサイトにしたいか」</span><span class="ib">「お客さまにどんな想いを届けたいか」を、</span><br class="pc"><span class="ib">どこよりも親身に寄り添って</span><span class="ib">お聞きすること</span></strong>です。
+              </p>
+              <p>
+                「パソコンやネットのことは全然わからない」<br>
+                「まだどんなページにしたいか、はっきり決まっていない」<br>
+                そんな状態でも、どうか安心してください。<br>
+                一つひとつお話をじっくり伺いながら、<span class="ib">見る人にとって一番見やすく、</span><br class="pc">
+                <span class="ib">魅力がまっすぐ伝わる形を</span><span class="ib">一緒に作っていきます。</span>
+              </p>
+              <p>
+                そしてもう一つ、強くお約束できることがあります。<br>
+                それは、<strong><span class="ib">「作ってからのサポートも、</span><span class="ib">どこよりも丁寧にやり抜くこと」</span></strong>です。<br>
+                ページは完成して終わりではありません。<br>
+                <span class="ib">「文字や写真を少し変えたい」</span><span class="ib">「使い方がわからない」</span><span class="ib">「もっとこうしたい」といった</span><br class="pc">
+                公開後のご相談にも、誰よりも素早く、<span class="ib">丁寧にとことん寄り添い続けます。</span>
+              </p>
+              <p>
+                19歳ならではのフットワークの軽さと、<span class="ib">誰にも負けない誠実さで、</span><br class="pc">
+                <span class="ib">一つひとつのご依頼に全力で向き合います。</span><br>
+                <strong>「まずは一度、日比野に任せてみよう」</strong><span class="ib">と思っていただけるよう、</span><br class="pc">
+                <span class="ib">最初から最後まで心を込めてサポートいたします。</span><span class="ib">どうぞ気軽にお声がけください。</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- お約束する3つのこと（専門用語を使わない安心の3ポイント） -->
+          <div class="about_capabilities fadein">
+            <h3 class="capabilities_heading">日比野がお約束する3つのこと</h3>
+            <div class="capabilities_grid capabilities_grid--three">
+
+              <!-- 01 -->
+              <div class="capability_card">
+                <span class="capability_num">01</span>
+                <h4 class="capability_title">どこよりも寄り添うお打ち合わせ</h4>
+                <p class="capability_ja">難しい言葉は一切使いません</p>
+                <p class="capability_desc">
+                  <span class="ib">専門用語は使わず、</span><span class="ib">わかりやすい言葉でお話しします。</span><span class="ib">「こんな雰囲気にしたい」という想いを、</span><span class="ib">どこよりも親身にじっくりお聞きします。</span>
+                </p>
+              </div>
+
+              <!-- 02 -->
+              <div class="capability_card">
+                <span class="capability_num">02</span>
+                <h4 class="capability_title">パッと見て伝わる「見やすさ」</h4>
+                <p class="capability_ja">スマホでもパソコンでも迷わない</p>
+                <p class="capability_desc">
+                  <span class="ib">ごちゃごちゃした飾りではなく、</span><span class="ib">訪れた人が迷わず読めて、</span><span class="ib">お店や会社の一番の魅力がすっと伝わる</span><span class="ib">「見やすいページ」を丁寧にお作りします。</span>
+                </p>
+              </div>
+
+              <!-- 03 -->
+              <div class="capability_card">
+                <span class="capability_num">03</span>
+                <h4 class="capability_title">作ってからも、どこよりも丁寧に</h4>
+                <p class="capability_ja">公開した後のサポートも安心</p>
+                <p class="capability_desc">
+                  <span class="ib">納品して終わりではありません。</span><span class="ib">作った後のちょっとした修正や更新、</span><span class="ib">わからないことの相談も、</span><span class="ib">どこよりも丁寧・迅速にサポートし続けます。</span>
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ========================================================
+          4.3 ご依頼の流れ（FLOW）
+             ★初めての方でも「何をすればいいか」がひと目でわかるよう、
+               専門用語を使わず6つのステップで紹介しています。
+             ★ステップの文章を変えたいときは、各 flow_item の中を編集してください。
+        ======================================================== -->
+        <section class="section flow" id="flow">
+
+          <!-- セクションヘッダー（ルビ付き） -->
+          <div class="section_header fadein">
+            <h2 class="section_title">
+              <ruby>
+                <span class="section_title_en">FLOW</span>
+                <rt>ご依頼の流れ</rt>
+              </ruby>
+            </h2>
+            <p class="flow_lead">
+              <span class="ib">はじめての方でも安心して進められるよう、</span><span class="ib">一つひとつ丁寧にご案内します。</span>
+            </p>
+          </div>
+
+          <!-- ステップ一覧（PC・スマホともに縦1列でSTEPを順番に表示） -->
+          <ol class="flow_list fadein">
+
+            <!-- STEP 01 -->
+            <li class="flow_item">
+              <span class="flow_num">STEP 01</span>
+              <h3 class="flow_title">お問い合わせ</h3>
+              <p class="flow_desc">
+                <span class="ib">お問い合わせフォームから</span><span class="ib">お気軽にご連絡ください。</span><span class="ib">「まだ何も決まっていない」</span><span class="ib">という段階でも大丈夫です。</span>
+              </p>
+            </li>
+
+            <!-- STEP 02 -->
+            <li class="flow_item">
+              <span class="flow_num">STEP 02</span>
+              <h3 class="flow_title">お打ち合わせ</h3>
+              <p class="flow_desc">
+                <span class="ib">どんなサイトにしたいか、</span><span class="ib">誰に何を届けたいかを</span><span class="ib">じっくりお聞きします。</span><span class="ib">オンラインでも対応できます。</span>
+              </p>
+            </li>
+
+            <!-- STEP 03 -->
+            <li class="flow_item">
+              <span class="flow_num">STEP 03</span>
+              <h3 class="flow_title">ご提案・お見積もり</h3>
+              <p class="flow_desc">
+                <span class="ib">お聞きした内容をもとに、</span><span class="ib">ページの構成と費用・期間の目安を</span><span class="ib">わかりやすくお伝えします。</span>
+              </p>
+            </li>
+
+            <!-- STEP 04 -->
+            <li class="flow_item">
+              <span class="flow_num">STEP 04</span>
+              <h3 class="flow_title">デザイン・制作</h3>
+              <p class="flow_desc">
+                <span class="ib">ご納得いただけたら制作スタート。</span><span class="ib">途中経過もこまめに共有するので、</span><span class="ib">イメージと違う心配はありません。</span>
+              </p>
+            </li>
+
+            <!-- STEP 05 -->
+            <li class="flow_item">
+              <span class="flow_num">STEP 05</span>
+              <h3 class="flow_title">確認・修正</h3>
+              <p class="flow_desc">
+                <span class="ib">完成したページを</span><span class="ib">パソコンとスマホで見ていただき、</span><span class="ib">気になるところを一緒に整えます。</span>
+              </p>
+            </li>
+
+            <!-- STEP 06 -->
+            <li class="flow_item">
+              <span class="flow_num">STEP 06</span>
+              <h3 class="flow_title">公開・その後のサポート</h3>
+              <p class="flow_desc">
+                <span class="ib">いよいよ公開です。</span><span class="ib">公開後の文字や写真の変更、</span><span class="ib">使い方のご質問にも</span><span class="ib">ずっと丁寧に対応します。</span>
+              </p>
+            </li>
+
+          </ol>
+        </section>
+
+        <!-- ========================================================
+          4.4 お問い合わせ誘導エリア（CONTACT）
+             ★トップページにはフォームを置かず、ボタンを押したときだけ
+               専用のお問い合わせページ（./contact.html）へ飛ぶ設計です。
+        ======================================================== -->
+        <section class="section contactCta" id="contact">
+          <div class="contactCta_box fadein">
+            <h2 class="section_title">
+              <ruby>
+                <span class="section_title_en">CONTACT</span>
+                <rt>お問い合わせ</rt>
+              </ruby>
+            </h2>
+            <p class="contactCta_text">
+              <span class="ib">Webサイト・ホームページ制作のご依頼やご相談は、</span><br class="pc">
+              <span class="ib">専用フォームよりお気軽にお送りください。</span>
+            </p>
+            <div class="contactCta_action">
+              <a href="./contact.html" class="submitButton contactCta_btn">
+                <span class="submitButton_text">お仕事のご相談・お問い合わせはこちら</span>
+                <svg class="submitButton_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- ========================================================
+      5. フッター（Footer）
+         重厚感のあるチャコールブラック（#191919）に、
+         ゆったりとした字間（letter-spacing: .5em）で配置
+    ======================================================== -->
+    <footer class="footer">
+      <div class="footer_inner">
+
+        <!-- ページトップへ戻るボタン -->
+        <a href="#top" class="footer_backTop" aria-label="ページ最上部へ戻る">
+          <span class="footer_backTop_arrow"></span>
+          <span>PAGE TOP</span>
+        </a>
+
+        <!-- コピーライト -->
+        <p class="footer_inner_copy">COPYRIGHT &copy; YUYA HIBINO. ALL RIGHTS RESERVED.</p>
+
+      </div>
+    </footer>
+
+  </div><!-- /.wrapper -->
+
+  <!-- ========================================================
+    6. 実績詳細モーダル（ポップアップウィンドウ）
+       作品カードクリック時に画面全体にオーバーレイ表示されます。
+  ======================================================== -->
+  <div class="modal" id="js-works-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal_overlay" id="js-modal-overlay"></div>
+    <div class="modal_container">
+      
+      <!-- 閉じるボタン（右上） -->
+      <button type="button" class="modal_close" id="js-modal-close" aria-label="モーダルを閉じる">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- モーダル内部コンテンツ（JavaScriptにより動的に差し替え） -->
+      <div class="modal_body" id="js-modal-body">
+        <!-- 動的注入エリア -->
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================
+    7. お問い合わせ送信完了（サンクス）モーダル
+  ======================================================== -->
+  <div class="modal thanksModal" id="js-thanks-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal_overlay" id="js-thanks-overlay"></div>
+    <div class="modal_container thanksModal_container">
+      <button type="button" class="modal_close" id="js-thanks-close" aria-label="閉じる">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="thanksModal_body">
+        <div class="thanksModal_icon">✔</div>
+        <h3 class="thanksModal_title">メッセージを受け付けました</h3>
+        <p class="thanksModal_text">
+          お問い合わせいただき、誠にありがとうございます。<br>
+          内容を確認の上、<strong>通常1〜2営業日以内に日比野よりご指定のメールアドレス宛へ丁寧にお返事いたします。</strong>
+        </p>
+        <p class="thanksModal_sub">
+          万が一、数日経過しても返信が届かない場合は、大変恐れ入りますが迷惑メールフォルダをご確認いただくか、各種SNSのダイレクトメッセージより再度ご連絡いただけますと幸いです。<br><br>
+          あなたとお話しできることを心より楽しみにしております。
+        </p>
+        <button type="button" class="thanksModal_button" id="js-thanks-btn">閉じる</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ★JavaScriptファイル読み込み -->
+  <script src="./script.js"></script>
+</body>
+</html>

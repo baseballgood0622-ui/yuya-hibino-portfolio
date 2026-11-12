@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <!-- スマートフォンやタブレットの画面幅に合わせて正しく表示するための設定（レスポンシブ対応に必須） -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- 【変更ポイント：ページのタイトル】ブラウザのタブや検索結果の見出しに表示される文字です -->
+  <title>GROWTH BASE | 成長を、ひとりの努力で終わらせない。</title>
+
+  <!-- 【変更ポイント：ページの説明文】検索結果のタイトル下に表示される要約文（meta description）です -->
+  <meta name="description" content="GROWTH BASEは、自己成長・ビジネス・読書・習慣づくり・新しい挑戦に関心を持つ20〜30代が集まり、ひとりではなく仲間と支え合いながら目標達成へ進むオンラインサロンです。まずは内容の質問・相談から始められます。">
+
+  <!-- JavaScriptが有効な環境であることを即座に判定するための小さなスクリプト（文字が消えたままになるのを防ぐ安全設計） -->
+  <script>
+    document.documentElement.classList.add('js-enabled');
+  </script>
+
+  <!-- Google Fonts（Webフォント）の読み込み：明朝体（Shippori Mincho）、ゴシック体（Noto Sans JP）、欧文（Plus Jakarta Sans） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Plus+Jakarta+Sans:wght@500;600;700&family=Shippori+Mincho:wght@500;600&display=swap" rel="stylesheet">
+
+  <!-- デザイン用スタイルシート（CSS）の読み込み（相対パス指定） -->
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body id="top">
+  <!-- キーボード操作の方向け：メニューを飛ばして本文へ直接移動するアクセシビリティ用リンク -->
+  <a href="#main-content" class="skip-link">本文へ移動する</a>
+
+  <!-- =====================================================================
+       セクション0-A：ヘッダーナビゲーション（画面上部に追従するメニュー）
+       【変更ポイント】サロン名やメニュー項目の文字を変える場合はここを編集します
+       ===================================================================== -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <!-- サイトロゴ文字列 -->
+      <a href="#top" class="site-logo" aria-label="GROWTH BASE トップへ戻る">GROWTH BASE</a>
+
+      <!-- PC用ナビゲーションメニュー（画面幅1025px以上で表示） -->
+      <nav class="desktop-nav" aria-label="メインナビゲーション">
+        <ul class="nav-list">
+          <li><a href="#concept" class="nav-link">コンセプト</a></li>
+          <li><a href="#activities" class="nav-link">4つの活動</a></li>
+          <li><a href="#overview" class="nav-link">サロン概要</a></li>
+          <li><a href="#target" class="nav-link">対象となる方</a></li>
+          <li><a href="#faq" class="nav-link">よくある質問</a></li>
+        </ul>
+        <a href="#contact" class="header-cta">内容について質問・相談する</a>
+      </nav>
+
+      <!-- タブレット・スマートフォン用メニュー開閉ボタン（アイコンを使わず欧文テキストで表現） -->
+      <button
+        type="button"
+        class="header-menu-trigger"
+        id="menu-trigger"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        aria-label="メニューを開く"
+      >
+        MENU
+      </button>
+    </div>
+
+    <!-- タブレット・スマートフォン用展開メニューパネル（1024px以下でMENU押下時に開閉） -->
+    <nav class="mobile-nav" id="mobile-nav" aria-label="モバイルナビゲーション" hidden>
+      <div class="mobile-nav-inner">
+        <ul class="mobile-nav-list">
+          <li><a href="#concept" class="mobile-nav-link">コンセプト</a></li>
+          <li><a href="#activities" class="mobile-nav-link">4つの活動</a></li>
+          <li><a href="#overview" class="mobile-nav-link">サロン概要</a></li>
+          <li><a href="#target" class="mobile-nav-link">対象となる方</a></li>
+          <li><a href="#faq" class="mobile-nav-link">よくある質問</a></li>
+        </ul>
+        <div class="mobile-nav-cta-wrap">
+          <a href="#contact" class="btn-primary btn-block mobile-nav-cta">内容について質問・相談する</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <!-- =====================================================================
+         セクション0-B：First View（最初の画面：ファーストビュー）
+         【変更ポイント】メインキャッチコピーや強調サブキャッチ、導入文、メイン写真の設定箇所です
+         ===================================================================== -->
+    <section class="hero-section" aria-labelledby="hero-heading">
+      <div class="container container-wide">
+        <div class="hero-grid">
+          <!-- 左上エリア（スマホでは1番目に表示）：ショルダー・メイン見出し・強調サブキャッチコピー -->
+          <div class="hero-header reveal-up">
+            <p class="section-label">ONLINE SALON — GROWTH BASE</p>
+            <h1 id="hero-heading" class="hero-title">
+              <span class="inline-keep">成長を、</span><span class="inline-keep">ひとりの努力で</span><span class="inline-keep">終わらせない。</span>
+            </h1>
+            <!-- 【変更ポイント：強調サブキャッチコピー】開いた瞬間にサロンの核が伝わる一文です -->
+            <p class="hero-subcatch">
+              <span class="inline-keep">ひとりではなく、仲間と解決していく。</span><br>
+              <span class="inline-keep">みんなで成功するコミュニティ。</span>
+            </p>
+          </div>
+
+          <!-- 右エリア（スマホでは2番目に表示）：メインビジュアル写真 -->
+          <div class="hero-visual reveal-up">
+            <div class="hero-image-frame">
+              <img
+                src="./assets/hero-space.png"
+                alt="自然光の差し込む静かなラウンジで本とノートを広げ、穏やかに対話する様子"
+                width="1264"
+                height="848"
+                fetchpriority="high"
+              >
+            </div>
+          </div>
+
+          <!-- 左下エリア（スマホでは3番目に表示）：リード文・CTAボタン・補足マイクロコピー -->
+          <div class="hero-body reveal-up">
+            <div class="hero-lead">
+              <p>自己成長やビジネス、読書、習慣づくり、新しい挑戦に関心を持つ20〜30代が集まるオンラインサロンです。</p>
+              <p>ひとりで抱えがちな迷いや課題も、互いに刺激を受け、支え合いながらそれぞれの目標達成へと進んでいきます。</p>
+            </div>
+
+            <div class="hero-actions">
+              <a href="#contact" class="btn-primary">まずは内容について質問・相談する</a>
+              <a href="#activities" class="link-underlined">サロンの活動内容を見る</a>
+            </div>
+
+            <!-- 【変更ポイント：募集開始後に書き換える箇所】現在は準備中である旨を誠実に案内しています -->
+            <div class="hero-microcopy">
+              <p>今すぐ参加を決める必要はありません。まずは内容を知ること・質問することから始められます。</p>
+              <p class="hero-microcopy-note">※現在、募集詳細およびお問い合わせ窓口は準備中です。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         セクション1：Problem（問題提起）
+         PCでは左側の見出しがスクロールに追従（Sticky）し、右側で5つの悩みを端的に提示します
+         ===================================================================== -->
+    <section id="problem" class="section section-sand" aria-labelledby="problem-heading">
+      <div class="container container-wide">
+        <div class="problem-layout">
+          <!-- 左カラム：セクション見出しと導入文 -->
+          <div class="problem-intro reveal-up">
+            <p class="section-label">01 / PROBLEM</p>
+            <h2 id="problem-heading" class="section-title">
+              <span class="inline-keep">成長したい。</span><br><span class="inline-keep">でも、何から始めれば</span><span class="inline-keep">いいか分からない。</span>
+            </h2>
+            <div class="problem-lead">
+              <p>今の毎日に大きな不満はないけれど、ふと「このままでいいのだろうか」と立ち止まることはないでしょうか。</p>
+            </div>
+          </div>
+
+          <!-- 右カラム：5つの悩みインデックスリスト（アイコンを使わず番号と1px罫線で整理） -->
+          <div class="problem-content">
+            <ol class="problem-list">
+              <li class="problem-item reveal-up">
+                <span class="problem-num" aria-hidden="true">01</span>
+                <div class="problem-item-body">
+                  <h3 class="problem-item-title">将来のために何か始めたいが、何をすればよいか分からない</h3>
+                  <p class="problem-item-desc">選択肢が多すぎて、今の自分が何から手をつければよいか迷ったまま時間だけが過ぎてしまう。</p>
+                </div>
+              </li>
+
+              <li class="problem-item reveal-up">
+                <span class="problem-num" aria-hidden="true">02</span>
+                <div class="problem-item-body">
+                  <h3 class="problem-item-title">自己投資をしているものの、行動が長続きしない</h3>
+                  <p class="problem-item-desc">ビジネス書を買ったり目標を書き出したりしても、平日の忙しさに追われて気づけば手が止まってしまう。</p>
+                </div>
+              </li>
+
+              <li class="problem-item reveal-up">
+                <span class="problem-num" aria-hidden="true">03</span>
+                <div class="problem-item-body">
+                  <h3 class="problem-item-title">ひとりで勉強していると、モチベーションを維持しにくい</h3>
+                  <p class="problem-item-desc">誰からも反応がなく前に進んでいる実感も持てないため、続けて意味があるのかと気持ちが揺らいでしまう。</p>
+                </div>
+              </li>
+
+              <li class="problem-item reveal-up">
+                <span class="problem-num" aria-hidden="true">04</span>
+                <div class="problem-item-body">
+                  <h3 class="problem-item-title">周囲に同じ価値観を持つ仲間が少ない</h3>
+                  <p class="problem-item-desc">職場の人や友人には、読書で得た学びやこれから挑戦したい目標をどこか気恥ずかしくて話しにくい。</p>
+                </div>
+              </li>
+
+              <li class="problem-item reveal-up">
+                <span class="problem-num" aria-hidden="true">05</span>
+                <div class="problem-item-body">
+                  <h3 class="problem-item-title">今の自分を変えたいが、最初の一歩を踏み出せない</h3>
+                  <p class="problem-item-desc">将来への静かな引っかかりはあるものの、いきなり大きな決断をするのは不安できっかけを探している。</p>
+                </div>
+              </li>
+            </ol>
+
+            <!-- セクション締めくくりのサマリーボックス -->
+            <div class="problem-summary reveal-up">
+              <p>将来を変えたい気持ちはあるのに具体的な行動に移せず、勉強を始めてもひとりではなかなか継続できない。</p>
+              <p>そんなもどかしさを抱えたまま、ひとりで悩み続けている人は少なくありません。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         セクション2：Affinity（親近感・共感）
+         凝縮した2段落の本文から静物写真を挟み、3つの大切な要素グリッドへと展開します
+         ===================================================================== -->
+    <section id="affinity" class="section section-ivory section-spacious" aria-labelledby="affinity-heading">
+      <!-- 前半：共感本文パート -->
+      <div class="container container-narrow">
+        <div class="affinity-header reveal-up">
+          <p class="section-label">02 / AFFINITY</p>
+          <h2 id="affinity-heading" class="section-title">
+            <span class="inline-keep">変わりたいと思っても、</span><span class="inline-keep">ひとりでは難しいことがある。</span>
+          </h2>
+        </div>
+
+        <div class="affinity-prose reveal-up">
+          <p>行動が続かなかったとき、「自分は意志が弱い」と責める必要はありません。日々の仕事や生活でエネルギーを使いながら、誰にも相談せず、自分の気合いだけで学び続けることにはどうしても限界があるからです。</p>
+          <p>前向きな行動を無理なく続けるために大切なのは、強い意志ではなく、新しい視点に触れられる「学ぶ環境」、迷いを整理できる「相談できる相手」、そして立ち止まっても戻ってこられる「行動を続ける仕組み」の3つがそろっていることです。</p>
+        </div>
+      </div>
+
+      <!-- 中盤：呼吸をつくる窓辺デスクの静物写真 -->
+      <div class="container container-mid">
+        <figure class="affinity-figure reveal-up">
+          <img
+            src="./assets/affinity-desk.png"
+            alt="窓辺の静かなデスクに置かれた開いた本と白いノート、ペン、マグカップ"
+            width="1264"
+            height="848"
+            loading="lazy"
+          >
+        </figure>
+      </div>
+
+      <!-- 後半：前向きな行動を続けるための3要素グリッド -->
+      <div class="container container-pillar">
+        <div class="affinity-pillars reveal-up">
+          <div class="affinity-pillar">
+            <span class="pillar-num" aria-hidden="true">01</span>
+            <h3 class="pillar-title">学ぶ環境</h3>
+            <p class="pillar-desc">新しい視点や手がかりに触れられる場所</p>
+          </div>
+          <div class="affinity-pillar">
+            <span class="pillar-num" aria-hidden="true">02</span>
+            <h3 class="pillar-title">相談できる相手</h3>
+            <p class="pillar-desc">迷いや目標を気兼ねなく話せる仲間</p>
+          </div>
+          <div class="affinity-pillar">
+            <span class="pillar-num" aria-hidden="true">03</span>
+            <h3 class="pillar-title">行動を続ける仕組み</h3>
+            <p class="pillar-desc">やりっぱなしを防ぎ、<span class="inline-keep">軌道修正できるリズム</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         セクション3：Solution（解決策の提示 / コンセプト）
+         明るいペーパーホワイト背景に切り替え、ワイド写真と4要素循環ダイアグラムを配置します
+         ===================================================================== -->
+    <section id="concept" class="section section-surface" aria-labelledby="solution-heading">
+      <div class="container container-wide">
+        <!-- 建築的2カラムヘッダー -->
+        <div class="solution-header reveal-up">
+          <div class="solution-header-left">
+            <p class="section-label">03 / SOLUTION</p>
+            <h2 id="solution-heading" class="section-title">
+              <span class="inline-keep">成長を、</span><span class="inline-keep">ひとりの努力で</span><span class="inline-keep">終わらせない。</span>
+            </h2>
+          </div>
+          <div class="solution-header-right">
+            <p class="solution-intro-text">ひとりで抱え込まず、仲間とともに課題を解決していくための選択肢のひとつが、オンラインサロン「GROWTH BASE」です。</p>
+          </div>
+        </div>
+
+        <!-- ワイドビジュアル写真 -->
+        <figure class="solution-wide-visual reveal-up">
+          <img
+            src="./assets/solution-session.png"
+            alt="明るいラウンジでノートを広げながら穏やかに意見交換をするメンバーのイメージ"
+            width="1376"
+            height="768"
+            loading="lazy"
+          >
+        </figure>
+
+        <!-- 下段：簡潔な本文ストーリー（左）と文字・罫線のみの循環ダイアグラム（右） -->
+        <div class="solution-body-grid">
+          <div class="solution-prose reveal-up">
+            <p>自己成長やビジネス、読書、習慣づくり、新しい挑戦に関心を持つ20〜30代が集まり、互いに支え合いながらそれぞれの目標へと進んでいく拠点（ベース）です。</p>
+            <p>サロンでは「学びを共有し、目標を立て、行動を振り返り、仲間と交流する機会」を通じて日々の挑戦を支えます。知識を言葉にして定着させ、振り返りのリズムで迷いを減らし、仲間の存在を力に変えながら、成長を無理のない日常へと変えていきます。</p>
+          </div>
+
+          <!-- アイコン・矢印を一切使わず、文字と1px線だけで構造を表現した2列2行の循環ダイアグラム -->
+          <div class="solution-diagram-wrap reveal-up" aria-label="GROWTH BASEを支える4つの循環構造">
+            <div class="solution-diagram">
+              <div class="diagram-inner-frame">
+                <div class="diagram-grid">
+                  <div class="diagram-cell diagram-cell-1">
+                    <span class="diagram-num">01</span>
+                    <span class="diagram-en">SHARING</span>
+                    <strong class="diagram-ja">学びの共有</strong>
+                  </div>
+                  <div class="diagram-cell diagram-cell-2">
+                    <span class="diagram-num">02</span>
+                    <span class="diagram-en">GOAL SETTING</span>
+                    <strong class="diagram-ja">目標設定</strong>
+                  </div>
+                  <div class="diagram-cell diagram-cell-3">
+                    <span class="diagram-num">03</span>
+                    <span class="diagram-en">REFLECTION</span>
+                    <strong class="diagram-ja">行動の振り返り</strong>
+                  </div>
+                  <div class="diagram-cell diagram-cell-4">
+                    <span class="diagram-num">04</span>
+                    <span class="diagram-en">CONNECTION</span>
+                    <strong class="diagram-ja">仲間との交流</strong>
+                  </div>
+                </div>
+                <!-- 中央の交点に配置するコアプレート -->
+                <div class="diagram-core" aria-hidden="true">GROWTH BASE</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         セクション4-1：Offer — 4つの活動（ACTIVITIES）
+         各活動ごとに「インデックス見出し」「具体的な活動内容」「得られる価値」を3列で対比させます
+         ===================================================================== -->
+    <section id="activities" class="section section-ivory" aria-labelledby="activities-heading">
+      <div class="container container-wide">
+        <div class="section-head-block reveal-up">
+          <p class="section-label">04 / OFFER — ACTIVITIES</p>
+          <h2 id="activities-heading" class="section-title"><span class="inline-keep">日々の成長を支える、</span><span class="inline-keep">4つの活動</span></h2>
+          <p class="section-lead">知識を得て終わりにせず、仲間と刺激し合いながら実際の行動へつなげる4つの活動を行います。</p>
+        </div>
+
+        <div class="activities-index">
+          <!-- 活動 01: LEARN -->
+          <article class="activity-row reveal-up">
+            <div class="activity-head">
+              <span class="activity-num">01</span>
+              <h3 class="activity-en">LEARN</h3>
+              <p class="activity-sub">ビジネスや自己成長に関する<span class="inline-keep">学びを共有する</span></p>
+            </div>
+            <div class="activity-detail">
+              <p class="activity-col-label">具体的な活動内容</p>
+              <p class="activity-text">読んだ本の感想や仕事の気づき、習慣づくりの工夫など、日々の学びを自分の言葉で共有します。</p>
+            </div>
+            <div class="activity-benefit">
+              <p class="activity-benefit-label">得られる価値</p>
+              <p class="activity-text">多様な視点に触れることで「まずはここから始めよう」という手がかりが見つかり、言葉にすることで理解も深まります。</p>
+            </div>
+          </article>
+
+          <!-- 活動 02: ACTION -->
+          <article class="activity-row reveal-up">
+            <div class="activity-head">
+              <span class="activity-num">02</span>
+              <h3 class="activity-en">ACTION</h3>
+              <p class="activity-sub">目標を設定し、日々の行動を振り返る</p>
+            </div>
+            <div class="activity-detail">
+              <p class="activity-col-label">具体的な活動内容</p>
+              <p class="activity-text">自分の現状に合わせた目標を立て、日々の進捗やつまずいた点を定期的に振り返ります。</p>
+            </div>
+            <div class="activity-benefit">
+              <p class="activity-benefit-label">得られる価値</p>
+              <p class="activity-text">「やりっぱなし」を防いで行動が習慣になり、忙しい週にペースが乱れても落ち着いて軌道修正できます。</p>
+            </div>
+          </article>
+
+          <!-- 活動 03: CONNECT -->
+          <article class="activity-row reveal-up">
+            <div class="activity-head">
+              <span class="activity-num">03</span>
+              <h3 class="activity-en">CONNECT</h3>
+              <p class="activity-sub">価値観の近い仲間と交流する</p>
+            </div>
+            <div class="activity-detail">
+              <p class="activity-col-label">具体的な活動内容</p>
+              <p class="activity-text">自己成長や新しい習慣に関心を持つ仲間と、肩書きに関係なくフラットに対話や意見交換を行います。</p>
+            </div>
+            <div class="activity-benefit">
+              <p class="activity-benefit-label">得られる価値</p>
+              <p class="activity-text">普段は気恥ずかしくて話しにくい前向きな目標も素直に話せ、頑張る仲間の姿から心地よい刺激を受け取れます。</p>
+            </div>
+          </article>
+
+          <!-- 活動 04: CHALLENGE -->
+          <article class="activity-row reveal-up">
+            <div class="activity-head">
+              <span class="activity-num">04</span>
+              <h3 class="activity-en">CHALLENGE</h3>
+              <p class="activity-sub">新しいことに挑戦し、経験を共有する</p>
+            </div>
+            <div class="activity-detail">
+              <p class="activity-col-label">具体的な活動内容</p>
+              <p class="activity-text">新しい学習や習慣など、自分にとっての「次の一歩」に取り組む過程や経験をメンバーと分かち合います。</p>
+            </div>
+            <div class="activity-benefit">
+              <p class="activity-benefit-label">得られる価値</p>
+              <p class="activity-text">試行錯誤のプロセス自体を応援し合える空気のなかで失敗への不安が和らぎ、最初の一歩を軽やかに踏み出せます。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         セクション4-2：Offer — 参加方法・ご検討の流れ（FLOW）
+         ===================================================================== -->
+    <section id="flow" class="section section-sand" aria-labelledby="flow-heading">
+      <div class="container container-wide">
+        <div class="join-flow-sheet reveal-up">
+          <div class="join-flow-head">
+            <p class="section-label">FLOW</p>
+            <h3 id="flow-heading" class="subsection-title">参加方法・ご検討の流れ</h3>
+            <p class="section-lead">疑問を残したまま急いで決めるのではなく、内容に納得したうえでご判断いただける3つのステップを想定しています。</p>
+          </div>
+
+          <!-- 【変更ポイント：窓口開設・募集開始後に「現在準備中」の表記を更新してください】 -->
+          <ol class="join-steps">
+            <li class="join-step">
+              <span class="step-tag">STEP 01</span>
+              <h4 class="join-step-title">活動内容と方針の確認</h4>
+              <p class="step-desc">本ページでサロンの考え方や4つの活動をご確認いただき、ご自身の目的に合いそうかをご覧ください。</p>
+            </li>
+            <li class="join-step">
+              <span class="step-tag">STEP 02</span>
+              <h4 class="join-step-title">
+                気になる点の質問・事前相談
+                <span class="inline-status">現在窓口準備中</span>
+              </h4>
+              <p class="step-desc">疑問や不安があれば、ページ下部のフォームから事前にご質問・ご相談いただけます（※現在窓口は準備中です）。</p>
+            </li>
+            <li class="join-step">
+              <span class="step-tag">STEP 03</span>
+              <h4 class="join-step-title">
+                募集要項の確認とお申し込み
+                <span class="inline-status">現在準備中</span>
+              </h4>
+              <p class="step-desc">料金や開催頻度などの詳細を確認し、納得された段階でお申し込みへ進んでいただきます（※現在申込機能は準備中です）。</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         セクション4-3：Offer — サロン概要・募集要項（OVERVIEW：厳選6項目）
+         【変更ポイント：将来、月額料金や開催頻度、募集時期などが決まったら以下の表を書き換えます】
+         ===================================================================== -->
+    <section id="overview" class="section section-ivory" aria-labelledby="overview-heading">
+      <div class="container container-mid">
+        <div class="section-head-block reveal-up">
+          <p class="section-label">OVERVIEW</p>
+          <h3 id="overview-heading" class="subsection-title">サロン概要・募集要項</h3>
+          <p class="section-lead">現時点で決定している基本情報と、現在準備を進めている項目の一覧です。</p>
+        </div>
+
+        <div class="overview-table-wrap reveal-up">
+          <table class="overview-table">
+            <tbody>
+              <tr>
+                <th scope="row">対象</th>
+                <td>20〜30代を中心とする、自己成長・ビジネス・読書・習慣づくり・新しい挑戦に関心のある方</td>
+              </tr>
+              <!-- 【変更ポイント：使用ツール確定後に更新】 -->
+              <tr>
+                <th scope="row">活動内容・形式</th>
+                <td>オンラインでの学びの共有・目標と行動の振り返り・仲間との交流・挑戦の共有（※使用ツール詳細は現在未設定・準備中）</td>
+              </tr>
+              <!-- 【変更ポイント：開催頻度確定後に更新】 -->
+              <tr>
+                <th scope="row">開催頻度</th>
+                <td><span class="status-badge">準備中</span>（現在未設定です。仕事や生活と無理なく両立できるペースを計画しています）</td>
+              </tr>
+              <!-- 【変更ポイント：月額料金（会費）確定後に更新】 -->
+              <tr>
+                <th scope="row">月額料金（会費）</th>
+                <td><span class="status-badge">未設定</span>（現在準備中です。確定次第、本ページにて明確にご案内いたします）</td>
+              </tr>
+              <!-- 【変更ポイント：募集開始時期確定後に更新】 -->
+              <tr>
+                <th scope="row">募集開始時期</th>
+                <td><span class="status-badge">準備中</span>（現在、募集開始に向けた準備を進めております）</td>
+              </tr>
+              <!-- 【変更ポイント：お問い合わせ・申込窓口開設後に更新】 -->
+              <tr>
+                <th scope="row">お問い合わせ・申込窓口</th>
+                <td><span class="status-badge">準備中</span>（現在、送信先および参加お申し込み機能は未設定となっております）</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="overview-note">※現在「準備中」または「未設定」の項目について、事前のご案内やご本人の明確な同意なく費用が発生することは一切ございません。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         セクション5：Narrowing Down（対象者の明確化 / FOR YOU）
+         歓迎する4つの人物像と、「自動的に成功できる場所ではない」という誠実な約束ブロックで構成します
+         ===================================================================== -->
+    <section id="target" class="section section-ivory section-border-top" aria-labelledby="target-heading">
+      <div class="container container-target">
+        <div class="section-head-block reveal-up">
+          <p class="section-label">05 / FOR YOU</p>
+          <h2 id="target-heading" class="section-title">こんな人に、参加してほしい。</h2>
+          <div class="section-lead">
+            <p>特別な経歴や誇れる実績は必要ありません。今はまだ目標が曖昧でも、次のような思いを持つ方を歓迎します。</p>
+          </div>
+        </div>
+
+        <!-- 対象となる4つの人物像（2列2行のオープン・トップボーダーグリッド） -->
+        <div class="target-grid">
+          <div class="target-item reveal-up">
+            <span class="target-index">FOR YOU 01</span>
+            <h3 class="target-item-title">自分を成長させることを楽しみたい人</h3>
+            <p class="target-item-desc">昨日より視野が広がることや、新しい習慣が身についていく過程そのものを前向きに楽しみたい方。</p>
+          </div>
+
+          <div class="target-item reveal-up">
+            <span class="target-index">FOR YOU 02</span>
+            <h3 class="target-item-title">将来のために具体的な行動を始めたい人</h3>
+            <p class="target-item-desc">「いつかやろう」と思い続ける状態から抜け出し、小さくても確かな一歩を日常に取り入れたい方。</p>
+          </div>
+
+          <div class="target-item reveal-up">
+            <span class="target-index">FOR YOU 03</span>
+            <h3 class="target-item-title">学んだことを実際の行動につなげたい人</h3>
+            <p class="target-item-desc">読書や情報収集で終わらせず、日々の仕事や生活のなかで試しながら自分の力に変えていきたい方。</p>
+          </div>
+
+          <div class="target-item reveal-up">
+            <span class="target-index">FOR YOU 04</span>
+            <h3 class="target-item-title">価値観の近い仲間と刺激し合いたい人</h3>
+            <p class="target-item-desc">互いの挑戦を尊重し合い、「自分も頑張ろう」と支え合える仲間とのつながりを求めている方。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 独立ステートメントブロック：参加をご検討いただくにあたって大切にしている姿勢 -->
+      <div class="container container-statement">
+        <aside class="statement-box reveal-up" aria-labelledby="statement-heading">
+          <h3 id="statement-heading" class="statement-eyebrow">ご参加を検討される方へ、誠実にお伝えしたいこと</h3>
+          <p class="statement-lead">GROWTH BASEは、参加するだけで自動的に成功できる場所ではありません。</p>
+          <div class="statement-body">
+            <p>私たちが届けるのは、学びや振り返りの仕組みと、前向きな仲間とのつながりです。「誰かが正解を与えてくれるのを待つ」という受け身の姿勢ではなく、最初から完璧でなくても「自分自身で考え、小さくても行動してみようとする姿勢」を何より大切にしています。</p>
+            <p>一人ひとりが自分の足で考え行動し、その試行錯誤を仲間と支え合うからこそ、ひとりでは届かなかった目標にもみんなで近づいていける。私たちはそんな誠実なコミュニティでありたいと考えています。</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         セクション6：FAQ（よくある質問：厳選4問）
+         【変更ポイント】よくある質問の追加・編集はここのリスト（Q1〜Q4）を書き換えます
+         ===================================================================== -->
+    <section id="faq" class="section section-sand" aria-labelledby="faq-heading">
+      <div class="container container-wide">
+        <div class="faq-layout">
+          <!-- 左カラム：セクション見出し -->
+          <div class="faq-header reveal-up">
+            <p class="section-label">06 / FAQ</p>
+            <h2 id="faq-heading" class="section-title">よくある質問</h2>
+            <p class="section-lead">ご検討にあたって気になりやすい疑問についてまとめました。</p>
+          </div>
+
+          <!-- 右カラム：重要4問のアコーディオンUI（1問目は初期状態で開いて表示） -->
+          <div class="faq-list reveal-up">
+            <!-- Q1（初期展開） -->
+            <div class="faq-item is-open">
+              <h3 class="faq-question-heading">
+                <button
+                  type="button"
+                  class="faq-trigger"
+                  id="faq-trigger-1"
+                  aria-expanded="true"
+                  aria-controls="faq-panel-1"
+                >
+                  <span class="faq-q-code">Q1</span>
+                  <span class="faq-q-text">まだやりたいことや明確な目標が決まっていなくても大丈夫ですか？</span>
+                  <span class="faq-indicator" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div
+                id="faq-panel-1"
+                class="faq-panel"
+                role="region"
+                aria-labelledby="faq-trigger-1"
+              >
+                <div class="faq-panel-inner">
+                  <div class="faq-answer-row">
+                    <span class="faq-a-code" aria-hidden="true">A1</span>
+                    <p class="faq-a-text">はい、問題ありません。仲間の学び（LEARN）に触れたり交流（CONNECT）で考えを言葉にしたりするなかで、これから取り組む目標を少しずつ見つけていくことができます。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="faq-item">
+              <h3 class="faq-question-heading">
+                <button
+                  type="button"
+                  class="faq-trigger"
+                  id="faq-trigger-2"
+                  aria-expanded="false"
+                  aria-controls="faq-panel-2"
+                >
+                  <span class="faq-q-code">Q2</span>
+                  <span class="faq-q-text">サロンに参加すれば、自動的にすぐ成果が出ますか？</span>
+                  <span class="faq-indicator" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div
+                id="faq-panel-2"
+                class="faq-panel"
+                role="region"
+                aria-labelledby="faq-trigger-2"
+              >
+                <div class="faq-panel-inner">
+                  <div class="faq-answer-row">
+                    <span class="faq-a-code" aria-hidden="true">A2</span>
+                    <p class="faq-a-text">いいえ、参加するだけで自動的に成果や成功が得られる場所ではありません。自分自身で考え行動する姿勢を土台に、仲間と支え合いながら着実に習慣と成長を積み重ねていくための環境です。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="faq-item">
+              <h3 class="faq-question-heading">
+                <button
+                  type="button"
+                  class="faq-trigger"
+                  id="faq-trigger-3"
+                  aria-expanded="false"
+                  aria-controls="faq-panel-3"
+                >
+                  <span class="faq-q-code">Q3</span>
+                  <span class="faq-q-text">月額料金（会費）やイベントの開催頻度はどのくらいですか？</span>
+                  <span class="faq-indicator" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div
+                id="faq-panel-3"
+                class="faq-panel"
+                role="region"
+                aria-labelledby="faq-trigger-3"
+              >
+                <div class="faq-panel-inner">
+                  <div class="faq-answer-row">
+                    <span class="faq-a-code" aria-hidden="true">A3</span>
+                    <!-- 【変更ポイント：料金・開催頻度が決まったらここを更新】 -->
+                    <p class="faq-a-text">月額料金や開催頻度、募集開始時期などの詳細は現在「準備中（未設定）」となっており、決まり次第本ページでご案内いたします。確定前に意図しない費用が発生することは一切ありませんのでご安心ください。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="faq-item">
+              <h3 class="faq-question-heading">
+                <button
+                  type="button"
+                  class="faq-trigger"
+                  id="faq-trigger-4"
+                  aria-expanded="false"
+                  aria-controls="faq-panel-4"
+                >
+                  <span class="faq-q-code">Q4</span>
+                  <span class="faq-q-text">問い合わせをしたら、必ず参加しなければいけませんか？</span>
+                  <span class="faq-indicator" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div
+                id="faq-panel-4"
+                class="faq-panel"
+                role="region"
+                aria-labelledby="faq-trigger-4"
+              >
+                <div class="faq-panel-inner">
+                  <div class="faq-answer-row">
+                    <span class="faq-a-code" aria-hidden="true">A4</span>
+                    <p class="faq-a-text">いいえ、参加を決める必要はまったくなく、強引な勧誘も一切行いません。まずは内容の確認やご相談から始めていただける窓口を想定しています（※現在、送信機能自体も準備中です）。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         セクション7：Action & Contact（行動喚起 ＆ 要件先行型お問い合わせフォーム）
+         【重要設計】
+         1. 読み手の心理的ハードルを下げるため、必ず「Step 1：お問い合わせ要件」を先に配置し、
+            そのあとに「Step 2：お名前・メールアドレス」を配置しています。
+         2. 現在お問い合わせ送信先は未設定（準備中）であるため、ダミーの送信完了表示は行わず、
+            準備中である旨をフォーム上部・ボタン直上・ボタン押下後に誠実に明示します。
+         ===================================================================== -->
+    <section id="contact" class="section section-ivory" aria-labelledby="contact-heading">
+      <div class="container container-form">
+        <!-- 7-1. クロージング導入ヘッダー -->
+        <div class="contact-closing-head reveal-up">
+          <p class="section-label section-label-centered">07 / ACTION &amp; CONTACT</p>
+          <h2 id="contact-heading" class="contact-main-title">次の一歩を、ここから。</h2>
+          <p class="contact-sub-title">変わりたい気持ちを、行動につなげよう。</p>
+          <div class="contact-closing-prose">
+            <p>今すぐ参加するかどうかを決める必要はありません。まずはサロンの内容を詳しく知ることや、気になっている疑問を質問してみることから始めてみませんか。納得できる選択をするための最初の一歩として、お気軽にご相談ください。</p>
+          </div>
+        </div>
+
+        <!-- 7-2. フォーム上部：未設定（準備中）に関する重要案内ボックス -->
+        <!-- 【変更ポイント：将来お問い合わせ窓口を開設した際は、この案内枠を非表示または案内文に変更してください】 -->
+        <div class="preparation-notice-box reveal-up" role="note" aria-label="お問い合わせ窓口の準備状況に関するご案内">
+          <p class="preparation-notice-title">【ご案内】現在、お問い合わせ窓口および参加お申し込み機能は準備中です</p>
+          <p class="preparation-notice-body">現在、募集開始に向けた準備を進めており、お問い合わせ送信先およびお申し込み機能は「未設定（準備中）」です。下記のフォームは窓口開設時のイメージとして掲載しており、現時点では入力しても送信・収集されることはありません。</p>
+        </div>
+
+        <!-- 7-3. 要件先行型のお問い合わせフォームシート -->
+        <!-- 【変更ポイント：将来フォーム送信先（Formspreeや自社サーバーURL等）を設定する場合は、
+             action属性に送信先URLを指定し、method="POST" を有効化したうえで script.js の送信処理を切り替えます】 -->
+        <div class="contact-form-sheet reveal-up">
+          <h3 class="form-sheet-title"><span class="inline-keep">事前相談・お問い合わせフォーム</span><span class="inline-keep">（現在準備中）</span></h3>
+
+          <form id="contact-form" action="#" method="post" novalidate>
+            <!-- ===================================================
+                 Step 1（最初）：お問い合わせ要件（選択カードUI ＋ 自由記述）
+                 =================================================== -->
+            <div class="form-step-block">
+              <div class="form-step-header">
+                <h4 class="form-step-title"><span class="form-step-en">Step 1.</span> <span class="inline-keep">お問い合わせ要件を</span><span class="inline-keep">お選びください</span></h4>
+              </div>
+
+              <!-- 項目1-1：お問い合わせ要件（4つの選択ラジオカード） -->
+              <fieldset class="form-fieldset" id="fieldset-inquiry-type" aria-describedby="error-inquiry-type">
+                <legend class="form-label-row">
+                  <span class="form-label-text">お問い合わせ要件</span>
+                  <span class="badge-required">必須</span>
+                </legend>
+
+                <div class="radio-card-grid">
+                  <label class="radio-card">
+                    <input type="radio" name="inquiry_type" value="サロンの活動内容について詳しく知りたい" required>
+                    <span class="radio-ring" aria-hidden="true"></span>
+                    <span class="radio-card-label">サロンの活動内容について<span class="inline-keep">詳しく知りたい</span></span>
+                  </label>
+
+                  <label class="radio-card">
+                    <input type="radio" name="inquiry_type" value="自分の目的に合っているか相談したい">
+                    <span class="radio-ring" aria-hidden="true"></span>
+                    <span class="radio-card-label">自分の目的に合っているか<span class="inline-keep">相談したい</span></span>
+                  </label>
+
+                  <label class="radio-card">
+                    <input type="radio" name="inquiry_type" value="募集時期や料金の案内について知りたい">
+                    <span class="radio-ring" aria-hidden="true"></span>
+                    <span class="radio-card-label">募集時期や料金の案内について<span class="inline-keep">知りたい</span></span>
+                  </label>
+
+                  <label class="radio-card">
+                    <input type="radio" name="inquiry_type" value="その他のお問い合わせ">
+                    <span class="radio-ring" aria-hidden="true"></span>
+                    <span class="radio-card-label">その他のお問い合わせ</span>
+                  </label>
+                </div>
+
+                <!-- 未選択時のエラーメッセージ表示領域 -->
+                <p class="form-error-msg" id="error-inquiry-type" role="alert" hidden></p>
+              </fieldset>
+
+              <!-- 項目1-2：自由記述テキストエリア -->
+              <div class="form-group">
+                <label for="inquiry-detail" class="form-label-row">
+                  <span class="form-label-text">ご質問・相談したい内容の詳細</span>
+                  <span class="badge-optional">任意</span>
+                </label>
+                <textarea
+                  id="inquiry-detail"
+                  name="inquiry_detail"
+                  class="form-textarea"
+                  rows="5"
+                  placeholder="例：平日は仕事が忙しいのですが、どのようなペースで参加するイメージでしょうか。目標がまだ曖昧でも大丈夫か知りたいです。"
+                  aria-describedby="hint-inquiry-detail"
+                ></textarea>
+                <p class="form-hint" id="hint-inquiry-detail">言葉がまとまっていなくても構いません。気になる点をそのままご記入いただけます。</p>
+              </div>
+            </div>
+
+            <!-- Step 1 と Step 2 の区切り線 -->
+            <hr class="form-step-divider">
+
+            <!-- ===================================================
+                 Step 2（そのあと）：お名前・メールアドレス
+                 =================================================== -->
+            <div class="form-step-block">
+              <div class="form-step-header">
+                <h4 class="form-step-title"><span class="form-step-en">Step 2.</span> ご連絡先をご入力ください</h4>
+              </div>
+
+              <!-- 項目2-1：お名前 -->
+              <div class="form-group">
+                <label for="contact-name" class="form-label-row">
+                  <span class="form-label-text">お名前</span>
+                  <span class="badge-required">必須</span>
+                </label>
+                <input
+                  type="text"
+                  id="contact-name"
+                  name="name"
+                  class="form-input"
+                  autocomplete="name"
+                  placeholder="例：山田 太郎"
+                  required
+                  aria-describedby="hint-contact-name error-contact-name"
+                >
+                <p class="form-hint" id="hint-contact-name">ご相談段階ではニックネームでのご記入も可能です。</p>
+                <p class="form-error-msg" id="error-contact-name" role="alert" hidden></p>
+              </div>
+
+              <!-- 項目2-2：メールアドレス -->
+              <div class="form-group">
+                <label for="contact-email" class="form-label-row">
+                  <span class="form-label-text">メールアドレス</span>
+                  <span class="badge-required">必須</span>
+                </label>
+                <input
+                  type="email"
+                  id="contact-email"
+                  name="email"
+                  class="form-input"
+                  autocomplete="email"
+                  placeholder="例：your-name@example.com"
+                  required
+                  aria-describedby="hint-contact-email error-contact-email"
+                >
+                <p class="form-hint" id="hint-contact-email">ご回答先としてのみ使用し、勧誘連絡をお送りすることはありません。</p>
+                <p class="form-error-msg" id="error-contact-email" role="alert" hidden></p>
+              </div>
+            </div>
+
+            <!-- 送信ボタン ＆ 未設定（準備中）常時明示エリア -->
+            <div class="form-submit-area">
+              <!-- 【変更ポイント：窓口開設後に削除または送信前の同意注記に変更してください】 -->
+              <p class="form-submit-notice">※現在、お問い合わせ送信先およびお申し込み機能は未設定（準備中）のため、ボタンを押しても内容は送信されません。</p>
+
+              <button type="submit" class="btn-submit" id="submit-button">
+                内容について質問・相談する（現在窓口準備中）
+              </button>
+            </div>
+
+            <!-- ボタン押下後に表示される誠実な準備中ステータス案内 ＆ 入力内容プレビュー領域 -->
+            <div
+              class="form-status-feedback"
+              id="form-status-feedback"
+              role="status"
+              aria-live="polite"
+              tabindex="-1"
+              hidden
+            >
+              <p class="feedback-main-message">現在、GROWTH BASEのお問い合わせ窓口およびお申し込み機能は未設定（準備中）のため送信できません。窓口開設の準備が整い次第、本ページにてご案内いたします。</p>
+
+              <!-- 入力者が自分の整理した相談内容を確認・控えとして見返せるプレビュー枠 -->
+              <div class="feedback-preview" id="feedback-preview">
+                <p class="feedback-preview-title">ご入力内容の確認（外部へは送信されていません）</p>
+                <dl class="feedback-preview-list">
+                  <div class="feedback-preview-row">
+                    <dt>お問い合わせ要件</dt>
+                    <dd id="preview-type"></dd>
+                  </div>
+                  <div class="feedback-preview-row">
+                    <dt>ご質問・相談内容の詳細</dt>
+                    <dd id="preview-detail"></dd>
+                  </div>
+                  <div class="feedback-preview-row">
+                    <dt>お名前</dt>
+                    <dd id="preview-name"></dd>
+                  </div>
+                  <div class="feedback-preview-row">
+                    <dt>メールアドレス</dt>
+                    <dd id="preview-email"></dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =====================================================================
+       セクション8：フッター（Footer）
+       【変更ポイント】フッターのリンクやコピーライト表記を変える場合はここを編集します
+       ===================================================================== -->
+  <footer class="site-footer">
+    <div class="container container-wide">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#top" class="footer-logo">GROWTH BASE</a>
+          <p class="footer-tagline">成長を、ひとりの努力で終わらせない。</p>
+        </div>
+
+        <nav class="footer-nav" aria-label="フッターナビゲーション">
+          <ul class="footer-nav-list">
+            <li><a href="#top">トップ</a></li>
+            <li><a href="#concept">コンセプト</a></li>
+            <li><a href="#activities">4つの活動</a></li>
+            <li><a href="#overview">サロン概要</a></li>
+            <li><a href="#target">対象となる方</a></li>
+            <li><a href="#faq">よくある質問</a></li>
+            <li><a href="#contact">お問い合わせ（準備中）</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-note">※本ページに記載の料金・開催頻度・募集開始時期・お問い合わせ窓口等の未確定事項は現在準備中です。</p>
+        <p class="footer-copyright">Copyright GROWTH BASE. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 動き（メニュー開閉・アコーディオン・スクロール演出・フォーム制御）を担当するJavaScriptの読み込み -->
+  <script src="./script.js" defer></script>
+</body>
+</html>

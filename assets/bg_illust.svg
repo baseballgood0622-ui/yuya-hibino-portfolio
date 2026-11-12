@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700" width="700" height="700">
+  <!-- 背景透かし：幾何学コンパスリング＋19歳の爽やかなオリジナル線画（極薄ディープネイビー） -->
+  <g fill="none" stroke="#1e3a5f" stroke-linecap="round" stroke-linejoin="round" opacity="0.065">
+    <!-- 寄り添い・調和を表す二重の繊細なサークルとクロスライン -->
+    <circle cx="350" cy="350" r="290" stroke-width="1.5" stroke-dasharray="6 10"/>
+    <circle cx="350" cy="350" r="250" stroke-width="1.2"/>
+    <line x1="350" y1="30" x2="350" y2="90" stroke-width="1.5"/>
+    <line x1="350" y1="610" x2="350" y2="670" stroke-width="1.5"/>
+    <line x1="30" y1="350" x2="90" y2="350" stroke-width="1.5"/>
+    <line x1="610" y1="350" x2="670" y2="350" stroke-width="1.5"/>
+
+    <!-- 中央：爽やかなショートヘア青年のミニマル線画（帽子・メガネなし） -->
+    <!-- 肩・ジャケット -->
+    <path d="M160 560 C190 480 250 450 350 450 C450 450 510 480 540 560" stroke-width="5"/>
+    <path d="M275 452 L310 535 L350 500 L390 535 L425 452" stroke-width="4"/>
+    <path d="M308 468 Q350 492 392 468" stroke-width="3.5"/>
+
+    <!-- 首 -->
+    <path d="M312 390 L312 455" stroke-width="4.5"/>
+    <path d="M388 390 L388 455" stroke-width="4.5"/>
+
+    <!-- 耳 -->
+    <path d="M242 295 C224 295 222 332 246 340" stroke-width="4.5"/>
+    <path d="M458 295 C476 295 478 332 454 340" stroke-width="4.5"/>
+
+    <!-- 輪郭 -->
+    <path d="M245 265 C245 355 285 408 350 408 C415 408 455 355 455 265" stroke-width="5"/>
+
+    <!-- 爽やかなショートマッシュヘア（線画） -->
+    <path d="M236 285 C224 215 268 150 350 148 C432 150 476 215 464 285 C452 245 424 225 398 242 C382 215 356 212 335 245 C318 218 288 224 270 250 C255 238 242 256 236 285 Z" stroke-width="5"/>
+    <path d="M285 182 Q340 164 395 180" stroke-width="3.5"/>
+
+    <!-- 眉・目・鼻・笑顔 -->
+    <path d="M278 272 Q300 260 320 268" stroke-width="4.5"/>
+    <path d="M380 268 Q400 260 422 272" stroke-width="4.5"/>
+    <circle cx="300" cy="298" r="7" fill="#1e3a5f"/>
+    <circle cx="400" cy="298" r="7" fill="#1e3a5f"/>
+    <path d="M350 295 L347 328 L356 331" stroke-width="4"/>
+    <path d="M320 358 Q350 378 380 358" stroke-width="4.5"/>
+  </g>
+</svg>

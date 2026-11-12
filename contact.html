@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <!-- ★SEO・メタ情報 -->
+  <title>CONTACT（お問い合わせ・ご相談） | YUYA HIBINO 日比野 ポートフォリオ</title>
+  <meta name="description" content="日比野（YUYA HIBINO）へのWebサイト・ホームページ制作のご依頼・ご相談フォームです。">
+
+  <!-- ★ファビコン -->
+  <link rel="icon" href="./assets/logo_hibino.svg" type="image/svg+xml">
+
+  <!-- ★Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- ★スタイルシート -->
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <!-- ========================================================
+    全体ラッパー
+  ======================================================== -->
+  <div class="wrapper wrapper--top wrapper--subpage">
+
+    <!-- ========================================================
+      1. ヘッダー（画面上部に固定されるナビゲーションバー）
+    ======================================================== -->
+    <header class="header is-scrolled" id="js-header">
+      <div class="header_inner">
+        <!-- ロゴ（クリックでトップページへ戻る：センター分けオリジナル似顔絵アイコン） -->
+        <a href="./index.html" class="header_logo" aria-label="YUYA HIBINO トップページへ戻る">
+          <img src="./assets/avatar_hibino.jpg" alt="YUYA HIBINO アイコン">
+        </a>
+
+        <!-- ナビゲーションメニュー -->
+        <nav class="header_nav" aria-label="グローバルナビゲーション">
+          <ul class="header_inner_list">
+            <li class="header_inner_listItem">
+              <a href="./index.html#works">WORKS</a>
+            </li>
+            <li class="header_inner_listItem">
+              <a href="./index.html#about">ABOUT</a>
+            </li>
+            <li class="header_inner_listItem">
+              <a href="./index.html#flow">FLOW</a>
+            </li>
+            <li class="header_inner_listItem">
+              <a href="./contact.html" class="is-active">CONTACT</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ========================================================
+      2. メインコンテンツ領域（シンプルなお問い合わせページ）
+    ======================================================== -->
+    <main class="l-content contactPage_main">
+      <div class="l-content_inner">
+
+        <section class="section contact contact--page">
+          
+          <!-- セクションヘッダー -->
+          <div class="section_header">
+            <h1 class="section_title">
+              <ruby>
+                <span class="section_title_en">CONTACT</span>
+                <rt>お問い合わせ・ご相談</rt>
+              </ruby>
+            </h1>
+            <p class="contact_catch">
+              <span class="ib">Webサイト制作のご依頼・ご相談は</span><span class="ib">こちらからお気軽にお送りください。</span>
+            </p>
+            <p class="contact_lead">
+              「こんなサイトを作りたい」「まだ具体的な内容が決まっていないけれど相談したい」など、<br class="pc">
+              <span class="ib">どんな段階でも大歓迎です。</span><span class="ib">まずは一度、日比野にお聞かせください。</span>
+            </p>
+          </div>
+
+          <!-- ★最小限の3項目だけに絞ったシンプルで入力しやすいフォーム -->
+          <div class="contact_formWrapper">
+            <form class="contactForm" id="contactForm" novalidate>
+
+              <!-- 項目1: ご相談内容（最初に入力してもらうことで離脱を防ぐ設計） -->
+              <div class="formGroup">
+                <label class="formLabel" for="form-message">
+                  ご相談内容 <span class="badge badge--required">必須</span>
+                </label>
+                <textarea id="form-message" name="message" rows="5" placeholder="例：新しくお店のホームページを作りたいので相談したいです。／ 料金や期間の目安を聞いてみたいです。" required></textarea>
+                <p class="formError" id="error-message" aria-live="polite"></p>
+              </div>
+
+              <!-- 項目2: お名前 -->
+              <div class="formGroup">
+                <label class="formLabel" for="form-name">
+                  お名前 <span class="badge badge--required">必須</span>
+                </label>
+                <input type="text" id="form-name" name="name" placeholder="例：山田 太郎" autocomplete="name" required>
+                <p class="formError" id="error-name" aria-live="polite"></p>
+              </div>
+
+              <!-- 項目3: メールアドレス -->
+              <div class="formGroup">
+                <label class="formLabel" for="form-email">
+                  メールアドレス <span class="badge badge--required">必須</span>
+                </label>
+                <input type="email" id="form-email" name="email" placeholder="例：name@example.com" autocomplete="email" required>
+                <p class="formError" id="error-email" aria-live="polite"></p>
+              </div>
+
+              <!-- 送信ボタン ＆ 返信目安の明記 -->
+              <div class="formSubmitArea">
+                <button type="submit" class="submitButton" id="js-submit-btn">
+                  <span class="submitButton_text">送信する</span>
+                  <svg class="submitButton_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </button>
+
+                <div class="formNotice">
+                  <p class="formNotice_lead">
+                    <span class="iconCheck" aria-hidden="true">✔</span>
+                    <strong>通常1〜2営業日以内に丁寧にお返事いたします。</strong>
+                  </p>
+                </div>
+              </div>
+
+            </form>
+
+            <!-- トップページへ戻るリンク -->
+            <div class="contact_backLinkWrap">
+              <a href="./index.html" class="contact_backLink">← トップページ（制作実績一覧）へ戻る</a>
+            </div>
+          </div>
+
+        </section>
+
+      </div>
+    </main>
+
+    <!-- ========================================================
+      3. フッター（Footer）
+    ======================================================== -->
+    <footer class="footer">
+      <div class="footer_inner">
+        <a href="./index.html" class="footer_backTop" aria-label="トップページへ戻る">
+          <span>BACK TO HOME</span>
+        </a>
+
+        <p class="footer_inner_copy">COPYRIGHT &copy; YUYA HIBINO. ALL RIGHTS RESERVED.</p>
+      </div>
+    </footer>
+
+  </div><!-- /.wrapper -->
+
+  <!-- ========================================================
+    4. お問い合わせ送信完了（サンクス）モーダル
+  ======================================================== -->
+  <div class="modal thanksModal" id="js-thanks-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal_overlay" id="js-thanks-overlay"></div>
+    <div class="modal_container thanksModal_container">
+      <button type="button" class="modal_close" id="js-thanks-close" aria-label="閉じる">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="thanksModal_body">
+        <div class="thanksModal_icon">✔</div>
+        <h3 class="thanksModal_title">お問い合わせを受け付けました</h3>
+        <p class="thanksModal_text">
+          ご連絡いただき、誠にありがとうございます。<br>
+          内容を確認の上、<strong>通常1〜2営業日以内に日比野よりメールにて丁寧にお返事いたします。</strong>
+        </p>
+        <a href="./index.html" class="thanksModal_button" style="display:inline-block; text-decoration:none;">トップページへ戻る</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ★JavaScriptファイル読み込み -->
+  <script src="./script.js"></script>
+</body>
+</html>
