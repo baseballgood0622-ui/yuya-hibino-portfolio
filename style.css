@@ -459,19 +459,217 @@ br.pc {
 
 /* ==========================================================================
    5. ファーストビュー（First View / FV）
-   ★「どこよりも寄り添い、作ってからも丁寧に。」＋ YUYA HIBINO のオリジナル構成
+   ★知的な「極細グリッド線」＋ゆっくり漂う「淡いブルーの光のグラデーション」＋順番に浮かび上がる文字アニメーション
    ========================================================================== */
 .mainVisual {
   width: 100%;
   height: 100vh;
   min-height: 620px;
-  max-height: 900px;
+  max-height: 920px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   text-align: center;
   padding: 0 4vw;
+  overflow: hidden;
+}
+
+/* 背景演出レイヤー（文字の邪魔をせず、知的な奥行きとプロ感を演出） */
+.mainVisual_bgDecor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* ① ゆっくり漂う淡いブルーの「光のグラデーション（オーブ）」 */
+.fv_orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(55px);
+  will-change: transform;
+}
+
+.fv_orb--1 {
+  width: 44vw;
+  height: 44vw;
+  min-width: 320px;
+  min-height: 320px;
+  top: -8%;
+  left: -6%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.22) 0%, rgba(43, 91, 132, 0.08) 55%, rgba(245, 247, 250, 0) 75%);
+  animation: floatOrb1 14s ease-in-out infinite alternate;
+}
+
+.fv_orb--2 {
+  width: 48vw;
+  height: 48vw;
+  min-width: 340px;
+  min-height: 340px;
+  bottom: -12%;
+  right: -8%;
+  background: radial-gradient(circle, rgba(43, 91, 132, 0.20) 0%, rgba(56, 189, 248, 0.10) 50%, rgba(245, 247, 250, 0) 75%);
+  animation: floatOrb2 18s ease-in-out infinite alternate;
+}
+
+.fv_orb--3 {
+  width: 34vw;
+  height: 34vw;
+  min-width: 260px;
+  min-height: 260px;
+  top: 22%;
+  right: 18%;
+  background: radial-gradient(circle, rgba(147, 197, 253, 0.24) 0%, rgba(255, 255, 255, 0.5) 55%, rgba(245, 247, 250, 0) 75%);
+  animation: floatOrb3 16s ease-in-out infinite alternate;
+}
+
+@keyframes floatOrb1 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(6vw, 4vw) scale(1.12); }
+}
+
+@keyframes floatOrb2 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-7vw, -5vw) scale(1.15); }
+}
+
+@keyframes floatOrb3 {
+  0% { transform: translate(0, 0) scale(0.95); }
+  100% { transform: translate(-4vw, 5vw) scale(1.08); }
+}
+
+/* ② 知的な「極細グリッド線（設計図風の細線）」 */
+.fv_grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(20, 35, 60, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(20, 35, 60, 0.055) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 82% 72% at 50% 50%, #000000 35%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 82% 72% at 50% 50%, #000000 35%, transparent 95%);
+}
+
+/* ③ 設計図風の四隅フレーム＆クロスヘア（＋印） */
+.fv_frame {
+  position: absolute;
+  top: 6.5vw;
+  bottom: 5.5vw;
+  left: 5vw;
+  right: 5vw;
+  border: 1px solid rgba(43, 91, 132, 0.12);
+  border-radius: 24px;
+}
+
+.fv_cross {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+}
+
+.fv_cross::before,
+.fv_cross::after {
+  content: '';
+  position: absolute;
+  background-color: var(--color-text-accent);
+  opacity: 0.45;
+}
+
+.fv_cross::before {
+  top: 5px;
+  left: 0;
+  width: 11px;
+  height: 1px;
+}
+
+.fv_cross::after {
+  left: 5px;
+  top: 0;
+  width: 1px;
+  height: 11px;
+}
+
+.fv_cross--tl { top: -6px; left: -6px; }
+.fv_cross--tr { top: -6px; right: -6px; }
+.fv_cross--bl { bottom: -6px; left: -6px; }
+.fv_cross--br { bottom: -6px; right: -6px; }
+
+/* ④ 文字が1段ずつ順番に浮かび上がるアニメーション */
+.fv-anim {
+  opacity: 0;
+  transform: translateY(22px);
+  animation: fvRevealUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.fv-anim--1 { animation-delay: 0.15s; }
+.fv-anim--2 { animation-delay: 0.32s; }
+.fv-anim--3 { animation-delay: 0.50s; }
+.fv-anim--4 { animation-delay: 0.68s; }
+.fv-anim--5 { animation-delay: 0.85s; }
+
+@keyframes fvRevealUp {
+  0% {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ⑤ 下部スクロール誘導インジケーター */
+.fv_scroll {
+  position: absolute;
+  bottom: 1.8vw;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  z-index: 3;
+  text-decoration: none;
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
+}
+
+.fv_scroll:hover {
+  opacity: 1;
+}
+
+.fv_scroll_text {
+  font-family: var(--font-en-modern);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  color: var(--color-text-accent);
+}
+
+.fv_scroll_line {
+  width: 1px;
+  height: 36px;
+  background-color: rgba(43, 91, 132, 0.22);
+  position: relative;
+  overflow: hidden;
+}
+
+.fv_scroll_line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background-color: var(--color-text-accent);
+  animation: scrollLineDrop 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes scrollLineDrop {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(200%); }
 }
 
 .mainVisual_inner {
@@ -482,7 +680,7 @@ br.pc {
   position: relative;
   z-index: 2;
   max-width: 1000px;
-  margin-top: 1vw;
+  margin-top: -1vw;
 }
 
 /* ステータスバッジ */
@@ -626,9 +824,25 @@ br.pc {
 @media screen and (max-width: 768px) {
   .mainVisual {
     height: 100svh;
-    min-height: 540px;
-    max-height: 760px;
+    min-height: 560px;
+    max-height: 780px;
     padding: 0 6vw;
+  }
+  .fv_grid {
+    background-size: 40px 40px;
+  }
+  .fv_frame {
+    top: 74px;
+    bottom: 28px;
+    left: 16px;
+    right: 16px;
+    border-radius: 18px;
+  }
+  .fv_scroll {
+    bottom: 10px;
+  }
+  .fv_scroll_line {
+    height: 24px;
   }
   .mainVisual_badge {
     font-size: 11px;
