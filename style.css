@@ -484,60 +484,60 @@ br.pc {
   overflow: hidden;
 }
 
-/* ① ゆっくり漂う淡いブルーの「光のグラデーション（オーブ）」 */
+/* ① ゆっくり漂う鮮やかなブルーの「光のグラデーション（オーブ）」 */
 .fv_orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(55px);
+  filter: blur(50px);
   will-change: transform;
 }
 
 .fv_orb--1 {
-  width: 44vw;
-  height: 44vw;
+  width: 46vw;
+  height: 46vw;
   min-width: 320px;
   min-height: 320px;
-  top: -8%;
+  top: -10%;
   left: -6%;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.22) 0%, rgba(43, 91, 132, 0.08) 55%, rgba(245, 247, 250, 0) 75%);
-  animation: floatOrb1 14s ease-in-out infinite alternate;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.30) 0%, rgba(43, 91, 132, 0.14) 55%, rgba(245, 247, 250, 0) 75%);
+  animation: floatOrb1 12s ease-in-out infinite alternate;
 }
 
 .fv_orb--2 {
-  width: 48vw;
-  height: 48vw;
+  width: 50vw;
+  height: 50vw;
   min-width: 340px;
   min-height: 340px;
-  bottom: -12%;
+  bottom: -14%;
   right: -8%;
-  background: radial-gradient(circle, rgba(43, 91, 132, 0.20) 0%, rgba(56, 189, 248, 0.10) 50%, rgba(245, 247, 250, 0) 75%);
-  animation: floatOrb2 18s ease-in-out infinite alternate;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.28) 0%, rgba(43, 91, 132, 0.14) 50%, rgba(245, 247, 250, 0) 75%);
+  animation: floatOrb2 15s ease-in-out infinite alternate;
 }
 
 .fv_orb--3 {
-  width: 34vw;
-  height: 34vw;
+  width: 36vw;
+  height: 36vw;
   min-width: 260px;
   min-height: 260px;
-  top: 22%;
-  right: 18%;
-  background: radial-gradient(circle, rgba(147, 197, 253, 0.24) 0%, rgba(255, 255, 255, 0.5) 55%, rgba(245, 247, 250, 0) 75%);
-  animation: floatOrb3 16s ease-in-out infinite alternate;
+  top: 18%;
+  right: 16%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.22) 0%, rgba(186, 230, 253, 0.35) 55%, rgba(245, 247, 250, 0) 75%);
+  animation: floatOrb3 14s ease-in-out infinite alternate;
 }
 
 @keyframes floatOrb1 {
   0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(6vw, 4vw) scale(1.12); }
+  100% { transform: translate(6vw, 4vw) scale(1.14); }
 }
 
 @keyframes floatOrb2 {
   0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(-7vw, -5vw) scale(1.15); }
+  100% { transform: translate(-7vw, -5vw) scale(1.16); }
 }
 
 @keyframes floatOrb3 {
   0% { transform: translate(0, 0) scale(0.95); }
-  100% { transform: translate(-4vw, 5vw) scale(1.08); }
+  100% { transform: translate(-4vw, 5vw) scale(1.10); }
 }
 
 /* ② 知的な「極細グリッド線（設計図風の細線）」 */
@@ -545,11 +545,161 @@ br.pc {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(to right, rgba(20, 35, 60, 0.055) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(20, 35, 60, 0.055) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse 82% 72% at 50% 50%, #000000 35%, transparent 95%);
-  -webkit-mask-image: radial-gradient(ellipse 82% 72% at 50% 50%, #000000 35%, transparent 95%);
+    linear-gradient(to right, rgba(20, 35, 60, 0.075) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(20, 35, 60, 0.075) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 88% 78% at 50% 50%, #000000 45%, transparent 98%);
+  -webkit-mask-image: radial-gradient(ellipse 88% 78% at 50% 50%, #000000 45%, transparent 98%);
+}
+
+/* ②-B ゆっくり回転する知的な軌道リング（中央ステージを華やかに引き立てる） */
+.fv_orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.fv_orbit--outer {
+  width: 58vw;
+  height: 58vw;
+  min-width: 520px;
+  min-height: 520px;
+  max-width: 820px;
+  max-height: 820px;
+  border: 1.5px dashed rgba(43, 91, 132, 0.22);
+  transform: translate(-50%, -50%);
+  animation: spinOrbit 48s linear infinite;
+}
+
+.fv_orbit--outer::before,
+.fv_orbit--outer::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--color-text-accent);
+  box-shadow: 0 0 14px rgba(43, 91, 132, 0.6);
+}
+
+.fv_orbit--outer::before { top: -5px; left: 50%; transform: translateX(-50%); }
+.fv_orbit--outer::after { bottom: -5px; left: 50%; transform: translateX(-50%); }
+
+.fv_orbit--inner {
+  width: 42vw;
+  height: 42vw;
+  min-width: 380px;
+  min-height: 380px;
+  max-width: 600px;
+  max-height: 600px;
+  border: 1px solid rgba(43, 91, 132, 0.16);
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spinOrbit {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ②-C 四隅に立体的に浮遊する実制作サイトショーケースカード */
+.fv_floatCard {
+  position: absolute;
+  width: 19.5vw;
+  min-width: 210px;
+  max-width: 290px;
+  background-color: rgba(255, 255, 255, 0.92);
+  border: 1.5px solid rgba(255, 255, 255, 0.98);
+  border-radius: 12px;
+  box-shadow: 0 18px 40px rgba(20, 35, 60, 0.15), 0 4px 12px rgba(43, 91, 132, 0.08);
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2;
+}
+
+.fv_floatCard_bar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+  background-color: #f1f5f9;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.fv_floatCard_bar span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.fv_floatCard_bar span:nth-child(1) { background-color: #f87171; }
+.fv_floatCard_bar span:nth-child(2) { background-color: #fbbf24; }
+.fv_floatCard_bar span:nth-child(3) { background-color: #34d399; }
+
+.fv_floatCard_bar em {
+  font-style: normal;
+  font-family: var(--font-en-modern);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  margin-left: auto;
+}
+
+.fv_floatCard img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.fv_floatCard--tl {
+  top: 13%;
+  left: 6.5%;
+  transform: rotate(-6deg);
+  animation: floatCardTL 6.5s ease-in-out infinite alternate;
+}
+
+.fv_floatCard--tr {
+  top: 14%;
+  right: 6.5%;
+  transform: rotate(6deg);
+  animation: floatCardTR 7.2s ease-in-out infinite alternate;
+}
+
+.fv_floatCard--bl {
+  bottom: 12%;
+  left: 7.5%;
+  transform: rotate(5deg);
+  animation: floatCardBL 7.8s ease-in-out infinite alternate;
+}
+
+.fv_floatCard--br {
+  bottom: 13%;
+  right: 7.5%;
+  transform: rotate(-5deg);
+  animation: floatCardBR 6.8s ease-in-out infinite alternate;
+}
+
+@keyframes floatCardTL {
+  0% { transform: translateY(0) rotate(-6deg); }
+  100% { transform: translateY(-14px) rotate(-4deg); }
+}
+
+@keyframes floatCardTR {
+  0% { transform: translateY(0) rotate(6deg); }
+  100% { transform: translateY(-16px) rotate(4deg); }
+}
+
+@keyframes floatCardBL {
+  0% { transform: translateY(0) rotate(5deg); }
+  100% { transform: translateY(14px) rotate(3deg); }
+}
+
+@keyframes floatCardBR {
+  0% { transform: translateY(0) rotate(-5deg); }
+  100% { transform: translateY(15px) rotate(-3deg); }
 }
 
 /* ③ 設計図風の四隅フレーム＆クロスヘア（＋印） */
@@ -678,9 +828,18 @@ br.pc {
   align-items: center;
   justify-content: center;
   position: relative;
-  z-index: 2;
-  max-width: 1000px;
-  margin-top: -1vw;
+  z-index: 3;
+  max-width: 780px;
+  padding: 2.8vw 3.4vw;
+  border-radius: 28px;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.82) 65%, rgba(255, 255, 255, 0) 100%);
+  margin-top: -0.5vw;
+}
+
+/* キャッチコピーの知的なハイライト下線 */
+.fv_marker {
+  background: linear-gradient(transparent 68%, rgba(59, 130, 246, 0.22) 68%);
+  padding: 0 2px;
 }
 
 /* ステータスバッジ */
@@ -781,9 +940,29 @@ br.pc {
 }
 
 .fv_btn--primary {
-  background-color: var(--color-text-primary);
+  background: linear-gradient(135deg, #14233c 0%, #2b5b84 100%);
   color: #ffffff;
-  box-shadow: 0 8px 22px rgba(20, 35, 60, 0.16);
+  box-shadow: 0 10px 26px rgba(20, 35, 60, 0.24);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ボタンの上をキラッと光が走るアニメーション */
+.fv_btn--primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-25deg);
+  animation: btnShimmer 4s infinite;
+}
+
+@keyframes btnShimmer {
+  0%, 60% { left: -120%; }
+  100% { left: 160%; }
 }
 
 .fv_btn--primary:hover {
@@ -824,25 +1003,72 @@ br.pc {
 @media screen and (max-width: 768px) {
   .mainVisual {
     height: 100svh;
-    min-height: 560px;
-    max-height: 780px;
-    padding: 0 6vw;
+    min-height: 600px;
+    max-height: 820px;
+    padding: 0 5vw;
   }
   .fv_grid {
-    background-size: 40px 40px;
+    background-size: 36px 36px;
+  }
+  .fv_orbit--outer {
+    min-width: 340px;
+    min-height: 340px;
+  }
+  .fv_orbit--inner {
+    min-width: 250px;
+    min-height: 250px;
+  }
+  /* スマホでも上下の四隅に実制作サイトカードが立体的に覗く演出 */
+  .fv_floatCard {
+    width: 34vw;
+    min-width: 128px;
+    max-width: 165px;
+    border-radius: 8px;
+    opacity: 0.9;
+  }
+  .fv_floatCard_bar {
+    padding: 4px 6px;
+    gap: 3px;
+  }
+  .fv_floatCard_bar span {
+    width: 4px;
+    height: 4px;
+  }
+  .fv_floatCard_bar em {
+    font-size: 7px;
+  }
+  .fv_floatCard--tl {
+    top: 10.5%;
+    left: 4%;
+  }
+  .fv_floatCard--tr {
+    top: 10.5%;
+    right: 4%;
+  }
+  .fv_floatCard--bl {
+    bottom: 7%;
+    left: 4%;
+  }
+  .fv_floatCard--br {
+    bottom: 7%;
+    right: 4%;
+  }
+  .mainVisual_inner {
+    padding: 20px 14px;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.88) 70%, rgba(255, 255, 255, 0) 100%);
   }
   .fv_frame {
-    top: 74px;
-    bottom: 28px;
-    left: 16px;
-    right: 16px;
+    top: 68px;
+    bottom: 22px;
+    left: 12px;
+    right: 12px;
     border-radius: 18px;
   }
   .fv_scroll {
-    bottom: 10px;
+    bottom: 8px;
   }
   .fv_scroll_line {
-    height: 24px;
+    height: 20px;
   }
   .mainVisual_badge {
     font-size: 11px;

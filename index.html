@@ -86,12 +86,35 @@
            YUYA HIBINO の名前を美しく配置したオリジナル構成
     ======================================================== -->
     <section class="mainVisual" id="top">
-      <!-- ★ファーストビュー背景演出（知的な極細グリッド線 ＋ ゆっくり漂う淡いブルーの光のグラデーション） -->
+      <!-- ★ファーストビュー背景演出（回転する設計軌道リング ＋ 鮮やかな光のオーロラ ＋ 立体浮遊する実制作サイトカード） -->
       <div class="mainVisual_bgDecor" aria-hidden="true">
         <div class="fv_orb fv_orb--1"></div>
         <div class="fv_orb fv_orb--2"></div>
         <div class="fv_orb fv_orb--3"></div>
         <div class="fv_grid"></div>
+
+        <!-- ゆっくり回転する知的な軌道リング -->
+        <div class="fv_orbit fv_orbit--outer"></div>
+        <div class="fv_orbit fv_orbit--inner"></div>
+
+        <!-- 四隅に立体的に浮かび上がる実制作サイトのショーケースカード -->
+        <div class="fv_floatCard fv_floatCard--tl">
+          <div class="fv_floatCard_bar"><span></span><span></span><span></span><em>NextBridge</em></div>
+          <img src="./assets/tmb_nextbridge.svg" alt="">
+        </div>
+        <div class="fv_floatCard fv_floatCard--tr">
+          <div class="fv_floatCard_bar"><span></span><span></span><span></span><em>Trattoria SOLE</em></div>
+          <img src="./assets/tmb_sole.svg" alt="">
+        </div>
+        <div class="fv_floatCard fv_floatCard--bl">
+          <div class="fv_floatCard_bar"><span></span><span></span><span></span><em>URBAN CLOSET</em></div>
+          <img src="./assets/tmb_urban.svg" alt="">
+        </div>
+        <div class="fv_floatCard fv_floatCard--br">
+          <div class="fv_floatCard_bar"><span></span><span></span><span></span><em>Hair Salon RICHE</em></div>
+          <img src="./assets/tmb_riche.svg" alt="">
+        </div>
+
         <div class="fv_frame">
           <span class="fv_cross fv_cross--tl"></span>
           <span class="fv_cross fv_cross--tr"></span>
@@ -110,7 +133,7 @@
 
         <!-- ★メインの日本語キャッチコピー（2番目にふわっと表示） -->
         <p class="mainVisual_catch fv-anim fv-anim--2">
-          <span class="ib">どこよりも寄り添い、</span><span class="ib">作ってからも丁寧に。</span>
+          <span class="ib"><span class="fv_marker">どこよりも寄り添い、</span></span><span class="ib">作ってからも<span class="fv_marker">丁寧に。</span></span>
         </p>
 
         <!-- ★メインロゴ（3番目にふわっと表示：見やすさ重視の筆記体表記） -->
