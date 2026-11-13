@@ -655,29 +655,29 @@ br.pc {
 }
 
 .fv_floatCard--tl {
-  top: 13%;
-  left: 6.5%;
+  top: 12%;
+  left: 3.5%;
   transform: rotate(-6deg);
   animation: floatCardTL 6.5s ease-in-out infinite alternate;
 }
 
 .fv_floatCard--tr {
-  top: 14%;
-  right: 6.5%;
+  top: 13%;
+  right: 3.5%;
   transform: rotate(6deg);
   animation: floatCardTR 7.2s ease-in-out infinite alternate;
 }
 
 .fv_floatCard--bl {
-  bottom: 12%;
-  left: 7.5%;
+  bottom: 11%;
+  left: 4.2%;
   transform: rotate(5deg);
   animation: floatCardBL 7.8s ease-in-out infinite alternate;
 }
 
 .fv_floatCard--br {
-  bottom: 13%;
-  right: 7.5%;
+  bottom: 12%;
+  right: 4.2%;
   transform: rotate(-5deg);
   animation: floatCardBR 6.8s ease-in-out infinite alternate;
 }
@@ -829,10 +829,9 @@ br.pc {
   justify-content: center;
   position: relative;
   z-index: 3;
-  max-width: 780px;
-  padding: 2.8vw 3.4vw;
-  border-radius: 28px;
-  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.82) 65%, rgba(255, 255, 255, 0) 100%);
+  max-width: 760px;
+  padding: 1.5vw 2vw;
+  background: transparent;
   margin-top: -0.5vw;
 }
 
@@ -1054,8 +1053,8 @@ br.pc {
     right: 4%;
   }
   .mainVisual_inner {
-    padding: 20px 14px;
-    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.88) 70%, rgba(255, 255, 255, 0) 100%);
+    padding: 12px 10px;
+    background: transparent;
   }
   .fv_frame {
     top: 68px;
