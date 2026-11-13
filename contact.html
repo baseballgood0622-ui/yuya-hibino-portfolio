@@ -37,20 +37,27 @@
           <img src="./assets/avatar_hibino.jpg" alt="YUYA HIBINO アイコン">
         </a>
 
+        <!-- ★スマホ専用ハンバーガーメニューボタン（PCでは非表示） -->
+        <button type="button" class="header_hamburger" id="js-hamburger" aria-label="メニューを開閉する" aria-expanded="false" aria-controls="js-header-nav">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
         <!-- ナビゲーションメニュー -->
-        <nav class="header_nav" aria-label="グローバルナビゲーション">
+        <nav class="header_nav" id="js-header-nav" aria-label="グローバルナビゲーション">
           <ul class="header_inner_list">
             <li class="header_inner_listItem">
-              <a href="./index.html#works">WORKS</a>
+              <a href="./index.html#works">WORKS<span class="header_nav_ja">制作実績</span></a>
             </li>
             <li class="header_inner_listItem">
-              <a href="./index.html#about">ABOUT</a>
+              <a href="./index.html#about">ABOUT<span class="header_nav_ja">私について</span></a>
             </li>
             <li class="header_inner_listItem">
-              <a href="./index.html#flow">FLOW</a>
+              <a href="./index.html#flow">FLOW<span class="header_nav_ja">ご依頼の流れ</span></a>
             </li>
             <li class="header_inner_listItem">
-              <a href="./contact.html" class="is-active">CONTACT</a>
+              <a href="./contact.html" class="is-active">CONTACT<span class="header_nav_ja">お問い合わせ</span></a>
             </li>
           </ul>
         </nav>

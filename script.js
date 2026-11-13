@@ -189,6 +189,42 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', handleHeaderScroll, { passive: true });
   handleHeaderScroll();
 
+  /* ------------------------------------------------------------------------
+     3.1.5 スマホ専用ハンバーガーメニュー開閉処理
+  ------------------------------------------------------------------------ */
+  const hamburger = document.getElementById('js-hamburger');
+  const headerNav = document.getElementById('js-header-nav');
+
+  const closeHamburgerMenu = () => {
+    if (!hamburger || !headerNav) return;
+    hamburger.classList.remove('is-open');
+    headerNav.classList.remove('is-open');
+    hamburger.setAttribute('aria-expanded', 'false');
+  };
+
+  if (hamburger && headerNav) {
+    hamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = hamburger.classList.toggle('is-open');
+      headerNav.classList.toggle('is-open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    // メニュー内のリンクを押したら自動でメニューを閉じる
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        closeHamburgerMenu();
+      });
+    });
+
+    // メニューの外側をタップしたら閉じる
+    document.addEventListener('click', (e) => {
+      if (headerNav.classList.contains('is-open') && !headerNav.contains(e.target) && !hamburger.contains(e.target)) {
+        closeHamburgerMenu();
+      }
+    });
+  }
+
   // 現在スクロール中のセクションを検知してヘッダーのアンダーラインを更新
   const updateActiveNav = () => {
     const scrollPos = window.scrollY + window.innerHeight * 0.35;
