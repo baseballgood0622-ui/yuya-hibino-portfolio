@@ -47,6 +47,7 @@
   --font-en-modern: 'Outfit', sans-serif;
   --font-en-narrow: 'PT Sans Narrow', sans-serif;
   --font-en-script: 'Dancing Script', cursive;
+  --font-en-luxury: 'Cormorant Garamond', 'Shippori Mincho', 'Noto Serif JP', 'Yu Mincho', '游明朝', serif;
   --font-jp: 'Noto Sans JP', 'Yu Gothic', '游ゴシック体', YuGothic, sans-serif;
   --font-jp-serif: 'Shippori Mincho', 'Noto Serif JP', 'Yu Mincho', '游明朝', YuMincho, 'Hiragino Mincho ProN', serif;
   
@@ -151,7 +152,7 @@ br.pc {
 }
 
 /* ==========================================================================
-   2. オープニングアニメーション（サイト訪問時に「Yuya Hibino」が描かれてから、うっすら消えていく演出）
+   2. オープニングアニメーション（高級感のある明朝系セリフ体で「Yuya Hibino」がゆっくり浮かび上がり、うっすら消えていく演出）
    ========================================================================== */
 .loader {
   display: flex;
@@ -162,11 +163,12 @@ br.pc {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: radial-gradient(circle at 50% 45%, #1b3358 0%, #0f1c30 75%);
+  background: radial-gradient(circle at 50% 45%, #182c4c 0%, #0b1526 80%);
   z-index: 9999;
   opacity: 1;
   visibility: visible;
-  transition: opacity 1.15s cubic-bezier(0.22, 1, 0.36, 1), visibility 1.15s ease;
+  /* ★約1.65秒かけてゆっくり、うっすらと霧が晴れるように消えていく設定 */
+  transition: opacity 1.65s cubic-bezier(0.22, 1, 0.36, 1), visibility 1.65s ease;
   overflow: hidden;
 }
 
@@ -184,61 +186,68 @@ br.pc {
   justify-content: center;
   text-align: center;
   padding: 0 24px;
-  transition: opacity 0.95s ease, transform 1.15s cubic-bezier(0.22, 1, 0.36, 1), filter 1.05s ease;
+  transition: opacity 1.45s ease, transform 1.65s cubic-bezier(0.22, 1, 0.36, 1), filter 1.55s ease;
 }
 
 .loader.is-loaded .loader_inner {
   opacity: 0;
-  transform: scale(1.04);
-  filter: blur(6px);
+  transform: scale(1.05);
+  filter: blur(8px);
 }
 
-/* 「Yuya Hibino」が左から右へサインを描くように現れるアニメーション */
+/* 「Yuya Hibino」が高級感のある明朝系セリフ体でゆっくり浮かび上がるアニメーション */
 .loader_signature {
-  font-family: var(--font-en-script);
-  font-size: clamp(42px, 6.2vw, 78px);
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  color: #ffffff;
-  line-height: 1.25;
-  padding: 4px 12px;
-  text-shadow: 0 6px 28px rgba(56, 189, 248, 0.35);
-  clip-path: inset(0 100% 0 0);
-  animation: loaderWriteSign 1.05s cubic-bezier(0.33, 1, 0.68, 1) 0.1s forwards;
+  font-family: var(--font-en-luxury);
+  font-size: clamp(36px, 5.4vw, 72px);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: #f8fafc;
+  line-height: 1.3;
+  padding: 4px 12px 4px calc(12px + 0.18em);
+  text-shadow: 0 8px 32px rgba(148, 163, 184, 0.25);
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateY(10px) scale(0.98);
+  animation: loaderLuxuryReveal 1.9s cubic-bezier(0.22, 1, 0.36, 1) 0.25s forwards;
 }
 
-/* 中央から左右へスッと伸びる光のライン */
+/* 中央から左右へゆっくり伸びる繊細なライン */
 .loader_line {
   display: block;
-  width: 180px;
-  height: 1.5px;
-  margin-top: 8px;
-  background: linear-gradient(90deg, transparent, #60a5fa, #ffffff, #60a5fa, transparent);
+  width: 200px;
+  height: 1px;
+  margin-top: 12px;
+  background: linear-gradient(90deg, transparent, rgba(203, 213, 225, 0.7), #ffffff, rgba(203, 213, 225, 0.7), transparent);
   transform: scaleX(0);
-  animation: loaderExpandLine 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
+  animation: loaderExpandLine 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.9s forwards;
 }
 
 /* 下部のサブタイトル */
 .loader_sub {
-  font-family: var(--font-en-modern);
-  font-size: clamp(10px, 1.05vw, 13px);
+  font-family: var(--font-en-luxury);
+  font-size: clamp(11px, 1.1vw, 14px);
   font-weight: 500;
-  letter-spacing: 0.36em;
-  color: rgba(226, 232, 240, 0.85);
-  margin-top: 14px;
+  letter-spacing: 0.42em;
+  color: rgba(203, 213, 225, 0.82);
+  margin-top: 16px;
+  padding-left: 0.42em;
   opacity: 0;
   transform: translateY(8px);
-  animation: loaderSubFade 0.6s ease 0.68s forwards;
+  animation: loaderSubFade 1.2s ease 1.25s forwards;
 }
 
-@keyframes loaderWriteSign {
+@keyframes loaderLuxuryReveal {
   0% {
-    clip-path: inset(0 100% 0 0);
-    transform: translateY(8px) scale(0.96);
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(12px) scale(0.97);
+    letter-spacing: 0.26em;
   }
   100% {
-    clip-path: inset(0 0% 0 0);
+    opacity: 1;
+    filter: blur(0px);
     transform: translateY(0) scale(1);
+    letter-spacing: 0.18em;
   }
 }
 
@@ -684,22 +693,22 @@ br.pc {
 .fv_cross--bl { bottom: -6px; left: -6px; }
 .fv_cross--br { bottom: -6px; right: -6px; }
 
-/* ④ オープニングの幕が上がった直後に、ファーストビューの文字が1段ずつ順番に浮かび上がるアニメーション */
+/* ④ オープニングがうっすら消えていくタイミングに合わせて、ファーストビューの文字が1段ずつ順番に浮かび上がるアニメーション */
 .fv-anim {
   opacity: 0;
   transform: translateY(22px);
-  animation: fvRevealUp 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: fvRevealUp 1.0s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.fv-anim--1 { animation-delay: 1.50s; }
-.fv-anim--2 { animation-delay: 1.66s; }
+.fv-anim--1 { animation-delay: 3.10s; }
+.fv-anim--2 { animation-delay: 3.30s; }
 .fv-anim--3 {
-  opacity: 1;
-  transform: none;
-  animation: fvSignatureReveal 1.1s cubic-bezier(0.22, 1, 0.36, 1) 1.82s both;
+  opacity: 0;
+  transform: translateY(14px);
+  animation: fvRevealUp 1.1s cubic-bezier(0.22, 1, 0.36, 1) 3.50s forwards;
 }
-.fv-anim--4 { animation-delay: 2.02s; }
-.fv-anim--5 { animation-delay: 2.18s; }
+.fv-anim--4 { animation-delay: 3.70s; }
+.fv-anim--5 { animation-delay: 3.90s; }
 
 @keyframes fvRevealUp {
   0% {
