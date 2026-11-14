@@ -145,25 +145,22 @@ const worksData = {
 };
 
 /* ==========================================================================
-   2. ページ読み込み完了時（ローダー解除）
+   2. オープニングアニメーション解除（「Yuya Hibino」のサイン演出を見せた後に幕を上げる）
    ========================================================================== */
-window.addEventListener('load', () => {
-  const loader = document.getElementById('js-loader');
-  if (loader) {
-    // わずかに余韻を持たせてからローダーをフェードアウト
-    setTimeout(() => {
-      loader.classList.add('is-loaded');
-    }, 400);
-  }
-});
-
-// 万が一画像ロード等で時間がかかった場合のフォールバック（最大1.5秒で自動解除）
-setTimeout(() => {
+const dismissLoader = () => {
   const loader = document.getElementById('js-loader');
   if (loader && !loader.classList.contains('is-loaded')) {
     loader.classList.add('is-loaded');
   }
-}, 1500);
+};
+
+window.addEventListener('load', () => {
+  // オープニングの「Yuya Hibino」サインアニメーション（約1.35秒）を見せてから幕を上げる
+  setTimeout(dismissLoader, 1380);
+});
+
+// 万が一画像ロード等で時間がかかった場合のフォールバック（最大1.8秒で自動解除）
+setTimeout(dismissLoader, 1800);
 
 /* ==========================================================================
    3. DOM読み込み後のメイン処理

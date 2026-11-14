@@ -151,7 +151,7 @@ br.pc {
 }
 
 /* ==========================================================================
-   2. ページローダー（佐藤タカアキ氏サイトの上品な3連ドット再現）
+   2. オープニングアニメーション（サイト訪問時に「Yuya Hibino」が描かれて幕が上がる演出）
    ========================================================================== */
 .loader {
   display: flex;
@@ -162,57 +162,85 @@ br.pc {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: var(--color-bg-base);
+  background: radial-gradient(circle at 50% 45%, #1b3358 0%, #0f1c30 75%);
   z-index: 9999;
-  transition: opacity 0.6s ease, visibility 0.6s ease;
+  transition: transform 0.85s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.65s ease, visibility 0.85s ease;
+  overflow: hidden;
 }
 
+/* 幕が上へスライドしてファーストビューが現れる */
 .loader.is-loaded {
-  opacity: 0;
+  transform: translateY(-100%);
   visibility: hidden;
   pointer-events: none;
 }
 
-.loader_dot, .loader_dot::before, .loader_dot::after {
-  border-radius: 50%;
-  width: 12px;
-  height: 12px;
-  animation-fill-mode: both;
-  animation: loaderPulse 1.4s infinite ease-in-out;
+.loader_inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 24px;
 }
 
-.loader_dot {
-  color: var(--color-text-accent);
-  font-size: 10px;
-  position: relative;
-  text-indent: -9999em;
-  animation-delay: -0.16s;
+/* 「Yuya Hibino」が左から右へサインを描くように現れるアニメーション */
+.loader_signature {
+  font-family: var(--font-en-script);
+  font-size: clamp(42px, 6.2vw, 78px);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  line-height: 1.25;
+  padding: 4px 12px;
+  text-shadow: 0 6px 28px rgba(56, 189, 248, 0.35);
+  clip-path: inset(0 100% 0 0);
+  animation: loaderWriteSign 1.05s cubic-bezier(0.33, 1, 0.68, 1) 0.1s forwards;
 }
 
-.loader_dot::before, .loader_dot::after {
-  content: '';
-  position: absolute;
-  top: 0;
+/* 中央から左右へスッと伸びる光のライン */
+.loader_line {
+  display: block;
+  width: 180px;
+  height: 1.5px;
+  margin-top: 8px;
+  background: linear-gradient(90deg, transparent, #60a5fa, #ffffff, #60a5fa, transparent);
+  transform: scaleX(0);
+  animation: loaderExpandLine 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
 }
 
-.loader_dot::before {
-  left: -24px;
-  animation-delay: -0.32s;
+/* 下部のサブタイトル */
+.loader_sub {
+  font-family: var(--font-en-modern);
+  font-size: clamp(10px, 1.05vw, 13px);
+  font-weight: 500;
+  letter-spacing: 0.36em;
+  color: rgba(226, 232, 240, 0.85);
+  margin-top: 14px;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: loaderSubFade 0.6s ease 0.68s forwards;
 }
 
-.loader_dot::after {
-  left: 24px;
-}
-
-@keyframes loaderPulse {
-  0%, 80%, 100% {
-    box-shadow: 0 0 0 -4px;
-    opacity: 0.3;
+@keyframes loaderWriteSign {
+  0% {
+    clip-path: inset(0 100% 0 0);
+    transform: translateY(8px) scale(0.96);
   }
-  40% {
-    box-shadow: 0 0 0 4px;
-    opacity: 1;
+  100% {
+    clip-path: inset(0 0% 0 0);
+    transform: translateY(0) scale(1);
   }
+}
+
+@keyframes loaderExpandLine {
+  0% { transform: scaleX(0); opacity: 0; }
+  100% { transform: scaleX(1); opacity: 1; }
+}
+
+@keyframes loaderSubFade {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 /* ==========================================================================
@@ -647,18 +675,22 @@ br.pc {
 .fv_cross--bl { bottom: -6px; left: -6px; }
 .fv_cross--br { bottom: -6px; right: -6px; }
 
-/* ④ 文字が1段ずつ順番に浮かび上がるアニメーション */
+/* ④ オープニングの幕が上がった直後に、ファーストビューの文字が1段ずつ順番に浮かび上がるアニメーション */
 .fv-anim {
   opacity: 0;
   transform: translateY(22px);
-  animation: fvRevealUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: fvRevealUp 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.fv-anim--1 { animation-delay: 0.15s; }
-.fv-anim--2 { animation-delay: 0.32s; }
-.fv-anim--3 { animation-delay: 0.50s; }
-.fv-anim--4 { animation-delay: 0.68s; }
-.fv-anim--5 { animation-delay: 0.85s; }
+.fv-anim--1 { animation-delay: 1.50s; }
+.fv-anim--2 { animation-delay: 1.66s; }
+.fv-anim--3 {
+  opacity: 1;
+  transform: none;
+  animation: fvSignatureReveal 1.1s cubic-bezier(0.22, 1, 0.36, 1) 1.82s both;
+}
+.fv-anim--4 { animation-delay: 2.02s; }
+.fv-anim--5 { animation-delay: 2.18s; }
 
 @keyframes fvRevealUp {
   0% {
@@ -668,6 +700,20 @@ br.pc {
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* ファーストビュー内の「Yuya Hibino」が左から右へサインを描くように現れるアニメーション */
+@keyframes fvSignatureReveal {
+  0% {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+    transform: translateY(10px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    clip-path: inset(0 0% 0 0);
+    transform: translateY(0) scale(1);
   }
 }
 

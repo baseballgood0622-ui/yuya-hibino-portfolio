@@ -30,11 +30,14 @@
 <body>
 
   <!-- ========================================================
-    1. ページローダー（読み込み中の3連ドットアニメーション）
-       佐藤タカアキ氏サイトの上品なドットアニメーションを再現
+    1. オープニングアニメーション（サイト訪問時に「Yuya Hibino」が筆記体で描かれてから幕が上がる演出）
   ======================================================== -->
-  <div class="loader" id="js-loader">
-    <div class="loader_dot">Loading...</div>
+  <div class="loader" id="js-loader" aria-hidden="true">
+    <div class="loader_inner">
+      <p class="loader_signature">Yuya Hibino</p>
+      <span class="loader_line"></span>
+      <p class="loader_sub">WEB DESIGN &amp; PARTNER</p>
+    </div>
   </div>
 
   <!-- ========================================================
