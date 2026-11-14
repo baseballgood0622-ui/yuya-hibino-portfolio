@@ -161,8 +161,9 @@ br.pc {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
+  height: 100dvh;
   /* ★ファーストビューの背景色と一体感のある明るいオフホワイト×淡いブルーグラデーション（段差なくなめらかに溶け込む） */
   background: radial-gradient(circle at 50% 45%, #ffffff 0%, #f3f7fc 60%, #e9f0f8 100%);
   z-index: 9999;
@@ -188,12 +189,15 @@ br.pc {
   z-index: 2;
 }
 
-/* ★オープニングの惑星軌道リング＆消えていくときに広がる波紋リング */
+/* ★オープニングの惑星軌道リング（文字ブロックの中心 50%, 50% を基準にするためスマホでも絶対にズレない設計） */
 .loader_orbits {
   position: absolute;
-  inset: 0;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
   pointer-events: none;
-  z-index: 1;
+  z-index: -1;
 }
 
 .loader_orbit {
@@ -765,10 +769,10 @@ br.pc {
   -webkit-mask-image: radial-gradient(ellipse 88% 78% at 50% 50%, #000000 45%, transparent 98%);
 }
 
-/* ②-B ゆっくり回転する知的な軌道リング（中央ステージを華やかに引き立てる） */
+/* ②-B ゆっくり回転する知的な軌道リング（文字エリアの中心に合わせて配置） */
 .fv_orbit {
   position: absolute;
-  top: 50%;
+  top: 46%;
   left: 50%;
   border-radius: 50%;
   pointer-events: none;
@@ -1141,13 +1145,26 @@ br.pc {
   .fv_grid {
     background-size: 36px 36px;
   }
+  /* スマホでは下部に縦並びボタンがある分、文字の中心（top: 41%）に惑星リングの重心をピタッと合わせる */
+  .fv_orbit {
+    top: 41%;
+    left: 50%;
+  }
   .fv_orbit--outer {
-    min-width: 340px;
-    min-height: 340px;
+    width: 86vw;
+    height: 86vw;
+    min-width: 310px;
+    min-height: 310px;
+    max-width: 390px;
+    max-height: 390px;
   }
   .fv_orbit--inner {
-    min-width: 250px;
-    min-height: 250px;
+    width: 64vw;
+    height: 64vw;
+    min-width: 230px;
+    min-height: 230px;
+    max-width: 290px;
+    max-height: 290px;
   }
   .mainVisual_inner {
     padding: 12px 10px;

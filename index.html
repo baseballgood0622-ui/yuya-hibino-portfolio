@@ -33,14 +33,14 @@
     1. オープニングアニメーション（惑星軌道リングとともに「Yuya Hibino」が浮かび上がり、波紋が広がりながら背景へ溶け込む演出）
   ======================================================== -->
   <div class="loader" id="js-loader" aria-hidden="true">
-    <!-- ★オープニングの惑星軌道リング＆消えるときに広がる光の波紋リング -->
-    <div class="loader_orbits">
-      <div class="loader_orbit loader_orbit--outer"></div>
-      <div class="loader_orbit loader_orbit--inner"></div>
-      <div class="loader_ripple loader_ripple--1"></div>
-      <div class="loader_ripple loader_ripple--2"></div>
-    </div>
     <div class="loader_inner">
+      <!-- ★文字ブロック（loader_inner）のど真ん中を基準に惑星リングと波紋を配置することで、スマホでも1pxもズレず中心に重なります -->
+      <div class="loader_orbits">
+        <div class="loader_orbit loader_orbit--outer"></div>
+        <div class="loader_orbit loader_orbit--inner"></div>
+        <div class="loader_ripple loader_ripple--1"></div>
+        <div class="loader_ripple loader_ripple--2"></div>
+      </div>
       <p class="loader_signature">Yuya Hibino</p>
       <span class="loader_line"></span>
       <p class="loader_sub">WEB DESIGN &amp; PARTNER</p>
