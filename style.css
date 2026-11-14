@@ -152,7 +152,7 @@ br.pc {
 }
 
 /* ==========================================================================
-   2. オープニングアニメーション（高級感のある明朝系セリフ体で「Yuya Hibino」がゆっくり浮かび上がり、うっすら消えていく演出）
+   2. オープニングアニメーション（高級感のある明朝系セリフ体で「Yuya Hibino」が浮かび上がり、なめらかに背景へ溶け込んでいく演出）
    ========================================================================== */
 .loader {
   display: flex;
@@ -163,16 +163,14 @@ br.pc {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: radial-gradient(circle at 50% 45%, #182c4c 0%, #0b1526 80%);
+  /* ★ファーストビューの背景色と一体感のある明るいオフホワイト×淡いブルーグラデーション（段差なくなめらかに溶け込む） */
+  background: radial-gradient(circle at 50% 45%, #ffffff 0%, #f3f7fc 60%, #e9f0f8 100%);
   z-index: 9999;
-  opacity: 1;
-  visibility: visible;
-  /* ★約1.65秒かけてゆっくり、うっすらと霧が晴れるように消えていく設定 */
-  transition: opacity 1.65s cubic-bezier(0.22, 1, 0.36, 1), visibility 1.65s ease;
+  pointer-events: none;
   overflow: hidden;
+  animation: loaderBackdropMelt 4.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-/* うっすらと霧が晴れるようにフェードアウトしてファーストビューが現れる */
 .loader.is-loaded {
   opacity: 0;
   visibility: hidden;
@@ -186,79 +184,123 @@ br.pc {
   justify-content: center;
   text-align: center;
   padding: 0 24px;
-  transition: opacity 1.45s ease, transform 1.65s cubic-bezier(0.22, 1, 0.36, 1), filter 1.55s ease;
 }
 
-.loader.is-loaded .loader_inner {
-  opacity: 0;
-  transform: scale(1.05);
-  filter: blur(8px);
-}
-
-/* 「Yuya Hibino」が高級感のある明朝系セリフ体でゆっくり浮かび上がるアニメーション */
+/* 「Yuya Hibino」が高級感のある明朝系セリフ体で浮かび上がり、そのまま背景へなめらかに溶け込む連続アニメーション */
 .loader_signature {
   font-family: var(--font-en-luxury);
-  font-size: clamp(36px, 5.4vw, 72px);
+  font-size: clamp(38px, 5.8vw, 76px);
   font-weight: 500;
-  letter-spacing: 0.18em;
-  color: #f8fafc;
+  letter-spacing: 0.20em;
+  color: var(--color-text-primary);
   line-height: 1.3;
-  padding: 4px 12px 4px calc(12px + 0.18em);
-  text-shadow: 0 8px 32px rgba(148, 163, 184, 0.25);
-  opacity: 0;
-  filter: blur(8px);
-  transform: translateY(10px) scale(0.98);
-  animation: loaderLuxuryReveal 1.9s cubic-bezier(0.22, 1, 0.36, 1) 0.25s forwards;
+  padding: 4px 12px 4px calc(12px + 0.20em);
+  will-change: opacity, filter, transform, letter-spacing;
+  animation: loaderTextMelt 4.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
-/* 中央から左右へゆっくり伸びる繊細なライン */
+/* 中央から左右へゆっくり伸びて、文字と一緒に背景へ溶け込む繊細なライン */
 .loader_line {
   display: block;
-  width: 200px;
+  width: min(240px, 55vw);
   height: 1px;
-  margin-top: 12px;
-  background: linear-gradient(90deg, transparent, rgba(203, 213, 225, 0.7), #ffffff, rgba(203, 213, 225, 0.7), transparent);
-  transform: scaleX(0);
-  animation: loaderExpandLine 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.9s forwards;
+  margin-top: 14px;
+  background: linear-gradient(90deg, transparent, rgba(43, 91, 132, 0.45), var(--color-text-primary), rgba(43, 91, 132, 0.45), transparent);
+  will-change: opacity, transform, filter;
+  animation: loaderLineMelt 4.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
 /* 下部のサブタイトル */
 .loader_sub {
   font-family: var(--font-en-luxury);
   font-size: clamp(11px, 1.1vw, 14px);
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.42em;
-  color: rgba(203, 213, 225, 0.82);
+  color: var(--color-text-accent);
   margin-top: 16px;
   padding-left: 0.42em;
-  opacity: 0;
-  transform: translateY(8px);
-  animation: loaderSubFade 1.2s ease 1.25s forwards;
+  will-change: opacity, transform, filter;
+  animation: loaderSubMelt 4.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
-@keyframes loaderLuxuryReveal {
-  0% {
+/* 背景ベール自体が後半でファーストビューへなめらかに溶け込む */
+@keyframes loaderBackdropMelt {
+  0%, 58% {
+    opacity: 1;
+    visibility: visible;
+  }
+  99% {
     opacity: 0;
-    filter: blur(10px);
-    transform: translateY(12px) scale(0.97);
-    letter-spacing: 0.26em;
+    visibility: visible;
   }
   100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* 文字が「浮かび上がる → 余韻 → 背景へじわっと溶け込む」まで途切れなく繋がるアニメーション */
+@keyframes loaderTextMelt {
+  0% {
+    opacity: 0;
+    filter: blur(14px);
+    transform: translateY(10px) scale(0.97);
+    letter-spacing: 0.14em;
+  }
+  32% {
     opacity: 1;
     filter: blur(0px);
     transform: translateY(0) scale(1);
-    letter-spacing: 0.18em;
+    letter-spacing: 0.20em;
+  }
+  62% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0) scale(1.01);
+    letter-spacing: 0.23em;
+  }
+  100% {
+    opacity: 0;
+    filter: blur(18px);
+    transform: translateY(-6px) scale(1.06);
+    letter-spacing: 0.30em;
   }
 }
 
-@keyframes loaderExpandLine {
-  0% { transform: scaleX(0); opacity: 0; }
-  100% { transform: scaleX(1); opacity: 1; }
+@keyframes loaderLineMelt {
+  0%, 12% {
+    opacity: 0;
+    transform: scaleX(0);
+    filter: blur(4px);
+  }
+  38%, 62% {
+    opacity: 0.85;
+    transform: scaleX(1);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleX(1.15);
+    filter: blur(12px);
+  }
 }
 
-@keyframes loaderSubFade {
-  0% { opacity: 0; transform: translateY(8px); }
-  100% { opacity: 1; transform: translateY(0); }
+@keyframes loaderSubMelt {
+  0%, 18% {
+    opacity: 0;
+    transform: translateY(8px);
+    filter: blur(6px);
+  }
+  42%, 62% {
+    opacity: 0.85;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-4px);
+    filter: blur(12px);
+  }
 }
 
 /* ==========================================================================
@@ -848,12 +890,12 @@ br.pc {
   margin-bottom: 1.1vw;
 }
 
-/* メインロゴ（Yuya Hibino：見やすさ重視の洗練された筆記体） */
+/* メインロゴ（Yuya Hibino：筆記体ではなく高級感のある明朝系セリフ体） */
 .mainVisual_logo {
-  font-family: var(--font-en-script);
-  font-size: 2.35vw;
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  font-family: var(--font-en-luxury);
+  font-size: 2.25vw;
+  font-weight: 600;
+  letter-spacing: 0.18em;
   color: var(--color-text-accent);
   line-height: 1.2;
   margin-bottom: 1.8vw;
@@ -1012,8 +1054,8 @@ br.pc {
     margin-bottom: 12px;
   }
   .mainVisual_logo {
-    font-size: 25px;
-    letter-spacing: 0.05em;
+    font-size: 23px;
+    letter-spacing: 0.16em;
     margin-bottom: 18px;
     gap: 12px;
   }

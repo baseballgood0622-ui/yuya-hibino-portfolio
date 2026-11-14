@@ -155,12 +155,12 @@ const dismissLoader = () => {
 };
 
 window.addEventListener('load', () => {
-  // ★オープニングの「Yuya Hibino」をたっぷり約2.9秒間見せてから、約1.65秒かけてうっすら消えていく
-  setTimeout(dismissLoader, 2900);
+  // ★CSSの連続アニメーション（約4.8秒）が完了したタイミングで要素を非表示化
+  setTimeout(dismissLoader, 4800);
 });
 
-// 万が一画像ロード等で時間がかかった場合のフォールバック（最大3.5秒で自動解除）
-setTimeout(dismissLoader, 3500);
+// 万が一画像ロード等で時間がかかった場合のフォールバック（最大5.0秒で自動解除）
+setTimeout(dismissLoader, 5000);
 
 /* ==========================================================================
    3. DOM読み込み後のメイン処理
