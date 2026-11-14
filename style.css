@@ -151,7 +151,7 @@ br.pc {
 }
 
 /* ==========================================================================
-   2. オープニングアニメーション（サイト訪問時に「Yuya Hibino」が描かれて幕が上がる演出）
+   2. オープニングアニメーション（サイト訪問時に「Yuya Hibino」が描かれてから、うっすら消えていく演出）
    ========================================================================== */
 .loader {
   display: flex;
@@ -164,13 +164,15 @@ br.pc {
   height: 100vh;
   background: radial-gradient(circle at 50% 45%, #1b3358 0%, #0f1c30 75%);
   z-index: 9999;
-  transition: transform 0.85s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.65s ease, visibility 0.85s ease;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 1.15s cubic-bezier(0.22, 1, 0.36, 1), visibility 1.15s ease;
   overflow: hidden;
 }
 
-/* 幕が上へスライドしてファーストビューが現れる */
+/* うっすらと霧が晴れるようにフェードアウトしてファーストビューが現れる */
 .loader.is-loaded {
-  transform: translateY(-100%);
+  opacity: 0;
   visibility: hidden;
   pointer-events: none;
 }
@@ -182,6 +184,13 @@ br.pc {
   justify-content: center;
   text-align: center;
   padding: 0 24px;
+  transition: opacity 0.95s ease, transform 1.15s cubic-bezier(0.22, 1, 0.36, 1), filter 1.05s ease;
+}
+
+.loader.is-loaded .loader_inner {
+  opacity: 0;
+  transform: scale(1.04);
+  filter: blur(6px);
 }
 
 /* 「Yuya Hibino」が左から右へサインを描くように現れるアニメーション */
