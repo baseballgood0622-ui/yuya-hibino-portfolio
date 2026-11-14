@@ -103,10 +103,6 @@
         <div class="fv_orb fv_orb--3"></div>
         <div class="fv_grid"></div>
 
-        <!-- ゆっくり回転する知的な軌道リング -->
-        <div class="fv_orbit fv_orbit--outer"></div>
-        <div class="fv_orbit fv_orbit--inner"></div>
-
         <div class="fv_frame">
           <span class="fv_cross fv_cross--tl"></span>
           <span class="fv_cross fv_cross--tr"></span>
@@ -117,25 +113,34 @@
 
       <div class="mainVisual_inner">
         
-        <!-- ★ステータス・安心バッジ（1番目にふわっと表示） -->
-        <div class="mainVisual_badge fv-anim fv-anim--1">
-          <span class="badge_dot"></span>
-          <span>WEB DESIGN &amp; PARTNER — YUYA HIBINO</span>
+        <!-- ★文字エリア全体を囲むグループ：この中心（50%, 50%）に惑星リングを配置することで、どんなスマホ画面でも文字のど真ん中に円が重なります -->
+        <div class="mainVisual_textGroup">
+          <!-- ゆっくり回転する知的な軌道リング（文字の中心に完全固定） -->
+          <div class="fv_orbits" aria-hidden="true">
+            <div class="fv_orbit fv_orbit--outer"></div>
+            <div class="fv_orbit fv_orbit--inner"></div>
+          </div>
+
+          <!-- ★ステータス・安心バッジ（1番目にふわっと表示） -->
+          <div class="mainVisual_badge fv-anim fv-anim--1">
+            <span class="badge_dot"></span>
+            <span>WEB DESIGN &amp; PARTNER — YUYA HIBINO</span>
+          </div>
+
+          <!-- ★メインの日本語キャッチコピー（2番目にふわっと表示） -->
+          <p class="mainVisual_catch fv-anim fv-anim--2">
+            <span class="ib"><span class="fv_marker">どこよりも寄り添い、</span></span><span class="ib">作ってからも<span class="fv_marker">丁寧に。</span></span>
+          </p>
+
+          <!-- ★メインロゴ（3番目にふわっと表示：高級感のある明朝系セリフ体） -->
+          <h1 class="mainVisual_logo fv-anim fv-anim--3">Yuya Hibino</h1>
+
+          <!-- ★サブコピー・自己紹介リード文（4番目にふわっと表示） -->
+          <p class="mainVisual_sub fv-anim fv-anim--4">
+            <span class="ib">「どんなサイトにしたいか」をじっくりお聞きし、</span><br class="pc">
+            <span class="ib">パソコンでもスマホでも迷わず伝わる</span><span class="ib">「見やすいページ」をお作りします。</span>
+          </p>
         </div>
-
-        <!-- ★メインの日本語キャッチコピー（2番目にふわっと表示） -->
-        <p class="mainVisual_catch fv-anim fv-anim--2">
-          <span class="ib"><span class="fv_marker">どこよりも寄り添い、</span></span><span class="ib">作ってからも<span class="fv_marker">丁寧に。</span></span>
-        </p>
-
-        <!-- ★メインロゴ（3番目にふわっと表示：見やすさ重視の筆記体表記） -->
-        <h1 class="mainVisual_logo fv-anim fv-anim--3">Yuya Hibino</h1>
-
-        <!-- ★サブコピー・自己紹介リード文（4番目にふわっと表示） -->
-        <p class="mainVisual_sub fv-anim fv-anim--4">
-          <span class="ib">「どんなサイトにしたいか」をじっくりお聞きし、</span><br class="pc">
-          <span class="ib">パソコンでもスマホでも迷わず伝わる</span><span class="ib">「見やすいページ」をお作りします。</span>
-        </p>
 
         <!-- ★ファーストビューのアクション誘導ボタン（5番目にふわっと表示） -->
         <div class="mainVisual_actions fv-anim fv-anim--5">

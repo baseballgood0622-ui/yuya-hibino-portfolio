@@ -327,12 +327,13 @@ br.pc {
 /* 「Yuya Hibino」が高級感のある明朝系セリフ体で浮かび上がり、ズームインせずそのまま背景へ溶け込むアニメーション */
 .loader_signature {
   font-family: var(--font-en-luxury);
-  font-size: clamp(38px, 5.8vw, 76px);
+  font-size: clamp(26px, 6.5vw, 74px);
   font-weight: 500;
-  letter-spacing: 0.20em;
+  letter-spacing: 0.18em;
   color: var(--color-text-primary);
   line-height: 1.3;
-  padding: 4px 12px 4px calc(12px + 0.20em);
+  white-space: nowrap;
+  padding: 4px 0 4px 0.18em;
   will-change: opacity, filter;
   animation: loaderTextMelt 4.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
@@ -769,11 +770,29 @@ br.pc {
   -webkit-mask-image: radial-gradient(ellipse 88% 78% at 50% 50%, #000000 45%, transparent 98%);
 }
 
-/* ②-B ゆっくり回転する知的な軌道リング（文字エリアの中心に合わせて配置） */
+/* ②-B ゆっくり回転する知的な軌道リング（文字ブロック .mainVisual_textGroup の中心 50%, 50% に完全固定） */
+.mainVisual_textGroup {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.fv_orbits {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
 .fv_orbit {
   position: absolute;
-  top: 46%;
-  left: 50%;
+  top: 0;
+  left: 0;
   border-radius: 50%;
   pointer-events: none;
 }
@@ -1145,26 +1164,26 @@ br.pc {
   .fv_grid {
     background-size: 36px 36px;
   }
-  /* スマホでは下部に縦並びボタンがある分、文字の中心（top: 41%）に惑星リングの重心をピタッと合わせる */
+  /* スマホでも文字ブロック（.mainVisual_textGroup）のど真ん中（0, 0）を基準に惑星リングが回る */
   .fv_orbit {
-    top: 41%;
-    left: 50%;
+    top: 0;
+    left: 0;
   }
   .fv_orbit--outer {
     width: 86vw;
     height: 86vw;
-    min-width: 310px;
-    min-height: 310px;
-    max-width: 390px;
-    max-height: 390px;
+    min-width: 300px;
+    min-height: 300px;
+    max-width: 380px;
+    max-height: 380px;
   }
   .fv_orbit--inner {
     width: 64vw;
     height: 64vw;
-    min-width: 230px;
-    min-height: 230px;
-    max-width: 290px;
-    max-height: 290px;
+    min-width: 220px;
+    min-height: 220px;
+    max-width: 285px;
+    max-height: 285px;
   }
   .mainVisual_inner {
     padding: 12px 10px;
