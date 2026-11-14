@@ -184,9 +184,143 @@ br.pc {
   justify-content: center;
   text-align: center;
   padding: 0 24px;
+  position: relative;
+  z-index: 2;
 }
 
-/* 「Yuya Hibino」が高級感のある明朝系セリフ体で浮かび上がり、そのまま背景へなめらかに溶け込む連続アニメーション */
+/* ★オープニングの惑星軌道リング＆消えていくときに広がる波紋リング */
+.loader_orbits {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.loader_orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+}
+
+/* 外側の惑星軌道リング（時計回りに回転し、消えるときにファーストビューの軌道へ広がりながら溶け込む） */
+.loader_orbit--outer {
+  width: min(440px, 78vw);
+  height: min(440px, 78vw);
+  border: 1.5px dashed rgba(43, 91, 132, 0.28);
+  animation: loaderOrbitOuter 4.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.loader_orbit--outer::before,
+.loader_orbit--outer::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--color-text-accent);
+  box-shadow: 0 0 16px rgba(43, 91, 132, 0.75);
+}
+
+.loader_orbit--outer::before { top: -5px; left: 50%; transform: translateX(-50%); }
+.loader_orbit--outer::after { bottom: -5px; left: 50%; transform: translateX(-50%); }
+
+/* 内側の惑星軌道リング（反時計回りに回転し、消えるときに加速して広がる） */
+.loader_orbit--inner {
+  width: min(310px, 58vw);
+  height: min(310px, 58vw);
+  border: 1px solid rgba(43, 91, 132, 0.20);
+  animation: loaderOrbitInner 4.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.loader_orbit--inner::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #38bdf8;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.8);
+  transform: translateY(-50%);
+}
+
+/* ★文字が消えていく瞬間（約2.5秒〜）に中央からふわっと広がる光の波紋リング */
+.loader_ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(300px, 56vw);
+  height: min(300px, 56vw);
+  border-radius: 50%;
+  border: 1.5px solid rgba(59, 130, 246, 0.35);
+  box-shadow: 0 0 28px rgba(59, 130, 246, 0.18), inset 0 0 28px rgba(59, 130, 246, 0.12);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
+.loader_ripple--1 {
+  animation: loaderRippleExpand 2.0s cubic-bezier(0.16, 1, 0.3, 1) 2.45s forwards;
+}
+
+.loader_ripple--2 {
+  animation: loaderRippleExpand 2.1s cubic-bezier(0.16, 1, 0.3, 1) 2.75s forwards;
+}
+
+@keyframes loaderOrbitOuter {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.88) rotate(-40deg);
+  }
+  28% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(35deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.45) rotate(140deg);
+  }
+}
+
+@keyframes loaderOrbitInner {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.85) rotate(30deg);
+  }
+  30% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(-30deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.35) rotate(-120deg);
+  }
+}
+
+@keyframes loaderRippleExpand {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.85);
+  }
+  25% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(2.35);
+  }
+}
+
+/* 「Yuya Hibino」が高級感のある明朝系セリフ体で浮かび上がり、ズームインせずそのまま背景へ溶け込むアニメーション */
 .loader_signature {
   font-family: var(--font-en-luxury);
   font-size: clamp(38px, 5.8vw, 76px);
@@ -195,11 +329,11 @@ br.pc {
   color: var(--color-text-primary);
   line-height: 1.3;
   padding: 4px 12px 4px calc(12px + 0.20em);
-  will-change: opacity, filter, transform, letter-spacing;
+  will-change: opacity, filter;
   animation: loaderTextMelt 4.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
-/* 中央から左右へゆっくり伸びて、文字と一緒に背景へ溶け込む繊細なライン */
+/* 中央から左右へゆっくり伸びて、ズームせずそのまま溶け込む繊細なライン */
 .loader_line {
   display: block;
   width: min(240px, 55vw);
@@ -219,7 +353,7 @@ br.pc {
   color: var(--color-text-accent);
   margin-top: 16px;
   padding-left: 0.42em;
-  will-change: opacity, transform, filter;
+  will-change: opacity, filter;
   animation: loaderSubMelt 4.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
@@ -239,31 +373,22 @@ br.pc {
   }
 }
 
-/* 文字が「浮かび上がる → 余韻 → 背景へじわっと溶け込む」まで途切れなく繋がるアニメーション */
+/* 文字が「浮かび上がる → 余韻 → ズームインせずそのままの位置で背景へじわっと溶け込む」アニメーション */
 @keyframes loaderTextMelt {
   0% {
     opacity: 0;
-    filter: blur(14px);
-    transform: translateY(10px) scale(0.97);
-    letter-spacing: 0.14em;
+    filter: blur(12px);
+    transform: translateY(8px);
   }
-  32% {
+  32%, 62% {
     opacity: 1;
     filter: blur(0px);
-    transform: translateY(0) scale(1);
-    letter-spacing: 0.20em;
-  }
-  62% {
-    opacity: 1;
-    filter: blur(0px);
-    transform: translateY(0) scale(1.01);
-    letter-spacing: 0.23em;
+    transform: translateY(0);
   }
   100% {
     opacity: 0;
-    filter: blur(18px);
-    transform: translateY(-6px) scale(1.06);
-    letter-spacing: 0.30em;
+    filter: blur(14px);
+    transform: translateY(0);
   }
 }
 
@@ -280,15 +405,15 @@ br.pc {
   }
   100% {
     opacity: 0;
-    transform: scaleX(1.15);
-    filter: blur(12px);
+    transform: scaleX(1);
+    filter: blur(10px);
   }
 }
 
 @keyframes loaderSubMelt {
   0%, 18% {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(6px);
     filter: blur(6px);
   }
   42%, 62% {
@@ -298,8 +423,8 @@ br.pc {
   }
   100% {
     opacity: 0;
-    transform: translateY(-4px);
-    filter: blur(12px);
+    transform: translateY(0);
+    filter: blur(10px);
   }
 }
 
