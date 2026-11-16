@@ -1099,13 +1099,29 @@ br.pc {
 }
 
 .mainVisual_subTitle {
-  font-family: var(--font-jp-serif);
-  font-size: clamp(16px, 1.45vw, 22px);
-  font-weight: 700;
-  color: var(--color-text-primary);
-  letter-spacing: 0.10em;
-  line-height: 1.6;
+  font-family: var(--font-jp);
+  font-size: clamp(12px, 1.0vw, 14px);
+  font-weight: 400;
+  color: var(--color-text-sub);
+  letter-spacing: 0.08em;
+  line-height: 1.5;
   margin-bottom: 0.65vw;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.mainVisual_subTitle::before,
+.mainVisual_subTitle::after {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background-color: var(--color-text-sub);
+  opacity: 0.45;
+  flex-shrink: 0;
 }
 
 .mainVisual_sub {
@@ -1274,9 +1290,14 @@ br.pc {
     margin-bottom: 24px;
   }
   .mainVisual_subTitle {
-    font-size: clamp(14px, 4.1vw, 17px);
-    letter-spacing: 0.08em;
+    font-size: clamp(11px, 3.1vw, 13px);
+    letter-spacing: 0.04em;
+    gap: 7px;
     margin-bottom: 8px;
+  }
+  .mainVisual_subTitle::before,
+  .mainVisual_subTitle::after {
+    width: 16px;
   }
   .mainVisual_sub {
     font-size: 13px;
