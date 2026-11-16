@@ -1113,6 +1113,11 @@ br.pc {
   white-space: nowrap;
 }
 
+.mainVisual_subTitle_text {
+  border-bottom: 1px solid #111111;
+  padding-bottom: 2px;
+}
+
 .mainVisual_subTitle::before,
 .mainVisual_subTitle::after {
   content: '';
