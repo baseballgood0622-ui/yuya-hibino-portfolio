@@ -984,7 +984,7 @@ br.pc {
   justify-content: center;
   position: relative;
   z-index: 3;
-  max-width: 760px;
+  max-width: 980px;
   padding: 1.5vw 2vw;
   background: transparent;
   margin-top: -0.5vw;
@@ -1010,7 +1010,7 @@ br.pc {
   border: 1px solid var(--color-border);
   padding: 0.45vw 1.4vw;
   border-radius: 999px;
-  margin-bottom: 1.8vw;
+  margin-bottom: 1.6vw;
   box-shadow: 0 4px 14px rgba(20, 35, 60, 0.04);
 }
 
@@ -1027,15 +1027,77 @@ br.pc {
   50% { transform: scale(1.4); opacity: 0.5; }
 }
 
-/* メイン日本語キャッチコピー（「どこよりも寄り添い、作ってからも丁寧に。」：知的で上品な明朝体） */
+/* ★メイン日本語キャッチコピー（「見た目だけじゃない。伝わることに意味がある。」：文字を主役として力強く主張する2段構成） */
 .mainVisual_catch {
   font-family: var(--font-jp-serif);
-  font-size: 2.55vw;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.22em;
   color: var(--color-text-primary);
-  line-height: 1.5;
-  margin-bottom: 1.1vw;
+  line-height: 1.35;
+  margin-bottom: 1.4vw;
+  text-align: center;
+}
+
+.fv_catch_line {
+  display: block;
+  white-space: nowrap;
+}
+
+/* 1行目：「見た目だけじゃない。」（導入のフック） */
+.fv_catch_line--sub {
+  font-size: clamp(24px, 3.0vw, 45px);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #182a46;
+  text-shadow: 0 4px 20px rgba(20, 35, 60, 0.08);
+}
+
+/* 2行目：「伝わることに意味がある。」（最も強く主張するメインメッセージ） */
+.fv_catch_line--main {
+  font-size: clamp(28px, 4.1vw, 62px);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #0b172a;
+  text-shadow: 0 8px 28px rgba(20, 35, 60, 0.13);
+}
+
+/* 「伝わること」の強調グラデーション＆アンダーライン演出 */
+.fv_catch_em {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(135deg, #0f2547 0%, #1d4ed8 55%, #2b5b84 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  padding: 0 0.04em;
+}
+
+.fv_catch_em::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.06em;
+  height: 0.24em;
+  background: linear-gradient(90deg, rgba(37, 99, 235, 0.28) 0%, rgba(43, 91, 132, 0.18) 100%);
+  border-bottom: 2.5px solid rgba(29, 78, 216, 0.65);
+  z-index: -1;
+  border-radius: 2px;
+  transform-origin: left center;
+  animation: catchLineSweep 1.0s cubic-bezier(0.22, 1, 0.36, 1) 3.65s both;
+}
+
+@keyframes catchLineSweep {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
 }
 
 /* メインロゴ（Yuya Hibino：筆記体ではなく高級感のある明朝系セリフ体） */
@@ -1209,10 +1271,17 @@ br.pc {
     margin-bottom: 18px;
   }
   .mainVisual_catch {
-    font-size: 22px;
-    line-height: 1.6;
-    letter-spacing: 0.09em;
-    margin-bottom: 12px;
+    gap: 6px;
+    line-height: 1.38;
+    margin-bottom: 16px;
+  }
+  .fv_catch_line--sub {
+    font-size: clamp(20px, 5.8vw, 25px);
+    letter-spacing: 0.10em;
+  }
+  .fv_catch_line--main {
+    font-size: clamp(23px, 6.6vw, 30px);
+    letter-spacing: 0.08em;
   }
   .mainVisual_logo {
     font-size: 23px;
