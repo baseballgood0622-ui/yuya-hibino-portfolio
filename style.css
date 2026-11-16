@@ -1054,7 +1054,7 @@ br.pc {
   text-shadow: 0 8px 28px rgba(20, 35, 60, 0.13);
 }
 
-/* 「伝わること」の強調グラデーション＆アンダーライン演出 */
+/* 「一緒にカタチに。」の強調グラデーション（アンダーラインなしのスッキリした文字表現） */
 .fv_catch_em {
   position: relative;
   display: inline-block;
@@ -1063,32 +1063,6 @@ br.pc {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   padding: 0 0.04em;
-}
-
-.fv_catch_em::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0.06em;
-  height: 0.24em;
-  background: linear-gradient(90deg, rgba(37, 99, 235, 0.28) 0%, rgba(43, 91, 132, 0.18) 100%);
-  border-bottom: 2.5px solid rgba(29, 78, 216, 0.65);
-  z-index: -1;
-  border-radius: 2px;
-  transform-origin: left center;
-  animation: catchLineSweep 1.0s cubic-bezier(0.22, 1, 0.36, 1) 3.65s both;
-}
-
-@keyframes catchLineSweep {
-  0% {
-    transform: scaleX(0);
-    opacity: 0;
-  }
-  100% {
-    transform: scaleX(1);
-    opacity: 1;
-  }
 }
 
 /* メインロゴ（Yuya Hibino：筆記体ではなく高級感のある明朝系セリフ体） */
