@@ -1027,7 +1027,7 @@ br.pc {
   50% { transform: scale(1.4); opacity: 0.5; }
 }
 
-/* ★メイン日本語キャッチコピー（「見た目だけじゃない。伝わることに意味がある。」：文字を主役として力強く主張する2段構成） */
+/* ★メイン日本語キャッチコピー（「一緒に考え、一緒にカタチに。」：文字を主役として力強く主張するタイポグラフィ） */
 .mainVisual_catch {
   font-family: var(--font-jp-serif);
   display: flex;
@@ -1035,8 +1035,8 @@ br.pc {
   align-items: center;
   gap: 0.22em;
   color: var(--color-text-primary);
-  line-height: 1.35;
-  margin-bottom: 1.4vw;
+  line-height: 1.4;
+  margin-bottom: 1.5vw;
   text-align: center;
 }
 
@@ -1045,18 +1045,9 @@ br.pc {
   white-space: nowrap;
 }
 
-/* 1行目：「見た目だけじゃない。」（導入のフック） */
-.fv_catch_line--sub {
-  font-size: clamp(24px, 3.0vw, 45px);
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  color: #182a46;
-  text-shadow: 0 4px 20px rgba(20, 35, 60, 0.08);
-}
-
-/* 2行目：「伝わることに意味がある。」（最も強く主張するメインメッセージ） */
+/* メインコピー：「一緒に考え、一緒にカタチに。」（力強く主張するメインメッセージ） */
 .fv_catch_line--main {
-  font-size: clamp(28px, 4.1vw, 62px);
+  font-size: clamp(28px, 4.2vw, 64px);
   font-weight: 800;
   letter-spacing: 0.12em;
   color: #0b172a;
@@ -1271,17 +1262,12 @@ br.pc {
     margin-bottom: 18px;
   }
   .mainVisual_catch {
-    gap: 6px;
-    line-height: 1.38;
+    line-height: 1.45;
     margin-bottom: 16px;
   }
-  .fv_catch_line--sub {
-    font-size: clamp(20px, 5.8vw, 25px);
-    letter-spacing: 0.10em;
-  }
   .fv_catch_line--main {
-    font-size: clamp(23px, 6.6vw, 30px);
-    letter-spacing: 0.08em;
+    font-size: clamp(21px, 6.1vw, 28px);
+    letter-spacing: 0.07em;
   }
   .mainVisual_logo {
     font-size: 23px;
