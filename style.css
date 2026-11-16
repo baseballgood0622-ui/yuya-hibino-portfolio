@@ -1090,13 +1090,30 @@ br.pc {
   opacity: 0.45;
 }
 
-/* サブリード文 */
+/* サブリード文ブロック（Yuya Hibinoの下のタイトル＋説明文） */
+.mainVisual_subBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2.4vw;
+}
+
+.mainVisual_subTitle {
+  font-family: var(--font-jp-serif);
+  font-size: clamp(16px, 1.45vw, 22px);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: 0.10em;
+  line-height: 1.6;
+  margin-bottom: 0.65vw;
+}
+
 .mainVisual_sub {
   font-size: 1.05vw;
   color: var(--color-text-body);
   line-height: 2.0;
   letter-spacing: 0.06em;
-  margin-bottom: 2.6vw;
+  margin-bottom: 0;
 }
 
 /* ファーストビューのアクションボタン群 */
@@ -1253,10 +1270,18 @@ br.pc {
   .mainVisual_logo::after {
     width: 24px;
   }
+  .mainVisual_subBlock {
+    margin-bottom: 24px;
+  }
+  .mainVisual_subTitle {
+    font-size: clamp(14px, 4.1vw, 17px);
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
   .mainVisual_sub {
     font-size: 13px;
     line-height: 1.85;
-    margin-bottom: 26px;
+    margin-bottom: 0;
   }
   .mainVisual_actions {
     flex-direction: column;
