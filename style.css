@@ -892,13 +892,8 @@ br.pc {
 
 .fv-anim--1 { animation-delay: 3.10s; }
 .fv-anim--2 { animation-delay: 3.30s; }
-.fv-anim--3 {
-  opacity: 0;
-  transform: translateY(14px);
-  animation: fvRevealUp 1.1s cubic-bezier(0.22, 1, 0.36, 1) 3.50s forwards;
-}
-.fv-anim--4 { animation-delay: 3.70s; }
-.fv-anim--5 { animation-delay: 3.90s; }
+.fv-anim--3 { animation-delay: 3.60s; }
+.fv-anim--4 { animation-delay: 3.85s; }
 
 @keyframes fvRevealUp {
   0% {
@@ -1036,7 +1031,7 @@ br.pc {
   gap: 0.22em;
   color: var(--color-text-primary);
   line-height: 1.4;
-  margin-bottom: 1.5vw;
+  margin-bottom: 1.8vw;
   text-align: center;
 }
 
@@ -1065,37 +1060,12 @@ br.pc {
   padding: 0 0.04em;
 }
 
-/* メインロゴ（Yuya Hibino：筆記体ではなく高級感のある明朝系セリフ体） */
-.mainVisual_logo {
-  font-family: var(--font-en-luxury);
-  font-size: 2.25vw;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  color: var(--color-text-accent);
-  line-height: 1.2;
-  margin-bottom: 1.8vw;
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 1.2vw;
-}
-
-.mainVisual_logo::before,
-.mainVisual_logo::after {
-  content: '';
-  display: inline-block;
-  width: 2.8vw;
-  height: 1.5px;
-  background-color: var(--color-text-accent);
-  opacity: 0.45;
-}
-
-/* サブリード文ブロック（Yuya Hibinoの下のタイトル＋説明文） */
+/* サブリード文ブロック（タイトル＋説明文） */
 .mainVisual_subBlock {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 2.4vw;
+  margin-bottom: 2.6vw;
 }
 
 .mainVisual_subTitle {
@@ -1105,17 +1075,12 @@ br.pc {
   color: var(--color-text-sub);
   letter-spacing: 0.08em;
   line-height: 1.5;
-  margin-bottom: 0.65vw;
+  margin-bottom: 0.8vw;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   white-space: nowrap;
-}
-
-.mainVisual_subTitle_text {
-  border-bottom: 1px solid #111111;
-  padding-bottom: 2px;
 }
 
 .mainVisual_subTitle::before,
@@ -1275,30 +1240,20 @@ br.pc {
   }
   .mainVisual_catch {
     line-height: 1.45;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
   }
   .fv_catch_line--main {
     font-size: clamp(21px, 6.1vw, 28px);
     letter-spacing: 0.07em;
   }
-  .mainVisual_logo {
-    font-size: 23px;
-    letter-spacing: 0.16em;
-    margin-bottom: 18px;
-    gap: 12px;
-  }
-  .mainVisual_logo::before,
-  .mainVisual_logo::after {
-    width: 24px;
-  }
   .mainVisual_subBlock {
-    margin-bottom: 24px;
+    margin-bottom: 26px;
   }
   .mainVisual_subTitle {
     font-size: clamp(11px, 3.1vw, 13px);
     letter-spacing: 0.04em;
     gap: 7px;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
   .mainVisual_subTitle::before,
   .mainVisual_subTitle::after {
