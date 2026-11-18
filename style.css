@@ -1428,7 +1428,20 @@ br.pc {
 
 /* ==========================================================================
    7. WORKS（実績一覧：2カラム・ツインデバイスグリッド）
+   ★ファーストビュー直後からゆったりと視線を誘導する上品な上部余白
    ========================================================================== */
+.works {
+  padding-top: 7vw;
+  scroll-margin-top: 60px;
+}
+
+@media screen and (max-width: 768px) {
+  .works {
+    padding-top: 80px;
+    scroll-margin-top: 75px;
+  }
+}
+
 .works_lead {
   font-size: 1vw;
   color: var(--color-text-muted);
