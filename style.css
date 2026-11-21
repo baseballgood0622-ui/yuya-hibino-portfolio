@@ -1866,8 +1866,7 @@ br.pc {
 
 /* ==========================================================================
    8.5 FLOW（ご依頼の流れ）
-   ★PCでは3列×2段でコンパクト＆一目で流れがわかるスマート設計
-   ★スマホでは縦1列で迷わず読める親切設計
+   ★PC・スマホともに縦1列で上から下へSTEPが順番に並ぶ設計
    ========================================================================== */
 .flow_lead {
   font-size: 1vw;
@@ -1876,13 +1875,12 @@ br.pc {
   margin-top: 1.2vw;
 }
 
-/* PC：3列×2段で横幅を活かしたコンパクトグリッド */
 .flow_list {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.8vw 1.6vw;
-  max-width: 1040px;
+  grid-template-columns: 1fr;
+  gap: 2.2vw;
+  max-width: 760px;
   margin: 0 auto;
   counter-reset: none;
 }
@@ -1891,118 +1889,55 @@ br.pc {
   position: relative;
   background-color: var(--color-bg-card);
   border: 1px solid var(--color-border);
-  border-radius: 12px;
-  padding: 1.5vw 1.6vw 1.6vw;
-  box-shadow: 0 4px 16px rgba(20, 35, 60, 0.03);
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.flow_item:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 22px rgba(20, 35, 60, 0.06);
+  border-radius: 14px;
+  padding: 2vw 2.6vw 2.2vw;
+  box-shadow: 0 6px 18px rgba(20, 35, 60, 0.04);
 }
 
 /* ★ステップ番号のラベル（色を変えたい場合は background-color を編集） */
 .flow_num {
-  align-self: flex-start;
+  display: inline-block;
   font-family: var(--font-en-modern);
-  font-size: 0.75vw;
+  font-size: 0.85vw;
   font-weight: 700;
   letter-spacing: 0.14em;
   color: #ffffff;
   background-color: var(--color-text-primary);
-  padding: 0.25vw 0.8vw;
+  padding: 0.3vw 0.95vw;
   border-radius: 999px;
-  margin-bottom: 0.6vw;
+  margin-bottom: 0.8vw;
 }
 
 .flow_title {
   font-family: var(--font-jp);
-  font-size: 1.1vw;
+  font-size: 1.25vw;
   font-weight: 700;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
   color: var(--color-text-primary);
   margin-bottom: 0.5vw;
-  line-height: 1.4;
 }
 
 .flow_desc {
-  font-size: 0.85vw;
+  font-size: 0.98vw;
   color: var(--color-text-body);
-  line-height: 1.75;
+  line-height: 1.9;
   line-break: strict;
 }
 
-/* PC（3列）：STEP 01, 02, 04, 05 の右側に右向きの控えめな矢印（→） */
-.flow_item:nth-child(1)::after,
-.flow_item:nth-child(2)::after,
-.flow_item:nth-child(4)::after,
-.flow_item:nth-child(5)::after {
+/* カードの下に次のステップへの下向き矢印（PC・スマホ共通） */
+.flow_item:not(:last-child)::after {
   content: '';
   position: absolute;
-  right: -1.05vw;
-  top: 50%;
-  width: 0.5vw;
-  height: 0.5vw;
+  left: 50%;
+  bottom: -1.45vw;
+  width: 0.65vw;
+  height: 0.65vw;
   border-right: 2px solid var(--color-text-accent);
-  border-top: 2px solid var(--color-text-accent);
-  transform: translateY(-50%) rotate(45deg);
-  opacity: 0.5;
+  border-bottom: 2px solid var(--color-text-accent);
+  transform: translateX(-50%) rotate(45deg);
+  opacity: 0.55;
 }
 
-/* タブレット画面（769px〜1024px）：2列×3段 */
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-  .flow_lead {
-    font-size: 14px;
-    margin-top: 12px;
-  }
-  .flow_list {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px 24px;
-    max-width: 720px;
-  }
-  .flow_item {
-    padding: 20px 22px;
-  }
-  .flow_num {
-    font-size: 11px;
-    padding: 3px 10px;
-    margin-bottom: 8px;
-  }
-  .flow_title {
-    font-size: 16px;
-    margin-bottom: 6px;
-  }
-  .flow_desc {
-    font-size: 13px;
-    line-height: 1.75;
-  }
-  .flow_item:nth-child(1)::after,
-  .flow_item:nth-child(2)::after,
-  .flow_item:nth-child(4)::after,
-  .flow_item:nth-child(5)::after {
-    display: none;
-  }
-  .flow_item:nth-child(1)::after,
-  .flow_item:nth-child(3)::after,
-  .flow_item:nth-child(5)::after {
-    display: block;
-    content: '';
-    position: absolute;
-    right: -15px;
-    top: 50%;
-    width: 7px;
-    height: 7px;
-    border-right: 2px solid var(--color-text-accent);
-    border-top: 2px solid var(--color-text-accent);
-    transform: translateY(-50%) rotate(45deg);
-    opacity: 0.5;
-  }
-}
-
-/* スマホ画面（768px以下）：これまで通りの見やすい縦1列 */
 @media screen and (max-width: 768px) {
   .flow_lead {
     font-size: 13px;
@@ -2031,24 +1966,10 @@ br.pc {
     font-size: 13px;
     line-height: 1.8;
   }
-  .flow_item::after {
-    display: none;
-  }
   .flow_item:not(:last-child)::after {
-    display: block;
-    content: '';
-    position: absolute;
-    left: 50%;
-    right: auto;
-    top: auto;
     bottom: -15px;
     width: 9px;
     height: 9px;
-    border-right: 2px solid var(--color-text-accent);
-    border-bottom: 2px solid var(--color-text-accent);
-    border-top: none;
-    transform: translateX(-50%) rotate(45deg);
-    opacity: 0.55;
   }
 }
 
