@@ -91,7 +91,14 @@
 
           <!-- ★最小限の3項目だけに絞ったシンプルで入力しやすいフォーム -->
           <div class="contact_formWrapper">
-            <form class="contactForm" id="contactForm" novalidate>
+            <!-- ★送信先（Formspree）：入力内容はFormspree経由でオーナーのメールアドレスに届きます。
+                 ★送信先を変えたいときは action のURLを書き換えてください。 -->
+            <form class="contactForm" id="contactForm" action="https://formspree.io/f/xoedpwjg" method="POST" novalidate>
+
+              <!-- ★届くメールの件名（変更したいときは value の文字を書き換えてください） -->
+              <input type="hidden" name="_subject" value="【ポートフォリオ】新しいお問い合わせが届きました">
+              <!-- ★迷惑メール（ロボット）対策：人間には見えない入力欄。ここに入力があると送信されません -->
+              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
 
               <!-- 項目1: ご相談内容（最初に入力してもらうことで離脱を防ぐ設計） -->
               <div class="formGroup">

@@ -525,25 +525,35 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // 送信処理（擬似非同期処理）
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        const submitText = submitBtn.querySelector('.submitButton_text');
-        const originalText = submitText ? submitText.textContent : 'メッセージを送信する';
-        if (submitText) submitText.textContent = '送信中...';
+      // ★送信処理（Formspreeへ実際に送信し、オーナーのメールアドレスへ届ける）
+      const submitText = submitBtn ? submitBtn.querySelector('.submitButton_text') : null;
+      const originalText = submitText ? submitText.textContent : '送信する';
 
-        // 1秒後に送信成功としてサンクスモーダルを表示
-        setTimeout(() => {
-          submitBtn.disabled = false;
-          if (submitText) submitText.textContent = originalText;
-          
-          // フォームリセット
+      // 送信中はボタンを押せないようにして二重送信を防ぐ
+      if (submitBtn) submitBtn.disabled = true;
+      if (submitText) submitText.textContent = '送信中...';
+
+      // ★送信先URLは contact.html の form の action に書いてあります
+      fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      })
+        .then(response => {
+          if (!response.ok) throw new Error('送信に失敗しました');
+          // 送信成功：フォームを空にして「ありがとうございます」画面を表示
           contactForm.reset();
-
-          // サンクスモーダルを開く
           openThanksModal();
-        }, 900);
-      }
+        })
+        .catch(() => {
+          // 送信失敗：通信エラーなどの場合はお客様にお知らせする
+          alert('申し訳ありません。送信できませんでした。\n時間をおいて、もう一度お試しください。');
+        })
+        .finally(() => {
+          // ボタンを元の状態に戻す
+          if (submitBtn) submitBtn.disabled = false;
+          if (submitText) submitText.textContent = originalText;
+        });
     });
 
     // ユーザーが入力し直した際にエラー表示を解除
